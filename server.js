@@ -3,7 +3,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 // Requiring passport as we've configured it
-var passport = require("./config/passport");
+var passportTeacher = require("./config/passportTeacher");
+var passportStudent = require("./config/passportStudent");
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 3600;
@@ -16,8 +17,10 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passportStudent.initialize());
+app.use(passportStudent.session());
+app.use(passportTeacher.initialize());
+app.use(passportTeacher.session());
 
 // Requiring our routes
 require("./routes/html-routes.js")(app);
