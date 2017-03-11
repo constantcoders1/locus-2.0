@@ -26,6 +26,17 @@ app.use(passportTeacher.session());
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Import routes and give the server access to them.
+var studentRoutes = require("./controllers/studentsController.js");
+
+app.use("/student", studentRoutes);
+
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
