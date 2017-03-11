@@ -14,9 +14,9 @@ var mysql = require('mysql')
 // Get announcements from student's teacher(s) and project(s) student is working on 
 
 router.get('/view/:studentid', function(req,res){
-	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
       res.send("Student's home view");
-    });
+    // });
 });
 
 // Student's individual data view 
