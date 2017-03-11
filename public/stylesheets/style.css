@@ -1,4 +1,63 @@
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+.login-button{
+
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
 }
+
+/*hides feild in login forms*/
+#studentorteacher{
+  visibility: hidden;
+}
+
+/*for backgrounds to specific pages*/
+/*#teacher_signup{
+  background: url("../images/aerial_shrubland.jpg")no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#student_signup{
+  background: url("../images/reef.jpg")no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+
+
+/*to make the footer sticky*/
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -50px; 
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  height: 142px; 
+}
+
+
+footer {
+  background: #2C3E50;
+  clear: both;
+  color: white;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  }
