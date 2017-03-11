@@ -1,0 +1,21 @@
+change db password in config.json 
+change db in config.json or create db (for now I created it)
+
+I did not need to create table.
+
+Change secret word in server.js
+
+
+
+Then the create account will have the appropriate extra fields we need
+
+
+Need a better error message for login failure
+
+
+Need to make sure there are no duplicate keywords in the teacher db
+
+
+
+
+
