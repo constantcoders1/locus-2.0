@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+  <title>Student</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/studentview.css" media="screen" title="no title">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/navbar.css" media="screen" title="no title">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body id="teacher_signup">  
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">My Data</a></li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Group Projects <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Seasons</a></li>
+            <li><a href="#">Equinox</a></li>
+            <li><a href="#">Locaiton Overview</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">All Projects</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li> --> 
+          </ul>
+        </li>
+      </ul>
+
+      <!-- search bar for projects -->
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+          <div class="dropdown-menu dropdown-menu-right" role="menu">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="filter">Filter by</label>
+                <select class="form-control">
+                  <option value="0" selected>Location</option>
+                  <option value="1">Date</option>
+                  <option value="2">Project Name</option>
+                  <option value="3">Class</option>
+                  <option value="4">Username</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="contain">Contains the words</label>
+                <input class="form-control" type="text" />
+              </div>
+            </form>
+          </div>
+        <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+      </form>
+<!--       
+            <div class="input-group" id="adv-search">
+            <form role="search">
+              <input type="text" class="form-control" placeholder="Search for Projects"/>
+                <div class="input-group-btn">
+                  <div class="btn-group" role="group">
+                    <div class="dropdown dropdown-lg">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <form class="form-horizontal" role="form">
+                              <div class="form-group">
+                                <label for="filter">Filter by</label>
+                                <select class="form-control">
+                                  <option value="0" selected>Location</option>
+                                  <option value="1">Date</option>
+                                  <option value="2">Project Name</option>
+                                  <option value="3">Class</option>
+                                  <option value="4">Username</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="contain">Contains the words</label>
+                                <input class="form-control" type="text" />
+                              </div>
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                  </div>
+                </div>
+              </form>
+            </div> -->
+          
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"> Logout </a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>      
+
+<div class="container">
+	<h1> My Class </h1>
+  <div class="container">
+  	<div class="col-md-4 ">
+  		<!-- <h2> Announcements </h2> -->
+  			<div class="form-group">
+    			<label class="control-label" for="focusedInput"> <h3>Announcements</h3></label>
+    			<input class="form-control" id="focusedInput" type="text" value="">
+  		</div>
+  	</div>
+  </div>
+  <div class="container">
+  	<div class="col-md-4 ">
+  		<h3> Class Projects </h3>
+  	</div>
+  </div>
+
+  <div class="container">
+  	<div class="col-md-4 ">
+  		<h3> Search for a Project </h3>
+  	</div>
+  </div>
+</div>
+
+<div class="container">
+    <h1 class="heading-primary">CSS Responsive Animated Accordion</h1>
+    <div class="accordion">
+      <dl>
+        <dt>
+          <a href="#accordion1" aria-expanded="false" aria-controls="accordion1" class="accordion-title accordionTitle js-accordionTrigger">First Accordion heading</a>
+        </dt>
+        <dd class="accordion-content accordionItem is-collapsed" id="accordion1" aria-hidden="true">
+          <p>Lorem ipsum dolor sit amet, consectetur <a href="http://www.google.com">Test</a>adipiscing elit. Morbi eu interdum diam. Donec interdum porttitor risus non bibendum. Maecenas sollicitudin eros in quam imperdiet placerat. Cras justo purus, rhoncus nec lobortis ut, iaculis vel ipsum. Donec dignissim arcu nec elit faucibus condimentum. Donec facilisis consectetur enim sit amet varius. Pellentesque justo dui, sodales quis luctus a, iaculis eget mauris. </p>
+          <p>Aliquam dapibus, ante quis fringilla feugiat, mauris risus condimentum massa, at elementum libero quam ac ligula. Pellentesque at rhoncus dolor. Duis porttitor nibh ut lobortis aliquam. Nullam eu dolor venenatis mauris placerat tristique eget id dolor. Quisque blandit adipiscing erat vitae dapibus. Nulla aliquam magna nec elementum tincidunt.</p>
+        </dd>
+        <dt>
+          <a href="#accordion2" aria-expanded="false" aria-controls="accordion2" class="accordion-title accordionTitle js-accordionTrigger">
+            Second Accordion heading</a>
+        </dt>
+        <dd class="accordion-content accordionItem is-collapsed" id="accordion2" aria-hidden="true">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu interdum diam. Donec interdum porttitor risus non bibendum. Maecenas sollicitudin eros in quam imperdiet placerat. Cras justo purus, rhoncus nec lobortis ut, iaculis vel ipsum. Donec dignissim arcu nec elit faucibus condimentum. Donec facilisis consectetur enim sit amet varius. Pellentesque justo dui, sodales quis luctus a, iaculis eget mauris. </p>
+          <p>Aliquam dapibus, ante quis fringilla feugiat, mauris risus condimentum massa, at elementum libero quam ac ligula. Pellentesque at rhoncus dolor. Duis porttitor nibh ut lobortis aliquam. Nullam eu dolor venenatis mauris placerat tristique eget id dolor. Quisque blandit adipiscing erat vitae dapibus. Nulla aliquam magna nec elementum tincidunt.</p>
+        </dd>
+        <dt>
+          <a href="#accordion3" aria-expanded="false" aria-controls="accordion3" class="accordion-title accordionTitle js-accordionTrigger">
+            Third Accordion heading
+          </a>
+        </dt>
+        <dd class="accordion-content accordionItem is-collapsed" id="accordion3" aria-hidden="true">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu interdum diam. Donec interdum porttitor risus non bibendum. Maecenas sollicitudin eros in quam imperdiet placerat. Cras justo purus, rhoncus nec lobortis ut, iaculis vel ipsum. Donec dignissim arcu nec elit faucibus condimentum. Donec facilisis consectetur enim sit amet varius. Pellentesque justo dui, sodales quis luctus a, iaculis eget mauris. </p>
+          <p>Aliquam dapibus, ante quis fringilla feugiat, mauris risus condimentum massa, at elementum libero quam ac ligula. Pellentesque at rhoncus dolor. Duis porttitor nibh ut lobortis aliquam. Nullam eu dolor venenatis mauris placerat tristique eget id dolor. Quisque blandit adipiscing erat vitae dapibus. Nulla aliquam magna nec elementum tincidunt.</p>
+        </dd>
+      </dl>
+    </div>
+  </div>
+
+	<!-- <h2>My Posts:</h2>
+	<div id = myPosts>
+
+	</div>
+
+
+	<h2>Posts From My Region: </h2>
+	<div id = myRegionPosts>
+	</div>
+
+	<h2>All Posts:</h2>
+	<div id = allPosts>
+	</div> -->
+
+<footer>
+  <p>@constantcoders 2017</p>
+</footer>
+	<!-- Custom Script -->
+	<script src="../js/fieldNotes.js" type="text/javascript"></script>
+
+</body>
+</html>
