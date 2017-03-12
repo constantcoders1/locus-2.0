@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="#">Locus</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,50 +54,60 @@
 
   <div class="container">
     <div class="row">
-      <form class="form-horizontal">
+      <form class="form-horizontal" class="create-update-form" action="/notes/create" method="POST">
         <fieldset>
-          <legend>Enter a Feild Note</legend>
-
+          <legend>Enter a New Fieldnote<span class="member-name"></span></legend>
+ 
+          
             <div class="form-group">
               <label for="inputTitle" class="col-lg-2 control-label">Title</label>
-              <div class="col-lg-10">
-                <input class="form-control" id="" placeholder="title" type="text">
+              <div class="col-lg-4">
+                <input class="form-control" id="title" placeholder="title" type="text" type="title">
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <label for="inputDate" class="col-lg-2 control-label">Date the Note Was Taken</label>
+              <div class="col-lg-4">
+                <input class="form-control" id="" placeholder="yyyy/mm/dd" type="date">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="select" class="col-lg-2 control-label">Document Type</label>
+              <label for="inpuNoteType" class="col-lg-2 control-label">Note Type</label>
               <div class="col-lg-10">
-                <select multiple="" class="form-control" id="" placeholder="Document Type" type="text">
-                  <option>PDF</option>
+                <select multiple="" id="noteType" class="form-control" placeholder="Note Type" type="noteType">
                   <option>Image</option>
-                <!--   <option>Place</option>
-                  <option>Place</option> -->
+                  <option>YouTube Video</option>
+                  <option>Google Doc</option>
+                  <option>Other</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputDoctype" class="col-lg-2 control-label">Document Link</label>
+              <label for="inputNote" class="col-lg-2 control-label">Link</label>
               <div class="col-lg-10">
-                <input class="form-control" id="" placeholder="paste the link to your document here" type="text">
+                <input class="form-control" type="note" type="url" id="note" placeholder="Paste the link to your note here">
               </div>
             </div>
             
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Description</label>
+              <label for="inputDesc" class="col-lg-2 control-label">Description</label>
               <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="textArea"></textarea>
+                <textarea class="form-control" rows="3" id="description" type="text"></textarea>
                 <span class="help-block"></span>
               </div>
             </div>
-           
 
+          <button type="submit" class="btn btn-success">Submit</button>
+          </fieldset>
+      </form>
+    </div>  
+  </div>
+    
 
-          </fieldset></form></div>
-         
-      </div>
-    </div>
+</div>
   
 
 
