@@ -34,8 +34,11 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 var studentRoutes = require("./controllers/studentsController.js");
+var notesRoutes = require("./controllers/notesController.js");
 
 app.use("/student", studentRoutes);
+app.use("/notes", notesRoutes);
+
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
