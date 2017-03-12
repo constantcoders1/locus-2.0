@@ -1,5 +1,5 @@
 {
-  "name": "1-Passport-Example",
+  "name": "1-passport-example",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -20,5 +20,13 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "sequelize": "^3.27.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akimtis/locus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akimtis/locus/issues"
+  },
+  "homepage": "https://github.com/akimtis/locus#readme"
 }
