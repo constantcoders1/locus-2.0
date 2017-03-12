@@ -1,13 +1,14 @@
 $(document).ready(function() {
+  console.log("studentsignup")
   // Getting references to our form and input
   var signUpForm = $("form.signup");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
-  // var usernameInput = $("input#username-input");
-  // var keywordInput = $("input#keyword-input")
-  // var countryInput = $("input#country-input");
-  // var stateInput = $("input#state-input");
-  // var cityInput = $("input#city-input");
+  var usernameInput = $("input#username-input");
+  // var keywordInput = $("input#keyword-input");
+  var countryInput = $("input#country-input");
+  var stateInput = $("input#state-input");
+  var cityInput = $("input#city-input");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
@@ -16,11 +17,11 @@ $(document).ready(function() {
     var userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
-      // username: usernameInput.val().trim(),
-      // keyword: keywordInput.val().trim(),
+      username: usernameInput.val().trim(),
+      // keyword: keywordInput.val().trim()
       // country: countryInput.val().trim(),
-      // state:  stateInput.val().trim(),
-      // city: cityInput.val().trim()
+      state:  stateInput.val().trim(),
+      city: cityInput.val().trim()
 
     };
 

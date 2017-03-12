@@ -44,7 +44,7 @@ module.exports = function(app) {
       password: req.body.password,
 
       // restore when html with the below fields are available
-      // username: req.body.username,
+      username: req.body.username,
       // keyword: req.body.keyword,
     }).then(function() {
       console.log("post teacher sign up then clause")
@@ -60,11 +60,11 @@ module.exports = function(app) {
      db.Student.create({
       email: req.body.email,
       password: req.body.password,
-      // username: req.body.username,
-      // keyword: req.body.keyword,
-      // country: req.body.country,
-      // state: req.body.state,
-      // city: req.body.city,
+      username: req.body.username,
+      keyword: req.body.keyword,
+      country: req.body.country,
+      state: req.body.state,
+      city: req.body.city,
     }).then(function() {
       console.log("post student sign up then clause")
       // res.redirect(307, "/api/login/student");
