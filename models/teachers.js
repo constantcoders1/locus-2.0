@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     username: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     keyword: {
       type: DataTypes.STRING,

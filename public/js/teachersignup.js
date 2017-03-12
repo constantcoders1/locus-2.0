@@ -5,6 +5,8 @@ $(document).ready(function() {
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
   var keywordInput = $("input#keyword-input");
+  console.log("teacher signup ready")
+
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
@@ -16,7 +18,7 @@ $(document).ready(function() {
 
       // fields aren't available yet so ignored for now
       // *****************************
-      // username: usernameInput.val().trim(),
+      username: usernameInput.val().trim(),
       // keyword: keywordInput.val().trim(),
       // ********************************
       // restore the above fields when new html is available
