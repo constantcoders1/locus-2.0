@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <title>Student Login</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,107 +20,108 @@
 <div class="page-wrap">
 
   <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Brand</a>
-      </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="#">Teacher Login <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Student Login</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Seasons</a></li>
-              <li><a href="#">Equinox</a></li>
-              <li><a href="#">Locaiton Overview</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">All Projects</a></li>
-            </ul>
-          </li>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Locus</a>
+    </div>
 
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Contact</a></li>
-          <li><a href="#"> Class Map </a></li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>      
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">My Data</a></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li><a href="#">My Class</a></li>
+      </ul>
 
-  <div class="container" >
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"> Logout </a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>  
+
+  <div class="container">
     <div class="row">
-      <form class="form-horizontal">
+      <form class="form-horizontal" class="create-update-form" action="/notes/create" method="POST">
         <fieldset>
-          <legend>Enter a Feild Note</legend>
-
+          <legend>Enter a New Fieldnote<span class="member-name"></span></legend>
+ 
+          
             <div class="form-group">
               <label for="inputTitle" class="col-lg-2 control-label">Title</label>
-              <div class="col-lg-10">
-                <input class="form-control" id="" placeholder="title" type="text">
+              <div class="col-lg-4">
+                <input class="form-control" id="title" placeholder="title" type="text" type="title">
+              </div>
+            </div>
+        
+            <div class="form-group">
+              <label for="inputDate" class="col-lg-2 control-label">Date the Note Was Taken</label>
+              <div class="col-lg-4">
+                <input class="form-control" id="" placeholder="yyyy/mm/dd" type="date" required>
+
               </div>
             </div>
 
             <div class="form-group">
-              <label for="select" class="col-lg-2 control-label">Document Type</label>
+
+              <label for="inpuNoteType" class="col-lg-2 control-label">Note Type</label>
               <div class="col-lg-10">
-                <select multiple="" class="form-control" id="" placeholder="Document Type" type="text">
-                  <option>PDF</option>
+                <select multiple="" id="noteType" class="form-control" placeholder="Note Type" type="noteType">
                   <option>Image</option>
-                <!--   <option>Place</option>
-                  <option>Place</option> -->
+                  <option>YouTube Video</option>
+                  <option>Google Doc</option>
+                  <option>Other</option>
+
                 </select>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputDoctype" class="col-lg-2 control-label">Document Link</label>
+
+              <label for="inputNote" class="col-lg-2 control-label">Link</label>
               <div class="col-lg-10">
-                <input class="form-control" id="" placeholder="paste the link to your document here" type="text">
+                <input class="form-control" type="note" type="url" id="note" placeholder="Paste the link to your note here" required>
+
               </div>
             </div>
             
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Description</label>
+
+              <label for="inputDesc" class="col-lg-2 control-label">Description</label>
               <div class="col-lg-10">
-                <textarea class="form-control" rows="3" id="textArea"></textarea>
+                <textarea class="form-control" rows="3" id="description" type="text" required></textarea>
+
                 <span class="help-block"></span>
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="inputDate" class="col-lg-2 control-label">Date</label>
-              <div class="col-lg-10">
-                <input class="form-control" id="" placeholder="record the date you made this feild note (if it is different than today" type="text">
-              </div>
-            </div>  
 
-
-          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
           </fieldset>
-       
-          <br />
-          <p>Or sign up <a href="/signup.html">here</a></p>
-          <a href="#" class="btn btn-success" class="login-button">Login</a>
-         </form>
-      </div>
-    </div>
+      </form>
+    </div>  
   </div>
-</body>
+    
+
+</div>
+  
+
 
 <footer class="site-footer">
   <p>@constantcoders 2017</p>
 </footer>
 
+
 </body>
 
 </html>
+
