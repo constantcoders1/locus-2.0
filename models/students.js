@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
   }, 
   username: {
     type: DataTypes.STRING,
-    // allowNull: false,
+    allowNull: false,
   },
     country: {
       type: DataTypes.STRING,
@@ -27,11 +27,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     state: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     city: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     keyword: {
       type: DataTypes.STRING,

@@ -8,9 +8,7 @@ $(document).ready(function() {
   // When the form is submitted, we validate there's an email and password entered
 
 
-  // pass a hidden variable to know if we are logging in a student or teacher
-  // we need to know which table we are looking in for the email/pw a
-
+ 
   loginForm.on("submit", function(event) {
     event.preventDefault();
     var userData = {
