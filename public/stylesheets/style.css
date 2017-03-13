@@ -20,6 +20,10 @@ form.login {
   visibility: hidden;
 }
 
+/*for thumbnail project gallery on studentview.html*/
+.thumb {
+    margin-bottom: 30px;
+}
 /*for backgrounds to specific pages*/
 /*#teacher_signup{
   background: url("../images/aerial_shrubland.jpg")no-repeat center center fixed; 
