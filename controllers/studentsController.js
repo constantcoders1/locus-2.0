@@ -29,31 +29,22 @@ router.get('/view/:studentid', function(req,res){
       }
 
       console.log("projIds" + projIds)
-      // Grab data in Educator and Fieldnote tables corresponding to the projects the student is working on 
       db.Project.findAll({ 
         where: {
-          ProjectId: projIds,
+          id: projIds,
         },
         include: [db.Educator]
 
       }).then(function(result) {
 
-        // var project_objs = result; 
+        var obj_for_handlebars = []
+        for (i in result){
+          obj_for_handlebars.push(result[i].dataValues)
+        }
 
-        // var project_info = []
-        // for (i in projIds){
+        console.log(obj_for_handlebars)
+        res.render("student-view", {projects: obj_for_handlebars} )
 
-        //   var p_i = {
-        //     "name": project_objs[0].dataValues.name,
-        //     "current_announcements": project_obj[0].dataValues.current_announcements,
-        //     ""
-        //   }
-
-        // var proj_name 
-        // var current_announcements = project_objs[0].dataValues.
-        // console.log(project_obj)
-        console.log(result)
-        res.send(result)
       });
 
     });
@@ -77,28 +68,13 @@ router.get('/my-data/:studentid', function(req,res){
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
       console.log("projIds" + projIds)
-      // Grab data in Educator and Fieldnote tables corresponding to the projects the student is working on 
+      
       db.Fieldnote.findAll({ 
         where: {
           ProjectId: projIds,
         }
 
       }).then(function(result) {
-
-        // var project_objs = result; 
-
-        // var project_info = []
-        // for (i in projIds){
-
-        //   var p_i = {
-        //     "name": project_objs[0].dataValues.name,
-        //     "current_announcements": project_obj[0].dataValues.current_announcements,
-        //     ""
-        //   }
-
-        // var proj_name 
-        // var current_announcements = project_objs[0].dataValues.
-        console.log(result)
 
         var obj_for_handlebars = []
         for (i in result){
