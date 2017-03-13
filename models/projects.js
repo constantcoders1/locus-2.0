@@ -3,28 +3,48 @@
 var bcrypt = require("bcrypt-nodejs");
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
-  var Teacher = sequelize.define("Teacher", {
-    // The email cannot be null, and must be a proper email before creation
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true
-      }
-    },
-    // The password cannot be null
-    password: {
+  var Project = sequelize.define("Project", {
+    // timestamps: false,
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    username: {
-      type: DataTypes.STRING,
+    location: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+  }, 
+	  instructions: {
+	    type: DataTypes.STRING,
+	    allowNull: false,
+	  },
+    current_announcements: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    keyword: {
-      type: DataTypes.STRING,
-      // allowNull: false,
-    }
+    root_project: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    // educator_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
+	    // country: {
+	    //   type: DataTypes.STRING,
+	    //   // allowNull: false,
+	    // },
+	    // state: {
+	    //   type: DataTypes.STRING,
+	    //   allowNull: false,
+	    // },
+	    // city: {
+	    //   type: DataTypes.STRING,
+	    //   allowNull: false,
+	    // },
+	    // keyword: {
+	    //   type: DataTypes.STRING,
+	    //   // allowNull: false,
+	    // }
   }, {
     // Creating a custom method for our User model. This will check if an unhashed password entered by
     // The user can be compared to the hashed password stored in our database
@@ -35,15 +55,23 @@ module.exports = function(sequelize, DataTypes) {
     },
     // Hooks are automatic methods that run during various phases of the User Model lifecycle
     // In this case, before a User is created, we will automatically hash their password
+    
+    associations: {
+      // put foregin key stuff here
+
+      // put teacher id stuff here
+    },
+
     hooks: {
       beforeCreate: function(user, options, cb) {
-        // user was passed to function so use user
-
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
         cb(null, options);
       }
     }
   });
-  return Teacher;
+
+  return Project;
 
 };
+
+
