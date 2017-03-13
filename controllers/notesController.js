@@ -18,7 +18,7 @@ router.get('/viewall', function(req, res) {
        });
 });
 
-router.get('/:studentid', function(req, res) {
+router.get('/view/:studentid', function(req, res) {
     db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
@@ -26,7 +26,13 @@ router.get('/:studentid', function(req, res) {
        });
 });
 
-
+router.get('/create/:projectid/:studentid', function(req, res) {
+    
+    //res.send(dbFieldnotes);
+    //console.log(dbFieldnotes);
+    res.render("notes");
+      
+});
 router.post('/view', function(req, res) {
 
     var query = "SELECT * FROM users WHERE email = ?";
