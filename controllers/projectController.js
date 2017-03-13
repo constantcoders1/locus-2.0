@@ -1,106 +1,102 @@
-var bcrypt = require('bcryptjs');
+v// Student Controller 
+var passportStudent = require("../config/passportStudent");
+var passportTeacher = require("../config/passportTeacher");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
+
+var db = require("../models");
 var express = require('express');
-var router  = express.Router();
-var mysql = require('mysql')
+var router = express.Router();
+var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-
-  // Your username
-  user: "root",
-
-  // Your password
-  password: "",
-  database: "obeservations_db"
+// var connection = require('../config/connection.js')
+router.get('/viewall', function(req, res) {
+    db.Fieldnote.findAll({}).then(function(dbProject) {
+    //res.send("View Notes");
+    //console.log(dbFieldnotes);
+    res.send(dbFieldnotes);
+       });
 });
 
-//this is the users_controller.js file
-
-router.get('/', function(req,res) {
-  //check to see if user is logged in 
-    // res.send('coupons! your user id is: ' + req.session.user_id + " your email is: " + req.session.user_email);
-
-  var query = "SELECT * FROM projects"
-
-  connection.query(query, function(err, projects) {
-    res.render('projects/index', {
-      has_project: true,
-      projects: projects,
-      logged_in: req.session.logged_in,
-      user_email: req.session.user_email,
-      user_id: req.session.user_id,
-      company: req.session.company,
-      username: req.session.username
-    });
-
-  });
+router.get('/:projectid/:studentid', function(req, res) {
+    db.Fieldnote.findAll({}).then(function(dbProject) {
+    //res.send(dbFieldnotes);
+    //console.log(dbFieldnotes);
+    res.render("/projects/create", {data: dbProject })
+       });
 });
 
-// router.get('/purchased', function(req,res) {
-//   if (!req.session.company){
-//     var query = "SELECT * FROM users u LEFT JOIN user_coupons uc ON uc.user_id = u.id LEFT JOIN coupons c ON c.id = uc.coupon_id WHERE u.id = ?"
 
-//     connection.query(query, [req.session.user_id], function(err, coupons) {
-//       res.render('coupons/purchased', {
-//         purchase_coupon: false,
-//         coupons: coupons,
-//         logged_in: req.session.logged_in,
-//         user_email: req.session.user_email,
-//         user_id: req.session.user_id,
-//         company: req.session.company,
-//         username: req.session.username
-//       });
+router.post('/view', function(req, res) {
+
+});
+
+router.post("/create", function(req, res) {
+    console.log("creating project");
+    console.log(req.body);
+    db.Project.create(req.body).then(function() {
+        console.log("created a project")
+            //res.redirect(307, "/view");
+            res.send(req.body);
+    }).catch(function(err) {
+        console.log(err);
+        res.json(err);
+    }); 
+
+    // need to get keyword & look up teacher id
+});
+// Student's individual data view 
+// Get all data from all projects posted by this student 
+
+// router.get('/my-data/:studentid', function(req,res){
+//  db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+//       res.send("Student's individual data view ");;
 //     });
-//   }
 // });
 
-// router.get('/created', function(req,res) {
-//   if (req.session.company){
-//     var query = "SELECT * FROM users u LEFT JOIN coupons c ON c.user_id = u.id WHERE u.id = ?"
+// // Form for posting data 
+// // Get project(s) this student is working to display as options in the form 
 
-//     connection.query(query, [req.session.user_id], function(err, coupons) {
-//       res.render('coupons/created', {
-//         purchase_coupon: false,
-//         coupons: coupons,
-//         logged_in: req.session.logged_in,
-//         user_email: req.session.user_email,
-//         user_id: req.session.user_id,
-//         company: req.session.company,
-//         username: req.session.username
-//       });
+// router.get('/new-entry/:studentid/:projectid', function(req,res){
+//  db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+//       res.send("Student's form for posting new data ");;
 //     });
-//   }
 // });
 
-// //buying a coupon
-// router.post('/users/create', function(req,res) {
-//   //make sure user inserting is a customer
-//   if (!req.session.company){
-//     var query = "INSERT INTO user_coupons (user_id, coupon_id, quantity) VALUES (?, ?, ?)"
+// // Post new entry to the database 
 
-//     connection.query(query, [ req.session.user_id, req.body.coupon_id, req.body.quantity ], function(err, response) {
-//       if (err) res.send('500');
-//       else res.send('200');
+// router.post('/new-entry/:studentid/:projectid', function(req,res){
+//  db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+//       res.send("Student posted new entry to the database");;
 //     });
-//   }else{
-//     res.send('you do not have access to this because you are not a customer')
-//   }
 // });
 
-// //making a coupon
-// router.post('/create', function(req,res) {
-//   //make sure that user inserting is a company
-//   if (req.session.company){
-//     var query = "INSERT INTO coupons (company_name, price, item, coupon_code, expiration_date, user_id) VALUES (?, ?, ?, ?, ?, ?)"
+// TBI: Edit an existing entry 
 
-//     connection.query(query, [ req.body.company_name, req.body.price, req.body.item, req.body.coupon_code, req.body.expiration_date, req.session.user_id ], function(err, response) {
-
-//       res.redirect('/coupons')
+// router.put('/', function(req,res){
+//  db.Fieldnotes.update({
+//    // Form
+//        // text: req.body.text,
+//        // complete: req.body.complete
+//     }, {
+//       where: {
+//         id: req.body.id
+//       }
+//     }).then(function(dbFieldnotes) {
+//       res.send("Student Entry Edit");;
 //     });
-//   }else{
-//     res.send('you do not have access to this because you are not a company')
-//   }
 // });
 
- // module.exports = router;
+// TBI: Delete an existing entry 
+
+// router.delete('/', function(req,res){
+//     db.Fieldnotes.destroy({
+//       where: {
+//         id: req.params.id
+//       }
+//     }).then(function(dbFieldnotes) {
+//       res.send("Student Entry Delete");;
+//     });
+// });
+
+module.exports = router;
