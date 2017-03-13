@@ -14,36 +14,41 @@ var mysql = require('mysql')
 // Get announcements from student's teacher(s) and project(s) student is working on 
 
 router.get('/view/:studentid', function(req,res){
-	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-      res.send("Student's home view");
-    // });
+	db.Educator.findAll({ 
+    where: {
+      id: req.params.studentid,
+    },
+    include: [db.Project]
+  }).then(function(dbEducators) {
+      res.json(dbEducators);
+    });
 });
 
 // Student's individual data view 
 // Get all data from all projects posted by this student 
 
-// router.get('/my-data/:studentid', function(req,res){
-// 	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's individual data view ");;
-//     });
-// });
+router.get('/my-data/:studentid', function(req,res){
+	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+      res.send("Student's individual data view ");;
+    // });
+});
 
-// // Form for posting data 
-// // Get project(s) this student is working to display as options in the form 
+// Form for posting data 
+// Get project(s) this student is working to display as options in the form 
 
-// router.get('/new-entry/:studentid/:projectid', function(req,res){
-// 	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's form for posting new data ");;
-//     });
-// });
+router.get('/new-entry/:studentid/:projectid', function(req,res){
+	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+      res.send("Student's form for posting new data ");;
+    // });
+});
 
-// // Post new entry to the database 
+// Post new entry to the database 
 
-// router.post('/new-entry/:studentid/:projectid', function(req,res){
-// 	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student posted new entry to the database");;
-//     });
-// });
+router.post('/new-entry/:studentid/:projectid', function(req,res){
+	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+      res.send("Student posted new entry to the database");;
+    // });
+});
 
 // TBI: Edit an existing entry 
 
