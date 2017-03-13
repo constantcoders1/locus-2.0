@@ -4,6 +4,7 @@
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
   var Fieldnote = sequelize.define("Fieldnote", {
+    // timestamps: false,
     // The email cannot be null, and must be a proper email before creation
     title: {
       type: DataTypes.STRING,
@@ -21,13 +22,21 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     notedate: {
       type: DataTypes.DATE,
       allowNull: false,
-    }
+    },
+    // project_id: {
+    //   type: DataTypes.INTEGER, 
+    //   allowNull: false, 
+    // },
+    // student_id: {
+    //   type: DataTypes.INTEGER, 
+    //   allowNull: false, 
+    // },
   }, {
     // Creating a custom method for our User model. This will check if an unhashed password entered by
     // The user can be compared to the hashed password stored in our database

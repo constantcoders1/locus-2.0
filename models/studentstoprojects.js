@@ -3,41 +3,16 @@
 var bcrypt = require("bcrypt-nodejs");
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
-  var Student = sequelize.define("Student", {
+  var StudentToProject = sequelize.define("StudentToProject", {
     // timestamps: false,
-    // The email cannot be null, and must be a proper email before creation
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true
-      }
-    },
-    // The password cannot be null
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-  }, 
-	  username: {
-	    type: DataTypes.STRING,
-	    allowNull: false,
-	  },
-	    // country: {
-	    //   type: DataTypes.STRING,
-	    //   // allowNull: false,
-	    // },
-	    // state: {
-	    //   type: DataTypes.STRING,
-	    //   allowNull: false,
-	    // },
-	    // city: {
-	    //   type: DataTypes.STRING,
-	    //   allowNull: false,
-	    // },
-	    // keyword: {
-	    //   type: DataTypes.STRING,
-	    //   // allowNull: false,
-	    // }
+    // project_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
+    // student_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   }, {
     // Creating a custom method for our User model. This will check if an unhashed password entered by
     // The user can be compared to the hashed password stored in our database
@@ -50,9 +25,6 @@ module.exports = function(sequelize, DataTypes) {
     // In this case, before a User is created, we will automatically hash their password
     
     associations: {
-      // put foregin key stuff here
-
-      // put teacher id stuff here
     },
 
     hooks: {
@@ -62,6 +34,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Student;
+  return StudentToProject;
 
 };

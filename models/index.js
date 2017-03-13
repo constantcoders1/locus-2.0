@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 var fs        = require('fs');
 var path      = require('path');
@@ -32,5 +32,20 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// Player.belongsTo(team) --> teamId added to Player model 
+
+db.Project.belongsTo(db.Educator);
+db.StudentToProject.belongsTo(db.Student);
+db.StudentToProject.belongsTo(db.Project);
+db.Fieldnote.belongsTo(db.Student);
+db.Fieldnote.belongsTo(db.Project);
+
+db.Educator.hasMany(db.Project);
+db.Student.hasOne(db.StudentToProject);
+db.Project.hasOne(db.StudentToProject);
+db.Student.hasOne(db.Fieldnote);
+db.Project.hasOne(db.Fieldnote);
+
 
 module.exports = db;
