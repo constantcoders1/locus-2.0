@@ -10,15 +10,22 @@ var router = express.Router();
 var mysql = require('mysql');
 
 // var connection = require('../config/connection.js')
-
+router.get('/viewall', function(req, res) {
+    db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
+    //res.send("View Notes");
+    //console.log(dbFieldnotes);
+    res.send(dbFieldnotes);
+       });
+});
 
 router.get('/:studentid', function(req, res) {
     db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
-    //res.send("View Notes");
-    console.log(dbFieldnotes);
-    res.send(dbFieldnotes)
+    //res.send(dbFieldnotes);
+    //console.log(dbFieldnotes);
+    res.render("notes_view", {data: dbFieldnotes })
        });
 });
+
 
 router.post('/view', function(req, res) {
 

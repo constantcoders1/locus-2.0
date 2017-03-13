@@ -1,0 +1,73 @@
+<div class="jumbotron">
+
+  <h1>Project Title</h1>
+  <p>This is a description of the project, including what the students were asked to do and what type of data they collected.</p>
+  <p><a class="btn btn-success btn-lg">Create a Feild Note</a></p>
+  
+  </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Field Notes</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Contribtor</th>
+              <th>Link</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each data}}
+             
+
+              <tr>
+              <td>@ablue</td>
+              <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
+              <td> {{this.title}}</td>
+              <td> {{this.description}}</td>
+              <td> {{this.notedate}}</td>
+            </tr>
+          {{/each}}
+
+           <!--  <ul>
+             {{#each cats}}
+               {{#unless this.sleepy}}
+                 <li>
+                   {{this.name}}
+           
+                   <form action="/{{this.id}}?_method=PUT" method="POST">
+                     <input type="hidden" name="sleepy" value="true">
+                     <button type="submit">SLEEP TIME!</button>
+                   </form>
+                 </li>
+               {{/unless}}
+             {{/each}}
+           </ul> -->
+            <tr>
+              <td>@ablue</td>
+              <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
+              <td>Tree Leaves</td>
+              <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "</td>
+              <td>2017/03/16</td>
+            </tr>
+            <tr>
+              <td>@agreen</td>
+              <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
+              <td>The Ginko Tree Outside My House</td>
+              <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</td>
+              <td>2017/02/02</td>
+            </tr>
+            
+          </tbody>
+        </table> 
+
+      </div>
+    </div>
+ 
+    
+  
+  
