@@ -10,15 +10,29 @@ var router = express.Router();
 var mysql = require('mysql');
 
 // var connection = require('../config/connection.js')
-
-
-router.get('/:studentid', function(req, res) {
-    // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+router.get('/viewall', function(req, res) {
+    db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
     //res.send("View Notes");
-    res.render("notes")
-        // });
+    //console.log(dbFieldnotes);
+    res.send(dbFieldnotes);
+       });
 });
 
+router.get('/view/:studentid', function(req, res) {
+    db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
+    //res.send(dbFieldnotes);
+    //console.log(dbFieldnotes);
+    res.render("notes_view", {data: dbFieldnotes })
+       });
+});
+
+router.get('/create/:projectid/:studentid', function(req, res) {
+    
+    //res.send(dbFieldnotes);
+    //console.log(dbFieldnotes);
+    res.render("notes");
+      
+});
 router.post('/view', function(req, res) {
 
     var query = "SELECT * FROM users WHERE email = ?";
