@@ -14,13 +14,28 @@ var mysql = require('mysql')
 // Get announcements from student's teacher(s) and project(s) student is working on 
 
 router.get('/view/:studentid', function(req,res){
-	db.Educator.findAll({ 
+	db.Student.findAll({ 
     where: {
       id: req.params.studentid,
     },
-    include: [db.Project]
-  }).then(function(dbEducators) {
-      res.json(dbEducators);
+    include: [db.StudentToProject]
+  }).then(function(result) {
+      var student_obj = result; 
+      var student_projectId = student_obj[0].dataValues.StudentToProject.dataValues.ProjectId
+      console.log(student_projectId)
+
+      db.Project.findAll({ 
+        where: {
+          id: student_projectId,
+        },
+        include: [db.Educator, db.Fieldnote]
+
+      }).then(function(result) {
+        var student_obj = result; 
+        
+        
+      });
+
     });
 });
 

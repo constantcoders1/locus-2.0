@@ -8,10 +8,10 @@ INSERT INTO Projects (name, location, instructions, current_announcements, root_
 INSERT INTO Projects (name, location, instructions, current_announcements, root_project, EducatorId) VALUES ('Astronomy', 90001, 'Astronomy_Instructions_Nye.pdf', 'First astronomy observation due tomorrow!', 2, 2);
 INSERT INTO Projects (name, location, instructions, current_announcements, root_project, EducatorId) VALUES ('Astronomy', 10024, 'Astronomy_Instructions_Tyson.pdf', 'First astronomy observation due tomorrow!', 2, 3);
 INSERT INTO Projects (name, location, instructions, current_announcements, root_project, EducatorId) VALUES ('Weather', 90001, 'Weather_Instructions_Nye.pdf', 'First weather observation due tomorrow!', 1, 2);
-INSERT INTO StudentsToProjects (ProjectId, StudentId) VALUES (2,1);
-INSERT INTO StudentsToProjects (ProjectId, StudentId) VALUES (4,1);
-INSERT INTO StudentsToProjects (ProjectId, StudentId) VALUES (1,3);
-INSERT INTO StudentsToProjects (ProjectId, StudentId) VALUES (3,2);
+INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (2,1);
+INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (4,1);
+INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (1,3);
+INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (3,2);
 INSERT INTO Fieldnotes (title, doctype, doclink, description, notedate, StudentId, ProjectId) VALUES ("Kathleen's first astronomy observation", "jpeg", "kath_obs.jpeg", "I photographed a constellation", 100, 1, 2);
 INSERT INTO Fieldnotes (title, doctype, doclink, description, notedate, StudentId, ProjectId) VALUES ("Kathleen's second astronomy observation", "pdf", "kath_obs2.pdf", "I collected astronomy data in a pdf", 101, 1, 2);
 INSERT INTO Fieldnotes (title, doctype, doclink, description, notedate, StudentId, ProjectId) VALUES ("Kathleen's first weather observation", "pdf", "kath_obs3.pdf", "I measured the snow fall and found that it snowed 20cm in my town over the weekend", 102, 1, 4);
