@@ -5,21 +5,29 @@
       <form class="create-update-form" action="/notes/create" method="POST">
   <div class="form-group">
     <label for="inpuNoteType">Data Type (Needs to be a dropdown list from a look up table)</label>
-    <input type="noteType" class="form-control" id="noteType" placeholder="Enter Data Type">
+    <input type="noteType" class="form-control" id="noteType" name="doctype" placeholder="Enter Data Type">
   </div>
   <div class="form-group">
     <label for="inputNote">Enter Data</label>
-    <input type="note" class="form-control" id="note" placeholder="Enter Data">
+    <input type="note" class="form-control" id="note" name="doclink" placeholder="Enter Data">
   </div>
   <div class="form-group">
     <label for="inputTitle">Title</label>
-    <input type="title" class="form-control" id="title" placeholder="Enter Title">
+    <input type="title" class="form-control" id="title" name="title"
+  placeholder="Enter Title">
   </div>
    <div class="form-group">
     <label for="inputDesc">Description</label>
-    <input type="description" class="form-control" id="description" placeholder="Enter Description">
+    <input type="description" class="form-control" id="description" name="description" placeholder="Enter Description">
+  </div>
+  <div class="form-group">
+    <label for="inputnotedate">Enter Date</label>
+    <input type="notedate" class="form-control" id="notedate"  name="notedate" placeholder="Enter Date">
   </div>
  
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
  
+    
+  
+  
