@@ -13,10 +13,11 @@ var mysql = require('mysql');
 
 
 router.get('/:studentid', function(req, res) {
-    // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+    db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
     //res.send("View Notes");
-    res.render("notes")
-        // });
+    console.log(dbFieldnotes);
+    res.send(dbFieldnotes)
+       });
 });
 
 router.post('/view', function(req, res) {
