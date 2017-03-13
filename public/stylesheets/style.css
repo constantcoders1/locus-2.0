@@ -6,10 +6,6 @@ html, body {
   height: 100%;
 }
 
-.login-button{
-
-}
-
 form.signup,
 form.login {
   margin-top: 50px;
@@ -41,6 +37,17 @@ form.login {
   background-size: cover;
 }*/
 
+
+/*for the submenu on the search function*/
+/*.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}*/
 
 /*to make the footer sticky*/
 .page-wrap {
