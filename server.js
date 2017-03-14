@@ -3,8 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 // Requiring passport as we've configured it
-// var passportTeacher = require("./config/passportTeacher");
-// var passportStudent = require("./config/passportStudent");
+
 var passport = require("./config/passport");
 
 
@@ -19,10 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
-// app.use(passportStudent.initialize());
-// app.use(passportStudent.session());
-// app.use(passportTeacher.initialize());
-// app.use(passportTeacher.session());
+
 
 app.use(passport.initialize());
 app.use(passport.session());

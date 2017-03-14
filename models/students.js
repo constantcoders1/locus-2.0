@@ -35,10 +35,6 @@ module.exports = function(sequelize, DataTypes) {
 	      type: DataTypes.STRING,
 	      allowNull: false,
 	    },
-	    // keyword: {
-	    //   type: DataTypes.STRING,
-	    //   // allowNull: false,
-	    // }
   }, {
     // Creating a custom method for our User model. This will check if an unhashed password entered by
     // The user can be compared to the hashed password stored in our database
@@ -50,11 +46,19 @@ module.exports = function(sequelize, DataTypes) {
     // Hooks are automatic methods that run during various phases of the User Model lifecycle
     // In this case, before a User is created, we will automatically hash their password
     
-    associations: {
-      // put foregin key stuff here
-
-      // put teacher id stuff here
+    validate: {
+    	statesUS:  function() {
+    		if (this.country == "United States of America" && this.state.trim() == "") {
+    			throw new Error("In the US state is required")
+    		}
+    	}
     },
+
+    // associations: {
+    //   // put foregin key stuff here
+
+    //   // put teacher id stuff here
+    // },
 
     hooks: {
       beforeCreate: function(user, options, cb) {

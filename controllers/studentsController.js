@@ -1,6 +1,7 @@
 // Student Controller 
-var passportStudent = require("../config/passportStudent");
-var passportTeacher = require("../config/passportTeacher");
+// var passportStudent = require("../config/passportStudent");
+// var passportTeacher = require("../config/passportTeacher");
+
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 
