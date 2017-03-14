@@ -19,10 +19,11 @@ router.get('/viewall', function(req, res) {
 });
 
 router.get('/:projectid/:studentid', function(req, res) {
+    console.log(res.params);
     db.Project.findAll({}).then(function(dbProject) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("/projects/create", {data: dbProject })
+    res.render("projects/index", {data: dbProject })
        });
 });
 
