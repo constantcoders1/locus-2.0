@@ -11,45 +11,45 @@ var router  = express.Router();
 var mysql = require('mysql')
 // var connection = require('../config/connection.js')
 
-// Student's home view 
-
-router.get('/view/:EducatorId', function(req,res){
+// Educator's home view 
+// Need to grab from database: announcements, project info, project thumbnails 
+router.get('/view/:edid', function(req,res){
   db.Project.findAll({ 
     where: {
-      EducatorId: req.params.EducatorId,
+      EducatorId: req.params.edid,
     },
-    include: [db.StudentToProject]
+    // include: [db.StudentToProject]
   }).then(function(result) {
     console.log(result)
-  //     var student_objs = result; 
+      // var student_objs = result; 
 
       // Get the ids of each of the projects the student is working on 
       // var projIds = []
       // for (i in student_objs){          
       //   projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
-      }
+      // }
 
-//       console.log("projIds" + projIds)
-//       db.Project.findAll({ 
-//         where: {
-//           id: projIds,
-//         },
-//         include: [db.Educator]
+      // console.log("projIds" + projIds)
+      // db.Project.findAll({ 
+      //   where: {
+      //     id: projIds,
+      //   },
+      //   include: [db.Educator]
 
-//       }).then(function(result) {
+      // }).then(function(result) {
 
-//         var obj_for_handlebars = []
-//         for (i in result){
-//           obj_for_handlebars.push(result[i].dataValues)
-//         }
+      //   var obj_for_handlebars = []
+      //   for (i in result){
+      //     obj_for_handlebars.push(result[i].dataValues)
+      //   }
 
-//         console.log(obj_for_handlebars)
-//         res.render("student-view", {projects: obj_for_handlebars} )
+      //   console.log(obj_for_handlebars)
+      res.render("educator-view", {"data": result} )
 
-//       });
+      // });
 
-//     });
-// });
+    });
+});
 
 // Student's individual data view 
 // Get all data from all projects posted by this student 
