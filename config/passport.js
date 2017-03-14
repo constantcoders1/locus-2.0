@@ -26,7 +26,7 @@ passport.use(new LocalStrategy(
     
     if (source == "T*") {
 
-    db.Teacher.findOne({
+    db.Educator.findOne({
       where: {
         email: email
       }
@@ -83,12 +83,6 @@ passport.use(new LocalStrategy(
     });
 
   }
-
-
-
-
-
-
 
 
   }

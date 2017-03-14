@@ -38,17 +38,27 @@ module.exports = function(app) {
   // otherwise send back an error
   
 
+  app.get("/api/teachers", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    db.Teacher.findAll({
+     
+    }).then(function(dbTeacher) {
+      res.json(dbTeacher);
+    });
+  });
+
+
     app.post("/api/signup/teacher", function(req, res) {
     console.log("teacher sign up" );
-    db.Teacher.create({
+    console.log(req.body)
+    db.Educator.create({
       email: req.body.email,
       password: req.body.password,
-
-      // restore when html with the below fields are available
       username: req.body.username,
-      // keyword: req.body.keyword,
     }).then(function() {
-      console.log("post teacher sign up then clause")
+      console.log("post educator sign up then clause")
       // res.redirect(307, "/api/login/teacher");
     }).catch(function(err) {
       console.log(err)
@@ -58,15 +68,17 @@ module.exports = function(app) {
 
  app.post("/api/signup/student", function(req, res) {
     console.log("student sign up");
-     db.Student.create({
+    console.log(req.body)
+     db.Student.create(
+     {
       email: req.body.email,
       password: req.body.password,
       username: req.body.username,
-      keyword: req.body.keyword,
       country: req.body.country,
       state: req.body.state,
       city: req.body.city,
-    }).then(function() {
+    }
+    ).then(function() {
       console.log("post student sign up then clause")
       // res.redirect(307, "/api/login/student");
     }).catch(function(err) {
@@ -74,7 +86,7 @@ module.exports = function(app) {
       res.json(err);
     });
 
-    // need to get keyword & look up teacher id
+    
   });
 
   // Route for logging user out
@@ -108,19 +120,19 @@ app.get("/api/fieldnotes", function(req, res) {
   // different tables if it is a student or teacher
 
 
-  app.get("/api/user_data", function(req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    }
-    else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
-    }
-  });
+  // app.get("/api/user_data", function(req, res) {
+  //   if (!req.user) {
+  //     // The user is not logged in, send back an empty object
+  //     res.json({});
+  //   }
+  //   else {
+  //     // Otherwise send back the user's email and id
+  //     // Sending back a password, even a hashed password, isn't a good idea
+  //     res.json({
+  //       email: req.user.email,
+  //       id: req.user.id
+  //     });
+  //   }
+  // });
 
 };
