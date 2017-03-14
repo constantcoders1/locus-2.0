@@ -11,7 +11,6 @@ $(document).ready(function() {
 
  
   loginForm.on("submit", function(event) {
-    debugger
     console.log("student login submit")
     event.preventDefault();
     var userData = {
