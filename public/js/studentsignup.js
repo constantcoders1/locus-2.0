@@ -24,8 +24,6 @@ $(document).ready(function() {
       city: cityInput.val().trim()
     };
 
-    console.log(userData)
-
     if (!userData.email || !userData.password) {
       return;
     }
@@ -33,9 +31,10 @@ $(document).ready(function() {
 
     // If we have an email and password, run the signUpUser function
     signUpUser(userData);
+    // the line below only executes on a successful sign up
     console.log("signed up?")
-    emailInput.val("");
-    passwordInput.val("");
+    // emailInput.val("");
+    // passwordInput.val("");
   });
 
 
@@ -45,9 +44,10 @@ $(document).ready(function() {
     $.post("/api/signup/student", userData).then(
       function(data) {
         console.log(data)
+        alert(data.errors[0].message)
       // window.location.replace(data);
     }).catch(function(err) {
-      console.log(err);
+      console.log("is this from sequelize?" + err);
     });
   }
 

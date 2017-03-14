@@ -48,7 +48,7 @@ passport.use(new LocalStrategy(
         });
       }
       // If none of the above, return the user
-       console.log("logged in");
+       console.log("logged in as:  " + dbUser); 
       return done(null, dbUser);
     
     });
@@ -77,7 +77,7 @@ passport.use(new LocalStrategy(
         });
       }
       // If none of the above, return the user
-       console.log("logged in");
+      console.log("logged in as:  " + dbUser);
       return done(null, dbUser);
     
     });
@@ -92,7 +92,9 @@ passport.use(new LocalStrategy(
 // Sequelize needs to serialize and deserialize the user
 // Just consider this part boilerplate needed to make it all work
 passport.serializeUser(function(user, cb) {
+
   cb(null, user);
+  console.log("serializeUser:  " + user)
 });
 
 passport.deserializeUser(function(obj, cb) {

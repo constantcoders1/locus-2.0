@@ -34,6 +34,9 @@ module.exports = function(sequelize, DataTypes) {
 	    city: {
 	      type: DataTypes.STRING,
 	      allowNull: false,
+        validate: {
+          len:[1,200]
+        }
 	    },
   }, {
     // Creating a custom method for our User model. This will check if an unhashed password entered by
