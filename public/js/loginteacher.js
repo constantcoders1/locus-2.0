@@ -31,6 +31,7 @@ $(document).ready(function() {
   
     loginTeacher("T*"+userData.email, userData.password);
     
+    
     emailInput.val("");
     passwordInput.val("");
   
