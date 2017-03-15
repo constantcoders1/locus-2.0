@@ -15,6 +15,10 @@ form.login {
   margin-top: 50px;
 }
 
+/*required input field. this doesn't work yet*/
+
+input.required:after { content: " *"; }
+
 /*hides feild in login forms*/
 #studentorteacher{
   visibility: hidden;
