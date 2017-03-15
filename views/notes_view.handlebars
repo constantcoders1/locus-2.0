@@ -1,22 +1,23 @@
 <div class="jumbotron">
 {{#each Project}}
-  <h1> {{this.name}}</h1>
-  <container>
-  <row>
-  <p ><img  src= "{{this.image_url}}"  height="200" width="200">
-             
-                  <div>Name: </div>
+  <h2> {{this.name}}</h2>
+  <div class="container">
+  <div class="row">
+  <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
+          <div class ="col-md-6">   
                   <div> Details: {{this.tagLine}} </div>
-                  <div>Location: {{this.location}} </div>
-                   <div>Instructions: {{this.instructions}} </div>
-                    <div>Announcements: {{this.current_announcements}} </div>
-                     <div>Replicated From: Project id: {{this.root_project}}</div>
-                     <div>Educator Id: {{this.EducatorId}}</div>.</p>
-  <p><a class="btn btn-success btn-lg">Create a Feild Note</a></p>
+                  <div> Location: {{this.location}} </div>
+                  <a class="btn btn-success btn-lg">Create a Field Note</a></p>
+            </div>      
+  
      {{/each}}
-  </row>
-  </container>
+
+ </div>
+ </div>
+
   </div>
+
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>Field Notes</h3>
