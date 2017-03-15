@@ -39,10 +39,12 @@ app.set("view engine", "handlebars");
 var studentRoutes = require("./controllers/studentsController.js");
 var notesRoutes = require("./controllers/notesController.js");
 var projectRoutes = require("./controllers/projectController.js");
+var educatorRoutes = require("./controllers/educatorsController.js")
 
 app.use("/student", studentRoutes);
 app.use("/notes", notesRoutes);
 app.use("/project", projectRoutes);
+app.use("/educator", educatorRoutes);
 
 
 // Syncing our database and logging a message to the user upon success

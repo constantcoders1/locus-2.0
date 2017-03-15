@@ -2,18 +2,19 @@
 <html lang="en">
 
 <head>
-  <title>Teacher Login</title>
+  <title>Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../stylesheets/reset.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" media="screen" title="no title">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen" title="no title">
+<!--   <link rel="stylesheet" type="text/css" href="../stylesheets/navbar.css" media="screen" title="no title"> -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <div class="page-wrap">
+<div class="page-wrap">
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -25,14 +26,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="#">Locus</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="#">Teacher Login <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Student Login</a></li>
+          <li><a href="/teacher/login.html">Educator Login <span class="sr-only">(current)</span></a></li>
+          <li><a href="/student/login.html">Student Login</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -43,6 +44,7 @@
               <li><a href="#">All Projects</a></li>
             </ul>
           </li>
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Contact</a></li>
@@ -52,52 +54,61 @@
     </div><!-- /.container-fluid -->
   </nav>      
 
-  <div class="container" >
+  <div class="container" id="home_background" >
     <div class="row">
-      <form class="form-horizontal login">
-        <fieldset>
-          <legend>Teacher Login</legend>
-
-          <div class="form-group">
-              <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-              <div class="col-lg-10">
-              <input class="form-control" id="email-input" placeholder="Email" type="text">
-              </div>
-            </div>
-          
-           <div class="form-group">
-            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-            <div class="col-lg-10">
-            <input class="form-control" id="password-input" placeholder="Password" type="password">
-            </div>
-          </div>
-
-          <!-- hidden form group for studentorteacher.html -->
-          <!-- <div class="form-group" id="studentorteacher">
-            <label for="inputPassword" class="col-lg-2 control-label">Studentorteacher</label>
-            <div class="col-lg-10">
-            <input type="text" class="form-control" id="studentorteacher" value="student">
-          </div> -->
-
-          </fieldset>
-        
-          <br />
-          <p>Or Sign Up <a href="/signup.html">Here</a></p>
-          <button type="submit" class="btn btn-success" class="login-button">Login</button>
-        <!-- <a href="#" class="btn btn-success" class="login-button">Login</a> -->
-        </form>
-
+      <h1> Locus </h1>
+      <div class="panel panel-default">
+      <!-- <div class="panel-heading"> -->
+      <!-- </div> -->
+      <div class="panel-body">
+      <blockquote class="blockquote-reverse">
+        <p>Here is what our app does</p>
+        <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+      </blockquote>
+        <a href="/teacher/signup.html" class="btn btn-default">Educators Sign Up Here</a>
+        <a href="/student/signup.html" class="btn btn-default">Students Sign Up Here</a>
+      </div>
       </div>
     </div>
   </div>
-  
+
+  <div class="container" id="home_background" >
+    <div class="row">
+
+
+    </div>
+  </div>
+
+  <h3>My Google Maps Demo</h3>
+      <div id="map"></div>
+
+</div>
+
+</body>
+
 <footer class="site-footer">
   <p>@constantcoders 2017</p>
 </footer>
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="../js/loginteacher.js"></script>
+  <script>
+    function initMap() {
+      var uluru = {lat: -25.363, lng: 131.044};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    }
+  </script>
+  
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7tVTsgOXvrx_0cNDiY85VA4QSK6_gY9k&callback=initMap">
+  </script>
 
-</body>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="../js/loginstudent.js"></script>
 
 </html>
