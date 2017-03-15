@@ -14,17 +14,23 @@ router.get('/viewall', function(req, res) {
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
     //console.log(dbFieldnotes);
-    res.send(dbProject);
+     res.render("projects/index", {data: dbProject});
        });
 });
 
 router.get('/:projectid/:studentid', function(req, res) {
-    console.log("***********");
     console.log(req.params.projectid);
-    db.Project.findAll({}).then(function(dbProject) {
+     //{ where: ["topicId = ? AND deletedAt IS NULL", req.params.id] }
+    db.Project.findAll({
+        where: {
+        id: req.params.projectid
+      }
+     
+    }).then(function(dbProject) {
+
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("projects/index", {data: dbProject })
+    res.render("projects/index", {data: dbProject, test:"Hello!!" })
        });
 });
 
