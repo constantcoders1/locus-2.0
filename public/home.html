@@ -53,22 +53,64 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>  
+    
+    <div class="homebackground">
+       <h1 class="apptitle">Locus</h1>
+    </div>
 
-      <div class="homebackground">
-        <div class="container">
-          
-          <h1>Locus</h1>
+    <div class="container">
+      <div class ="row">
+        <div class="col-md-8">
+        <h4>Where stuents from all over the world share and discuss scietific observations</h4>
+        </div>
+        <div class="col-md-4">
+          <h3>Search for a Project</h3>
+        </div>
+      </div>
+      <div class ="row">
+        <div class="col-md-4">
           <a href="/teacher/signup.html" class="btn btn-default">Teacher Sign Up</a>
+          </div>
+        <div class="col-md-4">
           <a href="/student/signup.html" class="btn btn-default">Student Sign Up</a>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <div class="input-group-btn search-panel">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span id="search_concept">Filter by</span> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li class='sub' >
+                  <a tabindex="-1" href="#">Project Name</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Astronomy</a></li>
+                    <li><a href="#">Phenology</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Location</a></li>
+                <li><a href="#">User Name</a></li>
+                <li><a href="#">Date</a></li>
+                <li class="divider"></li>
+                <li><a href="#all">All</a></li>
+              </ul>
+          </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">        
+            <input type="text" class="form-control" name="x" placeholder="Search term...">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div> 
+        </div>
+      </div>
+    </div>
+ 
+    <div class="row">
       
-        </div>
-      </div>
+    </div>
 
-      <div class="mapbackground">
-        <div class="container">
-          <h1>A Map</h1>
-        </div>
-      </div>
+    <div class="mapbackground">
+    </div>
 
     <div class="container">
       <form class="well form-horizontal" action=" " method="post"  id="contact_form">
@@ -119,12 +161,12 @@
             <label class="col-md-4 control-label">Message</label>
               <div class="col-md-4 inputGroupContainer">
               <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                    <textarea class="form-control" name="comment" placeholder="Write us a message"></textarea>
-            </div>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <textarea class="form-control" name="comment" placeholder="Write us a message"></textarea>
+              </div>
+              </div>
             </div>
           </div>
-        </div>
 
           <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
 
@@ -151,7 +193,7 @@
 </footer>
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="js/contact.js"></script>
+  <!-- <script type="text/javascript" src="js/contact.js"></script> -->
   <script type="text/javascript" src="js/loginstudent.js"></script>
 
 </html>
