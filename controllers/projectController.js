@@ -19,7 +19,8 @@ router.get('/viewall', function(req, res) {
 });
 
 router.get('/:projectid/:studentid', function(req, res) {
-    console.log(res.params);
+    console.log("***********");
+    console.log(req.params.projectid);
     db.Project.findAll({}).then(function(dbProject) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
