@@ -1,9 +1,21 @@
 <div class="jumbotron">
-
-  <h1>Project Title</h1>
-  <p>This is a description of the project, including what the students were asked to do and what type of data they collected.</p>
+{{#each Project}}
+  <h1> {{this.name}}</h1>
+  <container>
+  <row>
+  <p ><img  src= "{{this.image_url}}"  height="200" width="200">
+             
+                  <div>Name: </div>
+                  <div> Details: {{this.tagLine}} </div>
+                  <div>Location: {{this.location}} </div>
+                   <div>Instructions: {{this.instructions}} </div>
+                    <div>Announcements: {{this.current_announcements}} </div>
+                     <div>Replicated From: Project id: {{this.root_project}}</div>
+                     <div>Educator Id: {{this.EducatorId}}</div>.</p>
   <p><a class="btn btn-success btn-lg">Create a Feild Note</a></p>
-  
+     {{/each}}
+  </row>
+  </container>
   </div>
     <div class="panel panel-default">
       <div class="panel-heading">
