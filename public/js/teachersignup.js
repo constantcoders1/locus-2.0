@@ -36,6 +36,7 @@ $(document).ready(function() {
     $.post("/api/signup/teacher", userData).then(function(data) {
       console.log("post then.....");
       console.log(data);
+      alert(data.errors[0].message)
       // window.location.replace(data);
     }).catch(function(err) {
       console.log(err);
