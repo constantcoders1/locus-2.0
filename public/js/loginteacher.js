@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+  $(".modal").hide()
   // Getting references to our form and inputs
   var loginForm = $("form.login");
   var emailInput = $("input#email-input");
@@ -31,11 +33,13 @@ $(document).ready(function() {
   
     loginTeacher("T*"+userData.email, userData.password);
     
-    
-    emailInput.val("");
-    passwordInput.val("");
   
   });
+
+    $(".modal-close").on("click", function() {
+          $(".modal").hide()
+  })
+
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
  
@@ -45,12 +49,18 @@ $(document).ready(function() {
       password: password,
 
     }).then(function(data) {
-      window.location.replace(data);
+      console.log("then:  " + data)
+      // window.location.replace(data);
       // If there's an error, log the error
-    }).catch(function(err) {
-      console.log(err);
+   }).catch(function(err) {
+      console.log("catch:  " + JSON.stringify(err))
+       $(".modal-title").text("Error!");
+      if (err.readyState == 4) {
+        $(".modal-body").text("Unauthorized user.  Please check your login.")
+      } else {
+        $(".modal-body").text(JSON.stringify(err))
+      }
+      $(".modal").show();
     });
   }
-
-
 });
