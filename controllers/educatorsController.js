@@ -21,6 +21,13 @@ router.get('/view/:edid', function(req,res){
     // include: [db.StudentToProject]
   }).then(function(result) {
     console.log(result)
+
+    var educatorsProjs = []
+      for(i in result){
+        educatorsProjs.push(result[i].dataValues);
+      }
+ 
+    console.log(educatorsProjs);
       // var student_objs = result; 
 
       // Get the ids of each of the projects the student is working on 
@@ -44,7 +51,7 @@ router.get('/view/:edid', function(req,res){
       //   }
 
       //   console.log(obj_for_handlebars)
-      res.render("educator-view", {"data": result} )
+      res.render("educator-view", {"data": educatorsProjs} )
 
       // });
 
