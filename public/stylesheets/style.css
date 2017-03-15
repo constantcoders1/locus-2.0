@@ -20,7 +20,17 @@ form.login {
 .thumb {
     margin-bottom: 30px;
 }
-/*for backgrounds to specific pages*/
+
+
+#home_background{
+  background: url("images/aerial_shrubland.jpg")no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/*for backgrounds to specific pages
 /*#teacher_signup{
   background: url("../images/aerial_shrubland.jpg")no-repeat center center fixed; 
   -webkit-background-size: cover;
