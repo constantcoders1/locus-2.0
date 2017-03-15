@@ -6,6 +6,10 @@ html, body {
   height: 100%;
 }
 
+.container {
+  height: 100%;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
@@ -39,6 +43,11 @@ display: block;}
   color: white;
   font-size: 10em;
   text-orientation: center;
+}
+
+.functionrow{
+  height: 100%;
+  padding-bottom: 20px
 }
 
 /*image at top of home.html*/
@@ -82,17 +91,6 @@ display: block;}
   background-size: cover;
 }*/
 
-
-/*for the submenu on the search function*/
-/*.dropdown-submenu {
-    position: relative;
-}
-
-.dropdown-submenu .dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -1px;
-}*/
 
 /*contact element*/
 #success_message{ display: none;}
