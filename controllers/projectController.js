@@ -14,7 +14,7 @@ router.get('/viewall', function(req, res) {
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
     //console.log(dbFieldnotes);
-    res.send(dbProject);
+     res.render("projects/index", {data: dbProject});
        });
 });
 
@@ -27,7 +27,7 @@ router.get('/:projectid/:studentid', function(req, res) {
       }
      
     }).then(function(dbProject) {
-      
+
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
     res.render("projects/index", {data: dbProject, test:"Hello!!" })
