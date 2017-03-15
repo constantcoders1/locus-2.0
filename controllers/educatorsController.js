@@ -11,42 +11,49 @@ var router  = express.Router();
 var mysql = require('mysql')
 // var connection = require('../config/connection.js')
 
-// Student's home view 
-// Get announcements from student's teacher(s) and project(s) student is working on 
-
-router.get('/view/:studentid', function(req,res){
-	db.Student.findAll({ 
+// Educator's home view 
+// Need to grab from database: announcements, project info, project thumbnails 
+router.get('/view/:edid', function(req,res){
+  db.Project.findAll({ 
     where: {
-      id: req.params.studentid,
+      EducatorId: req.params.edid,
     },
-    include: [db.StudentToProject]
+    // include: [db.StudentToProject]
   }).then(function(result) {
-      var student_objs = result; 
+    console.log(result)
+
+    var educatorsProjs = []
+      for(i in result){
+        educatorsProjs.push(result[i].dataValues);
+      }
+ 
+    console.log(educatorsProjs);
+      // var student_objs = result; 
 
       // Get the ids of each of the projects the student is working on 
-      var projIds = []
-      for (i in student_objs){          
-        projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
-      }
+      // var projIds = []
+      // for (i in student_objs){          
+      //   projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
+      // }
 
-      console.log("projIds" + projIds)
-      db.Project.findAll({ 
-        where: {
-          id: projIds,
-        },
-        include: [db.Educator]
+      // console.log("projIds" + projIds)
+      // db.Project.findAll({ 
+      //   where: {
+      //     id: projIds,
+      //   },
+      //   include: [db.Educator]
 
-      }).then(function(result) {
+      // }).then(function(result) {
 
-        var obj_for_handlebars = []
-        for (i in result){
-          obj_for_handlebars.push(result[i].dataValues)
-        }
+      //   var obj_for_handlebars = []
+      //   for (i in result){
+      //     obj_for_handlebars.push(result[i].dataValues)
+      //   }
 
-        console.log(obj_for_handlebars)
-        res.render("student-view", {projects: obj_for_handlebars} )
+      //   console.log(obj_for_handlebars)
+      res.render("educator-view", {"data": educatorsProjs} )
 
-      });
+      // });
 
     });
 });
@@ -94,7 +101,7 @@ router.get('/my-data/:studentid', function(req,res){
 // Get project(s) this student is working to display as options in the form 
 
 router.get('/new-entry/:studentid/:projectid', function(req,res){
-	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+  // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
       res.send("Student's form for posting new data ");;
     // });
 });
@@ -102,7 +109,7 @@ router.get('/new-entry/:studentid/:projectid', function(req,res){
 // Post new entry to the database 
 
 router.post('/new-entry/:studentid/:projectid', function(req,res){
-	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
+  // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
       res.send("Student posted new entry to the database");;
     // });
 });
@@ -110,10 +117,10 @@ router.post('/new-entry/:studentid/:projectid', function(req,res){
 // TBI: Edit an existing entry 
 
 // router.put('/', function(req,res){
-// 	db.Fieldnotes.update({
-// 		// Form
-// 	      // text: req.body.text,
-// 	      // complete: req.body.complete
+//  db.Fieldnotes.update({
+//    // Form
+//        // text: req.body.text,
+//        // complete: req.body.complete
 //     }, {
 //       where: {
 //         id: req.body.id

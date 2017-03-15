@@ -1,6 +1,6 @@
 // Project Controller 
-var passportStudent = require("../config/passportStudent");
-var passportTeacher = require("../config/passportTeacher");
+// var passportStudent = require("../config/passportStudent");
+// var passportTeacher = require("../config/passportTeacher");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 
@@ -19,10 +19,12 @@ router.get('/viewall', function(req, res) {
 });
 
 router.get('/:projectid/:studentid', function(req, res) {
+    console.log("***********");
+    console.log(req.params.projectid);
     db.Project.findAll({}).then(function(dbProject) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("/projects/create", {data: dbProject })
+    res.render("projects/index", {data: dbProject })
        });
 });
 

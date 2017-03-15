@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+  $(".modal").hide()
   // Getting references to our form and inputs
   var loginForm = $("form.login");
   var emailInput = $("input#email-input");
@@ -7,11 +9,8 @@ $(document).ready(function() {
   console.log("student login")
 
   // When the form is submitted, we validate there's an email and password entered
-
-
  
   loginForm.on("submit", function(event) {
-    debugger
     console.log("student login submit")
     event.preventDefault();
     var userData = {
@@ -28,10 +27,12 @@ $(document).ready(function() {
     // prepend email with S* so we know it is a student
     
     loginStudent("S*"+userData.email, userData.password);
-    emailInput.val("");
-    passwordInput.val("");
-  
+
   });
+
+   $(".modal-close").on("click", function() {
+          $(".modal").hide()
+  })
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
  
@@ -41,12 +42,17 @@ $(document).ready(function() {
       email: email,
       password: password,
     }).then(function(data) {
-      window.location.replace(data);
-      // If there's an error, log the error
+      console.log("then:  " + data)
+     
     }).catch(function(err) {
-      console.log(err);
+      console.log("catch:  " + JSON.stringify(err))
+       $(".modal-title").text("Error!");
+      if (err.readyState == 4) {
+        $(".modal-body").text("Unauthorized user.  Please check your login.")
+      } else {
+        $(".modal-body").text(JSON.stringify(err))
+      }
+      $(".modal").show();
     });
   }
-
-
 });

@@ -4,7 +4,7 @@ $(document).ready(function() {
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
-  var keywordInput = $("input#keyword-input");
+
   console.log("teacher signup ready")
 
 
@@ -15,13 +15,7 @@ $(document).ready(function() {
     var userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
-
-      // fields aren't available yet so ignored for now
-      // *****************************
       username: usernameInput.val().trim(),
-      // keyword: keywordInput.val().trim(),
-      // ********************************
-      // restore the above fields when new html is available
     };
 
     if (!userData.email || !userData.password) {
@@ -33,6 +27,7 @@ $(document).ready(function() {
     console.log("signed up?")
     emailInput.val("");
     passwordInput.val("");
+    usernameInput.val("");
   });
 
   // Does a post to the signup route. If succesful, we are redirected to the members page
@@ -41,11 +36,13 @@ $(document).ready(function() {
     $.post("/api/signup/teacher", userData).then(function(data) {
       console.log("post then.....");
       console.log(data);
+      alert(data.errors[0].message)
       // window.location.replace(data);
     }).catch(function(err) {
       console.log(err);
     });
-    console.log("end of signUpUser")
+    console.log("end of signUpTeacher")
+    window.location.href = "../members";
   }
 
 });
