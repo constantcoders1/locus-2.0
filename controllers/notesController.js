@@ -26,7 +26,9 @@ router.get('/view/:projectid', function(req, res) {
      
     }).then(function(dbProject) {
     db.Fieldnote.findAll({
-
+    		where: {
+        ProjectId: req.params.projectid
+      }
     }).then(function(dbFieldnotes) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
