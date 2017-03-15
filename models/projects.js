@@ -25,10 +25,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    // educator_id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
+    educator_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    image_url:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    tagLine:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
 	    // country: {
 	    //   type: DataTypes.STRING,
 	    //   // allowNull: false,
