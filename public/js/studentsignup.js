@@ -1,4 +1,10 @@
+
+
 $(document).ready(function() {
+
+// $(".modal").hide()
+
+
   
   console.log("studentsignup");
   // Getting references to our form and input
@@ -44,11 +50,16 @@ $(document).ready(function() {
     $.post("/api/signup/student", userData).then(
       function(data) {
         console.log(data)
+        
         alert(data.errors[0].message)
       // window.location.replace(data);
     }).catch(function(err) {
       console.log("is this from sequelize?" + err);
     });
   }
+
+
+
+
 
 });

@@ -57,6 +57,13 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname + "/../public/teachers.html"));
   });
 
+  app.get("/educators", isAuthenticated, function(req, res) {
+   
+    
+  // res.sendFile(path.join(__dirname + "/../educatorview.html"));
+  res.sendFile(path.join(__dirname + "/../educatorview.html"));
+  });
+
   app.get("/students/view-field-notes", isAuthenticated, function(req, res) {
   
     res.sendFile(path.join(__dirname + "/../public/student/fieldNotes.html"));

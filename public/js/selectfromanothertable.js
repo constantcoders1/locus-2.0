@@ -3,6 +3,7 @@ $(document).ready(function() {
 
 
   // call the function that starts the process
+  // this should happend shortly after document ready.
   getTeachers();
   
 
@@ -15,7 +16,8 @@ $(document).ready(function() {
 
 
   signUpForm.on("submit", function(event) {
-//
+//  do what you need to do on submit button click
+// change your form name to the correct form.
 
 
   });
@@ -23,6 +25,7 @@ $(document).ready(function() {
 
 
   // this is the function that starts the process
+  // that was called at the top
   function getTeachers() {
     // get all the values you need from the table
     $.get("/api/teachers", renderTeacherList)
