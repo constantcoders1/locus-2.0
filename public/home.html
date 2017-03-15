@@ -16,7 +16,7 @@
 <body>
   <div class="page-wrap">
 
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" class="homenav">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -54,29 +54,95 @@
       </div><!-- /.container-fluid -->
     </nav>  
 
-    <div class="container">
       <div class="homebackground">
-        <div class="row">
+        <div class="container">
+          
           <h1>Locus</h1>
           <a href="/teacher/signup.html" class="btn btn-default">Teacher Sign Up</a>
           <a href="/student/signup.html" class="btn btn-default">Student Sign Up</a>
+      
         </div>
       </div>
-    </div>
-    
-    <div class="mapbackground" class="container">
-      <div class="row">
-        <h1>A Map</h1>
+
+      <div class="mapbackground">
+        <div class="container">
+          <h1>A Map</h1>
+        </div>
       </div>
-    </div>
 
     <div class="container">
-      <div class="row">
-        <h1>Contact</h1>
-      </div>
+      <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>Contact Us</legend>
+
+          <!-- Text input-->
+        <div class="container">
+          <div class="form-group">
+            <label class="col-md-4 control-label">Name</label>  
+            <div class="col-md-4 inputGroupContainer">
+            <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input-->
+                 <div class="form-group">
+            <label class="col-md-4 control-label">E-Mail</label>  
+              <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+              </div>
+            </div>
+          </div>
+
+          <!-- Text input-->
+                 
+          <div class="form-group">
+            <label class="col-md-4 control-label">Phone #</label>  
+              <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+            <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Text area -->
+            
+          <div class="form-group">
+            <label class="col-md-4 control-label">Message</label>
+              <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <textarea class="form-control" name="comment" placeholder="Write us a message"></textarea>
+            </div>
+            </div>
+          </div>
+        </div>
+
+          <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+
+          <!-- Submit Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+          </div>
+
+          </fieldset>
+      </form>
     </div>
+  
 
   </div>
+
 
 </body>
 
@@ -85,6 +151,7 @@
 </footer>
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="../js/loginstudent.js"></script>
+  <script type="text/javascript" src="js/contact.js"></script>
+  <script type="text/javascript" src="js/loginstudent.js"></script>
 
 </html>

@@ -21,21 +21,22 @@ form.login {
     margin-bottom: 30px;
 }
 
-/*.image-bg-fluid-height {
-    background: url(images/aerial_shrubland.jpg) no-repeat center center scroll;
-    padding: 100px 0;
-}*/
+.homenav{
+  padding-bottom: : 0;
+}
 
 .homebackground{
-  background: url("../images/aerial_shrubland.jpg")no-repeat center center fixed; 
+  background: url('../images/aerial_shrubland.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 50%;
+  margin: 0;
 }
 
 .mapbackground{
-  background: url("images/googlemap.png")no-repeat center center fixed; 
+  background: url("../images/googlemap.png")no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -70,6 +71,9 @@ form.login {
     left: 100%;
     margin-top: -1px;
 }*/
+
+/*contact element*/
+#success_message{ display: none;}
 
 /*to make the footer sticky*/
 .page-wrap {
