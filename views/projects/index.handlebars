@@ -7,11 +7,9 @@
         <table class="table table-striped table-hover ">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Location</th>
-              <th>Instructions</th>
-              <th>Announcements</th>
-              <th>Replicated From</th>
+              <th></th>
+              <th></th>
+             
             </tr>
           </thead>
           <tbody>
@@ -20,13 +18,23 @@
           
     
               <tr>
-              <td>{{this.name}}</td>
-               <td> {{this.location}}</td>
-              <td> {{this.instructions}}</td>
-              <td> {{this.current_announcements}}</td>
-              <td> {{this.root_project}}</td>
+            
+              <td > <img  src= "{{this.image_url}}"  height="200" width="200"><td>
+              <td>
+                  <div>Name: {{this.name}} </div>
+                  <div> Details: {{this.tagLine}} </div>
+                  <div>Location: {{this.location}} </div>
+                   <div>Instructions: {{this.instructions}} </div>
+                    <div>Announcements: {{this.current_announcements}} </div>
+                     <div>Replicated From: Project id: {{this.root_project}}</div>
+                     <div>Educator Id: {{this.EducatorId}}</div>
+                     <div> <button> Edit Project</button>
+
+              </td>
             </tr>
+
           {{/each}}
+
 
           
           </tbody>

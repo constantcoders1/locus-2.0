@@ -1,10 +1,24 @@
 <div class="jumbotron">
-
-  <h1>Project Title</h1>
-  <p>This is a description of the project, including what the students were asked to do and what type of data they collected.</p>
-  <p><a class="btn btn-success btn-lg">Create a Feild Note</a></p>
+{{#each Project}}
+  <h2> {{this.name}}</h2>
+  <div class="container">
+  <div class="row">
+  <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
+          <div class ="col-md-6">   
+                  <div> Details: {{this.tagLine}} </div>
+                  <div> Location: {{this.location}} </div>
+                  <div> </div>
+                  <a href="../../notes/create/{{this.id}}/1" class="btn btn-success btn-lg">Create a Field Note</a></p>
+            </div>      
   
+     {{/each}}
+
+ </div>
+ </div>
+
   </div>
+
+
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3>Field Notes</h3>
@@ -18,6 +32,7 @@
               <th>Title</th>
               <th>Description</th>
               <th>Date</th>
+               <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +45,12 @@
               <td> {{this.title}}</td>
               <td> {{this.description}}</td>
               <td> {{this.notedate}}</td>
+               <td> 
+               <form action="/{{this.id}}?_method=PUT" method="POST">
+                     <input type="hidden" name="sleepy" value="true">
+                     <button type="submit">Edit</button>
+                   </form>
+                </td>
             </tr>
           {{/each}}
 
@@ -47,20 +68,7 @@
                {{/unless}}
              {{/each}}
            </ul> -->
-            <tr>
-              <td>@ablue</td>
-              <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
-              <td>Tree Leaves</td>
-              <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "</td>
-              <td>2017/03/16</td>
-            </tr>
-            <tr>
-              <td>@agreen</td>
-              <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
-              <td>The Ginko Tree Outside My House</td>
-              <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</td>
-              <td>2017/02/02</td>
-            </tr>
+         
             
           </tbody>
         </table> 

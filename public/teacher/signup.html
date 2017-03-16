@@ -35,7 +35,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Teacher Login <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Educator Login <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Student Login</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects <span class="caret"></span></a>
@@ -65,21 +65,21 @@
         <div class="form-group">
           <label for="inputUserName" class="col-lg-2 control-label">User Name</label>
           <div class="col-lg-10">
-          <input class="form-control" id="username-input" placeholder="User Name" type="text">
+          <input class="form-control" id="username-input" placeholder="User Name *" type="text" class="required" required>
           </div>
         </div>
         
          <div class="form-group">
           <label for="inputPassword" class="col-lg-2 control-label">Password</label>
           <div class="col-lg-10">
-          <input class="form-control" id="password-input" placeholder="Password" type="password">
+          <input class="form-control" id="password-input" placeholder="Password *" type="password" class="required" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputEmail" class="col-lg-2 control-label">Email</label>
           <div class="col-lg-10">
-          <input class="form-control" id="email-input" placeholder="email" type="text">
+          <input class="form-control" class="required" id="email-input" placeholder="Email *" type="text" required>
           </div>
         </div>
 
@@ -113,6 +113,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../js/teachersignup.js"></script>
 
 </body>

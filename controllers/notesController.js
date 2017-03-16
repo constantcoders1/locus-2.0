@@ -18,13 +18,24 @@ router.get('/viewall', function(req, res) {
        });
 });
 
-router.get('/view/:studentid', function(req, res) {
-    db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
+router.get('/view/:projectid', function(req, res) {
+	 db.Project.findAll({
+        where: {
+        id: req.params.projectid
+      }
+     
+    }).then(function(dbProject) {
+    db.Fieldnote.findAll({
+    		where: {
+        ProjectId: req.params.projectid
+      }
+    }).then(function(dbFieldnotes) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("notes_view", {data: dbFieldnotes })
+    res.render("notes_view", {data: dbFieldnotes, Project: dbProject })
        });
 });
+   });
 
 router.get('/create/:projectid/:studentid', function(req, res) {
     
