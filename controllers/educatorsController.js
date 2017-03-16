@@ -1,98 +1,95 @@
-// Student Controller 
-// var passportStudent = require("../config/passportStudent");
-// var passportTeacher = require("../config/passportTeacher");
-
+// Educators Controller 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-
-
 var db = require("../models");
 var express = require('express');
 var router  = express.Router();
 var mysql = require('mysql')
-// var connection = require('../config/connection.js')
 
 // Educator's home view 
-// Need to grab from database: announcements, project info, project thumbnails 
+// Need to grab from database: announcements, project thumbnails, project names, project 
 router.get('/view/:edid', function(req,res){
+
+// Select all projects that this educator created 
   db.Project.findAll({ 
     where: {
       EducatorId: req.params.edid,
     },
-    // include: [db.StudentToProject]
   }).then(function(result) {
-    console.log(result)
 
+    // grab data object from each project created by this educator
     var educatorsProjs = []
       for(i in result){
         educatorsProjs.push(result[i].dataValues);
       }
  
     console.log(educatorsProjs);
-      // var student_objs = result; 
+    // send array of project objects to handlebars
+    res.render("educator-view", {"data": educatorsProjs} )
+    });
+  });
 
-      // Get the ids of each of the projects the student is working on 
-      // var projIds = []
-      // for (i in student_objs){          
-      //   projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
-      // }
+// ?? Not necessary 
+// Educator projects they've created 
+// Educator can click on a "view students" button to view all students working on the project
+router.get('/my-projects/:edid/', function(req,res){
+  db.Project.findAll({ 
+      where: {
+        EducatorId: req.params.edid,
+      }
+    }).then(function(result) {
 
-      // console.log("projIds" + projIds)
-      // db.Project.findAll({ 
-      //   where: {
-      //     id: projIds,
-      //   },
-      //   include: [db.Educator]
+      var educatorProjs = []
+      for (i in result){
+        educatorProjs.push(result[i].dataValues)
+      }
+      res.render("select-proj-view-students", {"data": educatorProjs} )
+    })
+  });
 
-      // }).then(function(result) {
+// Educator views all of the students on a particular project
+router.get('/my-students/:projid', function(req,res){
+  db.StudentToProject.findAll({ 
+      where: {
+        ProjectId: req.params.projid,
+      },
+      include: [db.Student, db.Project],
+    }).then(function(result) {
+      console.log(result)
+      // push data object for each student working on this project to an array 
+      var studentObjArray = []
+      for (i in result){
+        studentObjArray.push(result[i].dataValues.Student)
+      }
 
-      //   var obj_for_handlebars = []
-      //   for (i in result){
-      //     obj_for_handlebars.push(result[i].dataValues)
-      //   }
+      var projObj = result[0].dataValues.Project
 
-      //   console.log(obj_for_handlebars)
-      res.render("educator-view", {"data": educatorsProjs} )
+      var objForHandlebars = {"project": projObj,
+                              "students": studentObjArray}
 
-      // });
+      res.render("my-students", {data: objForHandlebars} )
 
     });
 });
 
-// Student's individual data view 
-// Get all data from all projects posted by this student 
-
-router.get('/my-data/:studentid', function(req,res){
+router.get('/student-data/:studentid', function(req,res){
   db.Student.findAll({ 
     where: {
       id: req.params.studentid,
     },
-    include: [db.StudentToProject]
+    include: [db.Fieldnote]
   }).then(function(result) {
-      var student_objs = result; 
+      console.log(result)
+      // Grab info about this student 
+      var student_obj = result[0].dataValues; 
 
-      // Get the ids of each of the projects the student is working on 
-      var projIds = []
-      for (i in student_objs){          
-        projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
+      var notes_array = []
+      for (i in result){
+        notes_array.push(result[i].dataValues.Fieldnote)
       }
-      console.log("projIds" + projIds)
-      
-      db.Fieldnote.findAll({ 
-        where: {
-          ProjectId: projIds,
-        }
 
-      }).then(function(result) {
-
-        var obj_for_handlebars = []
-        for (i in result){
-          obj_for_handlebars.push(result[i].dataValues)
-        }
-
-        console.log(obj_for_handlebars)
-        res.render("my-data", {observations: obj_for_handlebars} )
-      });
-
+      objForHandlebars = {"student": student_obj,
+                          "notes": notes_array}
+      res.render("student-data", {data: objForHandlebars} )
     });
 });
 
