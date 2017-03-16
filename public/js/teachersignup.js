@@ -40,20 +40,27 @@ $(document).ready(function() {
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpEducator(userData) {
-    $.post("/api/signup/teacher", userData).then(function(data) {
+    $.post("/api/signup/teacher", userData
+
+      ).then(function(data) {
+      
+        if(!data.id) {
+          console.log()
+          throw new Error (data.errors[0].message)
+        }
+
+        // go to login window
       console.log("post then.....");
       console.log(data);
 
-        $(".modal-title").text("Error!");
-        $(".modal-body").text(data.errors[0].message)
-        $(".modal").show();
+        
       // window.location.replace(data);
     }).catch(function(err) {
 
        if (err != undefined) {
         console.log("err = " + JSON.stringify(err))
           $(".modal-title").text("Error!");
-          $(".modal-body").text(err.errors[0].message)
+          $(".modal-body").text(err.responseJSON.errors[0].message)
           $(".modal").show();
         }
 

@@ -57,18 +57,20 @@ module.exports = function(app) {
       username: req.body.username,
     }).then(function() {
       console.log("post educator sign up then clause")
+       res.json(dbEducator);
        // window.location.href = "/teacher/login.html"
      
     }).catch(function(err) {
-      console.log(err)
-      res.json(err);
+      console.log("post ed add: "+ err)
+      if (err != undefined) {
+           res.status(500).json(err)
+    }
     });
   });
 
  app.post("/api/signup/student", function(req, res) {
     console.log("student sign up");
     console.log(req.body)
-    console.log("---------------------")
      db.Student.create(
      {
       email: req.body.email,
@@ -78,16 +80,16 @@ module.exports = function(app) {
       state: req.body.state,
       city: req.body.city,
     }
-    ).then(function(string) {
-      console.log("string:   ")
-      console.log(string)
+    ).then(function(dbStudent) {
       console.log("post student sign up then clause")
+       res.json(dbStudent);
+      // res.json(dbStudent);
       // window.location.href = "/student/login.html"
       // res.redirect("student/login.html");
     }).catch(function(err) {
       console.log("app post - " + err);
      if (err != undefined) {
-           res.json(err);
+           res.status(500).json(err)
     }
     });
 

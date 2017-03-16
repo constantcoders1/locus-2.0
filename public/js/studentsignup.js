@@ -25,12 +25,12 @@ $(".modal").hide()
       state:  stateInput.val().trim(),
       city: cityInput.val().trim(),
     };
-
+    console.log("going to check email & pw")
     if (!userData.email || !userData.password) {
       return;
     }
 
-debugger
+    
     // If we have an email and password, run the signUpUser function
     signUpUser(userData);
     // the line below only executes on a successful sign up
@@ -41,32 +41,41 @@ debugger
 
   $(".modal-close").on("click", function() {
           $(".modal").hide()
-  })
+  });
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
 
   // *****  errors sometimes show up in then and sometimes in err ******* //
   
   function signUpUser(userData) {
-    $.post("/api/signup/student", userData).then(
+    debugger;
+    $.post("/api/signup/student", userData, function(dataSuccess, textStatus){
+      // console.log("dataSuccess = "+ dataSuccess);
+      // console.log("textStatus = "+ textStatus);
+    }).then(
       function(data) {
         // console.log("data - " + JSON.stringify(data));
-        if (data != null) {
-          $(".modal-title").text("Warning!");
-          $(".modal-body").text(data.errors[0].message)
-          $(".modal").show();
+        if (!data.id) {
+          console.log()
+          throw new Error(data.errors[0].message)
+          // $(".modal-title").text("Warning!");
+          // $(".modal-body").text(data.message)
+          // console.log(data.status);
+          // $(".modal").show();
         }
-       console.log("data = " + JSON.stringify(data))
+
+       // window.location.replace="/student/login"
+       window.location.href = "/student/login"
+
+
+       console.log(data)
         // alert(data.errors[0].message)
       
     }).catch(function(err) {
-  
-       if (err != undefined) {
-        console.log("err = " + JSON.stringify(err))
-          $(".modal-title").text("Error!");
-          $(".modal-body").text(err.errors[0].message)
+
+      $(".modal-title").text("Error!");
+          $(".modal-body").text(err.responseJSON.errors[0].message)
           $(".modal").show();
-        }
       // console.log("is this from sequelize?" + err);
     });
   }
