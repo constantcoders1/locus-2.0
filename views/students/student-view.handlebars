@@ -1,12 +1,70 @@
-<h1>My Projects</h1>
+<div class="container">
+  
+    <div class="row" >
+    
+      <h1>My Class</h1>
+      	<div class="col-md-6">
+          <h3>Announcements</h3>
+      		<div class="form-group">
+				{{#each projects}}
+	            <div class="well well-lg">
+	            <h4><b>{{name}}</b></h4>
+	            <p>{{current_announcements}}</p>
+	            <p> <i> - {{Educator.dataValues.username}} </i> </p>
+	            </div>
+	      		{{/each}}
+      		</div>
+        </div>
+    
 
-  {{#each projects}}
-    <h2>{{name}}</h2>
-    <p>Location: {{location}}</p>
-    <p>Instructions: {{instructions}}</p>
-    <p>Announcements: {{current_announcements}}</p>
-    <br>
-    <br>
-    <p>Educator: {{Educator.dataValues.username}}, {{Educator.dataValues.email}}</p>
-    <p>
-{{/each}}
+        <div class="col-md-6">
+          <h3>Search for a Project</h3>
+          <div class="input-group">
+            <div class="input-group-btn search-panel">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span id="search_concept">Filter by</span> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li class='sub' >
+                  <a tabindex="-1" href="#">Project Name</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Astronomy</a></li>
+                    <li><a href="#">Phenology</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Location</a></li>
+                <li><a href="#">User Name</a></li>
+                <li><a href="#">Date</a></li>
+                <li class="divider"></li>
+                <li><a href="#all">All</a></li>
+              </ul>
+          </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">        
+            <input type="text" class="form-control" name="x" placeholder="Search term...">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div> 
+        </div>
+
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-12">
+            <h1>Class Projects</h1>
+        </div>
+		
+		{{#each projects}}
+        <div class="col-lg-2 col-md-3 col-xs-4 ">
+		{{name}}
+            <a class="thumbnail" href="#">
+                <img class="img-responsive" src="{{image_url}}" alt="">
+            </a>
+        {{tagLine}}
+        </div>
+		{{/each}}
+
+    </div>
+
+</div> <!-- container -->
