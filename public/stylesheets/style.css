@@ -52,7 +52,7 @@ display: block;}
 
 .functionrow{
   height: 100%;
-  padding-bottom: 20px
+  padding: 20px
 }
 
 /*image at top of home.html*/
@@ -79,21 +79,9 @@ display: block;}
   padding-top: 0px;
 }
 
-/*#teacher_signup{
-  background: url("../images/aerial_shrubland.jpg")no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+#contact_form{
+  padding-bottom: 0px;
 }
-
-#student_signup{
-  background: url("../images/reef.jpg")no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}*/
 
 /*contact element*/
 #success_message{ display: none;}
