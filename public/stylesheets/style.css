@@ -38,7 +38,10 @@ display: block;}
     margin-bottom: 30px;
 }
 
-
+nav {
+  padding-bottom: 0px;
+  margin-bottom: 0px
+}
 /*working to get the image to merge with navbar on home.html*/
 .homenav{
   margin-bottom : 0;
