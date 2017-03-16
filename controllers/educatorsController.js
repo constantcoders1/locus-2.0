@@ -3,7 +3,8 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 var db = require("../models");
 var express = require('express');
 var router  = express.Router();
-var mysql = require('mysql')
+var mysql = require('mysql');
+
 
 // Educator's home view 
 // Need to grab from database: announcements, project thumbnails, project names, project 
@@ -114,7 +115,7 @@ router.post('/new-entry/:studentid/:projectid', function(req,res){
 router.post('/update-announcement/:projectid', function(req,res){
 
   var newAnnouncement = {current_announcements: req.body.announcement}
-  db.Projects.update(newAnnouncement,
+  db.Project.update(newAnnouncement,
     {
       where: {
         id: req.params.projectid

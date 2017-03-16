@@ -8,8 +8,8 @@
               <div class="well well-lg">
                 Your Announcements
                 {{#each data}}
-                  <form action="/educator/update-announcement/{{data.id}}" method="POST">
-                    <input type="text" name="announcement" placeholder="{{current_announcements}}">
+                  <form action="/educator/update-announcement/{{id}}?_method=PUT" method="POST">
+                    <input type="text" name="announcement" value="{{current_announcements}}">
                     <button type="submit">UPDATE</button>
                   </form>
                 {{/each}}
