@@ -111,6 +111,18 @@ router.post('/new-entry/:studentid/:projectid', function(req,res){
     // });
 });
 
+router.post('/update-announcement/:projectid', function(req,res){
+
+  var newAnnouncement = {current_announcements: req.body.announcement}
+  db.Projects.update(newAnnouncement,
+    {
+      where: {
+        id: req.params.projectid
+      }
+    }).then(function(result) {
+      console.log("Project " + req.params.projectid + " Announcement Update: " + req.body.announcement );
+    });
+});
 // TBI: Edit an existing entry 
 
 // router.put('/', function(req,res){

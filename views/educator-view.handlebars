@@ -5,7 +5,16 @@
         <div class="col-md-4">
           <h3>Announcements</h3>
             <div class="form-group">
-              <div class="well well-lg">Post your announcement here</div>
+              <div class="well well-lg">
+                Your Announcements
+                {{#each data}}
+                  <form action="/educator/update-announcement/{{data.id}}" method="POST">
+                    <input type="text" name="announcement" placeholder="{{current_announcements}}">
+                    <button type="submit">UPDATE</button>
+                  </form>
+                {{/each}}
+
+              </div>
             </div>
         </div>
         
