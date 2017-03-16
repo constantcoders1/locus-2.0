@@ -84,11 +84,12 @@ router.post('/view', function(req, res) {
 router.post("/create/:projectid/:studentid", function(req, res) {
     console.log("creating note");
     console.log(req.body);
-    var myRoute = "notes/view/" + req.params.projectid;
-
+    var myRoute = "/notes/view/" + req.params.projectid;
+    console.log(myRoute);
+    console.log(req.params.projectid);
     db.Fieldnote.create(req.body).then(function() {
         console.log("created a note")
-            res.redirect(307, myRoute);
+            res.redirect( myRoute);
             //res.send(req.body);
     }).catch(function(err) {
         console.log(err);
