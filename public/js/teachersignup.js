@@ -25,9 +25,9 @@ $(document).ready(function() {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData);
+    signUpEducator(userData);
     console.log("signed up?")
-    window.location.href = "/teacher/login.html"
+    // window.location.href = "/teacher/login.html"
     emailInput.val("");
     passwordInput.val("");
     usernameInput.val("");
@@ -39,7 +39,7 @@ $(document).ready(function() {
   })
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(userData) {
+  function signUpEducator(userData) {
     $.post("/api/signup/teacher", userData).then(function(data) {
       console.log("post then.....");
       console.log(data);
