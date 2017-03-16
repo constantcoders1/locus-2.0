@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
     		if (this.country == "United States of America" && this.state.trim() == "") {
     			throw new Error("In the US state is required")
     		}
-    	}
+    	},
     },
 
     hooks: {

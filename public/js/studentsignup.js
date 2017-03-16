@@ -30,7 +30,7 @@ $(".modal").hide()
       return;
     }
 
-
+debugger
     // If we have an email and password, run the signUpUser function
     signUpUser(userData);
     // the line below only executes on a successful sign up
@@ -56,7 +56,7 @@ $(".modal").hide()
           $(".modal-body").text(data.errors[0].message)
           $(".modal").show();
         }
-       
+       console.log("data = " + JSON.stringify(data))
         // alert(data.errors[0].message)
       
     }).catch(function(err) {
