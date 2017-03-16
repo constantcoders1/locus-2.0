@@ -17,6 +17,35 @@ router.get('/viewall', function(req, res) {
      res.render("projects/index", {data: dbProject});
        });
 });
+router.get('/view/:educatorid', function(req, res) {
+    db.Project.findAll({
+      where: {
+        EducatorId: req.params.educatorid
+      }
+
+    }).then(function(dbProject) {
+    //res.send("View Notes");
+    //console.log(dbFieldnotes);
+     res.render("projects/index", {data: dbProject});
+       });
+});
+router.get('/update/:projectid', function(req, res) {
+    console.log("here***");
+    console.log(req.params.projectid);
+     //{ where: ["topicId = ? AND deletedAt IS NULL", req.params.id] }
+    db.Project.findAll({
+        where: {
+        id: req.params.projectid
+      }
+     
+    }).then(function(dbProject) {
+
+    //res.send(dbFieldnotes);
+    console.log(dbProject);
+    res.render("projects/update_project", {data: dbProject, test:"Hello!!" })
+       });
+});
+
 
 router.get('/:projectid/:studentid', function(req, res) {
     console.log(req.params.projectid);
@@ -33,6 +62,8 @@ router.get('/:projectid/:studentid', function(req, res) {
     res.render("projects/index", {data: dbProject, test:"Hello!!" })
        });
 });
+
+
 
 
 router.post('/view', function(req, res) {
@@ -53,8 +84,8 @@ router.post("/create", function(req, res) {
     console.log(req.body);
     db.Project.create(req.body).then(function() {
         console.log("created a project")
-            //res.redirect(307, "/view");
-            res.send(req.body);
+            res.redirect("/project/viewall");
+            //res.send(req.body);
     }).catch(function(err) {
         console.log(err);
         res.json(err);

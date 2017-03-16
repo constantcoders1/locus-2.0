@@ -14,7 +14,8 @@ router.get('/viewall', function(req, res) {
     db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
     //res.send("View Notes");
     //console.log(dbFieldnotes);
-    res.send(dbFieldnotes);
+    res.render("show_notes_view", {data: dbFieldnotes})
+    //res.send(dbFieldnotes);
        });
 });
 
