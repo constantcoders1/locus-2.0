@@ -52,9 +52,12 @@ display: block;}
 
 .functionrow{
   height: 100%;
-  padding: 20px
+  padding-bottom: 20px
 }
 
+#contact_form{
+  padding-top: 20px;
+}
 /*image at top of home.html*/
 .homebackground{
   background: url('../images/aerial_shrubland.jpg') no-repeat center center scroll; 
@@ -77,10 +80,7 @@ display: block;}
   height: 35em;
   margin: 0;
   padding-top: 0px;
-}
-
-#contact_form{
-  padding-bottom: 0px;
+  padding-bottom: 2em;
 }
 
 /*contact element*/
@@ -97,7 +97,7 @@ display: block;}
   display: block;
 }
 .site-footer, .page-wrap:after {
-  height: 142px; 
+  height: 50px; 
 }
 
 footer {
