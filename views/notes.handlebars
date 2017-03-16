@@ -1,8 +1,7 @@
 
         <h2>Enter your observations <span class="member-name"></span></h2>
       </div>
-      
-      <form class="create-update-form" action="/notes/create" method="POST">
+      <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
     <label for="inpuNoteType">Data Type (Needs to be a dropdown list from a look up table)</label>
     <input type="noteType" class="form-control" id="noteType" name="doctype" placeholder="Enter Data Type">
@@ -24,7 +23,8 @@
     <label for="inputnotedate">Enter Date</label>
     <input type="notedate" class="form-control" id="notedate"  name="notedate" placeholder="Enter Date">
   </div>
- 
+ <input type="hidden" class="form-control" id="notedate"  name="ProjectId" value="{{this.projectid}}">
+ <input type="hidden" class="form-control" id="notedate"  name="StudentId" value="{{this.studentid}}">
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
  
