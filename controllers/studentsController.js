@@ -73,7 +73,7 @@ router.get('/my-data/:studentid', function(req,res){
       db.Fieldnote.findAll({ 
         where: {
           ProjectId: projIds,
-        }
+        }, include: [db.Project]
 
       }).then(function(result) {
 
@@ -84,6 +84,7 @@ router.get('/my-data/:studentid', function(req,res){
 
         console.log(obj_for_handlebars)
         res.render("my-data", {observations: obj_for_handlebars} )
+
       });
 
     });
