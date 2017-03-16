@@ -13,8 +13,10 @@ module.exports = function(app) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    
-    res.json("/educators");
+    // console.log("res:  "+ JSON.stringify(res));
+    res.redirect("/teacher/educatorview.html")
+
+    // res.json("/educators");
   });
 
 
@@ -23,8 +25,9 @@ module.exports = function(app) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
-    console.log("res:  "+ res)
-    // res.json("/students");
+    // console.log()
+    // console.log("res:  "+ res)
+    // res.redirect("/students/studentview.html")
   });
 
 
@@ -54,7 +57,8 @@ module.exports = function(app) {
       username: req.body.username,
     }).then(function() {
       console.log("post educator sign up then clause")
-      // res.redirect(307, "/api/login/teacher");
+       window.location.href = "/teacher/login.html"
+     
     }).catch(function(err) {
       console.log(err)
       res.json(err);
@@ -75,10 +79,13 @@ module.exports = function(app) {
     }
     ).then(function() {
       console.log("post student sign up then clause")
-      // res.redirect(307, "/api/login/student");
+      window.location.href = "/student/login.html"
+      // res.redirect("student/login.html");
     }).catch(function(err) {
       console.log("app post - " + err);
-      res.json(err);
+     if (err != undefined) {
+           res.json(err);
+    }
     });
 
     

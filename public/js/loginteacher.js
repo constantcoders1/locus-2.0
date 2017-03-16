@@ -14,6 +14,7 @@ $(document).ready(function() {
   // pass a hidden variable to know if we are logging in a student or teacher
   // we need to know which table we are looking in for the email/pw a
 
+
   loginForm.on("submit", function(event) {
     console.log("teacher login submit")
     event.preventDefault();
@@ -26,12 +27,7 @@ $(document).ready(function() {
       return;
     }
 
-    // If we have an email and password we run the loginUser function and clear the form
-    //prepend email with T* to know to check teacher table
-
-
-  
-    loginTeacher("T*"+userData.email, userData.password);
+    loginTeacher("E*"+userData.email, userData.password);
     
   
   });
@@ -50,15 +46,16 @@ $(document).ready(function() {
 
     }).then(function(data) {
       console.log("then:  " + data)
-      // window.location.replace(data);
-      // If there's an error, log the error
+      console.log("should route to next page here")
+      window.location.href = "/teacher/educatorview.html"
+
    }).catch(function(err) {
-      console.log("catch:  " + JSON.stringify(err))
+      // console.log("catch:  " + JSON.stringify(err))
        $(".modal-title").text("Error!");
       if (err.readyState == 4) {
         $(".modal-body").text("Unauthorized user.  Please check your login.")
       } else {
-        $(".modal-body").text(JSON.stringify(err))
+        $(".modal-body").text("Oops, something went wrong please try again")
       }
       $(".modal").show();
     });

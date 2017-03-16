@@ -36,13 +36,15 @@ $(document).ready(function() {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
  
- function loginStudent(email, password) {
+ function loginStudent(email, password, source) {
     console.log("email = "+ email)
     $.post("/api/login/student", {
       email: email,
       password: password,
     }).then(function(data) {
       console.log("then:  " + data)
+      console.log("should re route here?")
+      // window.location.href = "/students/studentview.html"
      
     }).catch(function(err) {
       console.log("catch:  " + JSON.stringify(err))

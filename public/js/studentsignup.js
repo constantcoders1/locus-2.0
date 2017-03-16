@@ -1,10 +1,6 @@
-
-
 $(document).ready(function() {
 
-// $(".modal").hide()
-
-
+$(".modal").hide()
   
   console.log("studentsignup");
   // Getting references to our form and input
@@ -27,7 +23,7 @@ $(document).ready(function() {
       username: usernameInput.val().trim(),
       country: countryInput.val(),
       state:  stateInput.val().trim(),
-      city: cityInput.val().trim()
+      city: cityInput.val().trim(),
     };
 
     if (!userData.email || !userData.password) {
@@ -39,27 +35,40 @@ $(document).ready(function() {
     signUpUser(userData);
     // the line below only executes on a successful sign up
     console.log("signed up?")
-    // emailInput.val("");
-    // passwordInput.val("");
+    // window.location.href = "/student/login.html"
+    
   });
 
-
+  $(".modal-close").on("click", function() {
+          $(".modal").hide()
+  })
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
+
+  // *****  errors sometimes show up in then and sometimes in err ******* //
+  
   function signUpUser(userData) {
     $.post("/api/signup/student", userData).then(
       function(data) {
-        console.log(data)
-        
-        alert(data.errors[0].message)
-      // window.location.replace(data);
+        // console.log("data - " + JSON.stringify(data));
+        if (data != null) {
+          $(".modal-title").text("Warning!");
+          $(".modal-body").text(data.errors[0].message)
+          $(".modal").show();
+        }
+       
+        // alert(data.errors[0].message)
+      
     }).catch(function(err) {
-      console.log("is this from sequelize?" + err);
+  
+       if (err != undefined) {
+        console.log("err = " + JSON.stringify(err))
+          $(".modal-title").text("Error!");
+          $(".modal-body").text(err.errors[0].message)
+          $(".modal").show();
+        }
+      // console.log("is this from sequelize?" + err);
     });
   }
-
-
-
-
 
 });
