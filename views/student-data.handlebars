@@ -1,0 +1,31 @@
+<h1>Student Data</h1>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>{{data.student.username}}'s Data</h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Document</th>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+		    <tbody>
+		    	{{#each data.notes}}
+			      <tr>
+			        <td>{{title}}</td>
+			        <td><a href="{{doclink}}"><span class="glyphicon glyphicon-file"></span></a></td>
+              <td>{{description}}</td>
+			        <td>{{notedate}}</td>
+			      </tr>
+		      {{/each}}
+		    </tbody>
+		  </table> 
+		</div>
+	</div>
+</div>

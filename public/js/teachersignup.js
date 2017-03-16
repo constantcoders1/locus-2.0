@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+  $(".modal").hide()
   // Getting references to our form and input
   var signUpForm = $("form.signup");
   var emailInput = $("input#email-input");
@@ -25,24 +27,40 @@ $(document).ready(function() {
     // If we have an email and password, run the signUpUser function
     signUpUser(userData);
     console.log("signed up?")
+    window.location.href = "/teacher/login.html"
     emailInput.val("");
     passwordInput.val("");
     usernameInput.val("");
   });
 
+
+ $(".modal-close").on("click", function() {
+          $(".modal").hide()
+  })
   // Does a post to the signup route. If succesful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(userData) {
     $.post("/api/signup/teacher", userData).then(function(data) {
       console.log("post then.....");
       console.log(data);
-      alert(data.errors[0].message)
+
+        $(".modal-title").text("Error!");
+        $(".modal-body").text(data.errors[0].message)
+        $(".modal").show();
       // window.location.replace(data);
     }).catch(function(err) {
+
+       if (err != undefined) {
+        console.log("err = " + JSON.stringify(err))
+          $(".modal-title").text("Error!");
+          $(".modal-body").text(err.errors[0].message)
+          $(".modal").show();
+        }
+
       console.log(err);
     });
     console.log("end of signUpTeacher")
-    window.location.href = "../members";
+
   }
 
 });

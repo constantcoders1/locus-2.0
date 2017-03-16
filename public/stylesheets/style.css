@@ -38,7 +38,10 @@ display: block;}
     margin-bottom: 30px;
 }
 
-
+nav {
+  padding-bottom: 0px;
+  margin-bottom: 0px
+}
 /*working to get the image to merge with navbar on home.html*/
 .homenav{
   margin-bottom : 0;
@@ -55,6 +58,9 @@ display: block;}
   padding-bottom: 20px
 }
 
+#contact_form{
+  padding-top: 20px;
+}
 /*image at top of home.html*/
 .homebackground{
   background: url('../images/aerial_shrubland.jpg') no-repeat center center scroll; 
@@ -77,23 +83,8 @@ display: block;}
   height: 35em;
   margin: 0;
   padding-top: 0px;
+  padding-bottom: 2em;
 }
-
-/*#teacher_signup{
-  background: url("../images/aerial_shrubland.jpg")no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-#student_signup{
-  background: url("../images/reef.jpg")no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}*/
 
 /*contact element*/
 #success_message{ display: none;}
@@ -109,7 +100,7 @@ display: block;}
   display: block;
 }
 .site-footer, .page-wrap:after {
-  height: 142px; 
+  height: 50px; 
 }
 
 footer {

@@ -2,6 +2,7 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 // var LocalStrategy = require("teacher-local").Strategy;
 
+var userData = {}
 var db = require("../models");
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
@@ -12,19 +13,18 @@ passport.use(new LocalStrategy(
   },
   function(email, password, done) {
 
+  var role = email.substr(0,2)
+  email = email.substr(2)
+
+
     // console.log("source - " + source);
     console.log("email - " + email);
     console.log("password - " + password);
+    // console.log("role = " + role)
 
-    var source = email.substr(0,2)
-    email = email.substr(2)
-
-
-    console.log("source = " + source)
-    console.log("email = "+ email)
     // When a user tries to sign in this code runs
     
-    if (source == "T*") {
+    if (role == "E*" || role == "T*") {
 
     db.Educator.findOne({
       where: {
@@ -32,6 +32,7 @@ passport.use(new LocalStrategy(
       }
     }).then(function(dbUser) {
       // If there's no user with the given email
+      // console.log("then function:  " + JSON.stringify(dbUser));
       if (!dbUser) {
         console.log("incorrect email")
         return done(null, false, {
@@ -48,8 +49,15 @@ passport.use(new LocalStrategy(
         });
       }
       // If none of the above, return the user
-       console.log("logged in as:  " + dbUser); 
-      return done(null, dbUser);
+      userData = {
+        role: "Educator",
+        id: dbUser.id,
+        user: dbUser.username,
+        email: dbUser.email,
+      }
+      
+       console.log("logged in as:  " + JSON.stringify(userData)); 
+      return done(null, userData);
     
     });
 
@@ -73,12 +81,18 @@ passport.use(new LocalStrategy(
         console.log("incorrect password");
         return done(null, false, {
           message: "Incorrect password."
-         
         });
       }
+
+      userData = {
+        role: "Student",
+        id: dbUser.id,
+        user: dbUser.username,
+        email: dbUser.email,
+      }
       // If none of the above, return the user
-      console.log("logged in as:  " + dbUser);
-      return done(null, dbUser);
+      console.log("logged in as:  " + JSON.stringify(dbUser));
+      return done(null, userData);
     
     });
 
@@ -94,7 +108,8 @@ passport.use(new LocalStrategy(
 passport.serializeUser(function(user, cb) {
 
   cb(null, user);
-  console.log("serializeUser:  " + user)
+  console.log("serializeUser:  " + JSON.stringify(user))
+  console.log("serializeUser unstringified:  "+ user)
 });
 
 passport.deserializeUser(function(obj, cb) {
