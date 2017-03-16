@@ -41,9 +41,20 @@ router.get('/create/:projectid/:studentid', function(req, res) {
     
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("notes");
+    res.render("notes", {projectid: req.params.projectid, studentid: req.params.studentid });
       
 });
+
+router.get('/delete/:noteid', function(req, res) {
+  db.Fieldnote.destroy({
+    where: {
+      id: req.params.noteid
+    }
+  }).then(function() {
+    res.redirect('/notes/viewall');
+  });
+});
+
 router.post('/view', function(req, res) {
 
     var query = "SELECT * FROM users WHERE email = ?";
@@ -70,13 +81,15 @@ router.post('/view', function(req, res) {
     });
 });
 
-router.post("/create", function(req, res) {
+router.post("/create/:projectid/:studentid", function(req, res) {
     console.log("creating note");
     console.log(req.body);
+    var myRoute = "notes/view/" + req.params.projectid;
+
     db.Fieldnote.create(req.body).then(function() {
         console.log("created a note")
-            //res.redirect(307, "/view");
-            res.send(req.body);
+            res.redirect(307, myRoute);
+            //res.send(req.body);
     }).catch(function(err) {
         console.log(err);
         res.json(err);
