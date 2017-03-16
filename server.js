@@ -26,7 +26,7 @@ app.use(passport.session());
 
 
 // Requiring our routes
-require("./routes/html-routes.js")(app);
+// require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 // Set Handlebars.
@@ -37,15 +37,13 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 
-//var loginRoutes = require("./controllers/loginController.js")
-
+var applicationRoutes = require("./controllers/applicationController.js")
 var studentRoutes = require("./controllers/studentsController.js");
 var notesRoutes = require("./controllers/notesController.js");
 var projectRoutes = require("./controllers/projectController.js");
 var educatorRoutes = require("./controllers/educatorsController.js")
 
-//app.use("/", loginRoutes)
-
+app.use("/", applicationRoutes)
 app.use("/student", studentRoutes);
 app.use("/notes", notesRoutes);
 app.use("/project", projectRoutes);
