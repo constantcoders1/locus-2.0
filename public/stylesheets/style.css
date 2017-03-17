@@ -38,9 +38,9 @@ display: block;}
     margin-bottom: 30px;
 }
 
-nav {
+.page-wrap nav {
   padding-bottom: 0px;
-  margin-bottom: 0px
+  margin-bottom: 0px;
 }
 /*working to get the image to merge with navbar on home.html*/
 .homenav{
@@ -73,6 +73,10 @@ nav {
   padding-top: 0px;
 }
 
+.homebackground h1{
+  margin-top: 0px;
+}
+
 /*map image form home.html*/
 .mapbackground{
   background: url("../images/googlemap.png")no-repeat center center scroll;
@@ -99,6 +103,10 @@ nav {
   content: "";
   display: block;
 }
+#quesiton_button{
+  float: right;
+}
+
 .site-footer, .page-wrap:after {
   height: 50px; 
 }
