@@ -100,7 +100,7 @@ module.exports = function(app) {
 
 app.get("/allProjects", function(req,res) {
 db.Project.findAll({}).then(function(dbProject) {
-    res.JSON(dbProject});
+    res.json(dbProject)});
    });
 
 
