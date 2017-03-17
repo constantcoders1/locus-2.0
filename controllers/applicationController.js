@@ -1,29 +1,36 @@
-var bcrypt = require('bcryptjs');
+// Application Controller 
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+var db = require("../models");
 var express = require('express');
 var router  = express.Router();
-var mysql = require('mysql')
-// Requiring path to so we can use relative routes to our HTML files
-var path = require("path");
+var mysql = require('mysql');
 
-// Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+// home page 
+router.get('/', function(req,res){
+    res.render("application/home", {} )
 
-
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-
-  // Your username
-  user: "root",
-
-  // Your password
-  password: "",
-  database: "observations_db"
 });
 
-//this is the users_controller.js file
-router.get('/', function(req,res) {
-  res.render('index');
+
+// educator login
+router.get('/login/educator', function(req,res){
+    res.render("application/educator-login", {} )
 });
+
+// educator signup  
+router.get('/signup/educator', function(req,res){
+    res.render("application/educator-signup", {} )
+});
+
+// student login
+router.get('/login/student', function(req,res){
+    res.render("application/student-login", {} )
+});
+
+// student signup  
+router.get('/signup/student', function(req,res){
+    res.render("application/student-signup", {} )
+});
+
 
 module.exports = router;
