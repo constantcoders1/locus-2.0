@@ -45,7 +45,8 @@ $(document).ready(function() {
       console.log("then:  " + JSON.stringify(data))
       console.log("should re route here?")
       
-      // window.location.href = "/students/studentview.html"
+      window.location.href = "/students/studentview?id=" + data.id
+   
      
     }).catch(function(err) {
       console.log("catch:  " + JSON.stringify(err))
