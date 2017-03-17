@@ -1,3 +1,9 @@
+/*
+-- Query: SELECT * FROM observations_db.students
+LIMIT 0, 1000
+
+-- Date: 2017-03-17 16:16
+*/
 INSERT INTO `students` (`id`,`email`,`password`,`username`,`country`,`state`,`city`,`createdAt`,`updatedAt`) VALUES (51,'rrr@rrr.rrr','$2a$10$PKKAwBZ0Z1lez1nsrdSNXuB/phtuiMnV8l9EKfecmHZ6WYRWak1F.','r','United States of America','dsklfj','klj','2017-03-16 20:35:26','2017-03-16 20:35:26');
 INSERT INTO `students` (`id`,`email`,`password`,`username`,`country`,`state`,`city`,`createdAt`,`updatedAt`) VALUES (53,'sss@aol.com','$2a$10$a/YI2VgZDbMfP9LJiUhvhOwEoBWCnonO0kOb6V177YRmY9.i/Wd.i','s','United States of America','jhg','jhg','2017-03-16 20:37:31','2017-03-16 20:37:31');
 INSERT INTO `students` (`id`,`email`,`password`,`username`,`country`,`state`,`city`,`createdAt`,`updatedAt`) VALUES (55,'ttt@ttt.ttt','$2a$10$PiLv8svRRZv7Sb6LWxavSO7K3khSc6SdrTbfNXbu4zEVZlL7HAa0O','t','United States of America','lkj','lkj','2017-03-16 20:40:12','2017-03-16 20:40:12');
