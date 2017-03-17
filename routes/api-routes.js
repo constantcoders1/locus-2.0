@@ -39,15 +39,21 @@ module.exports = function(app) {
   
 
   app.get("/api/teachers", function(req, res) {
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.Teacher.findAll({
+    db.Educator.findAll({
      
     }).then(function(dbTeacher) {
       res.json(dbTeacher);
     });
   });
+
+
+    app.get("/api/projects", function(req,res) {
+      db.Project.findAll({
+
+      }).then(function(dbProject) {
+      res.json(dbProject)
+    });
+   });
 
 
     app.post("/api/signup/teacher", function(req, res) {
@@ -98,10 +104,7 @@ module.exports = function(app) {
     
   });
 
-app.get("/allProjects", function(req,res) {
-db.Project.findAll({}).then(function(dbProject) {
-    res.json(dbProject)});
-   });
+
 
 
 
@@ -148,6 +151,7 @@ app.get("/api/fieldnotes", function(req, res) {
         email: req.user.email,
         id: req.user.id,
         username: req.user.username,
+        role: req.user.role,
       });
     }
   });

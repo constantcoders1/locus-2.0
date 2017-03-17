@@ -1,7 +1,9 @@
 $(document).ready(function() {
 
-$(".modal").hide()
-getProjects();
+  $(".modal").hide()
+
+  // getTeachers();   --- Just testing to see if the code still works
+  // getProjects();
   
   console.log("studentsignup");
   // Getting references to our form and input
@@ -10,10 +12,9 @@ getProjects();
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
   var countryInput = $("select#country-input");
-  var countryInput = $("select#project-input");
+  var projectInput = $("select#project-input");
   var stateInput = $("input#state-input");
   var cityInput = $("input#city-input");
-
 
   var projectSelect = $("#project-input");
 
@@ -63,18 +64,13 @@ getProjects();
         if (!data.id) {
           console.log()
           throw new Error(data.errors[0].message)
-          // $(".modal-title").text("Warning!");
-          // $(".modal-body").text(data.message)
-          // console.log(data.status);
-          // $(".modal").show();
+      
         }
+
         // function postToMultiTable()
 
         // INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (1,1);
 
-
-
-       // window.location.replace="/student/login"
        window.location.href = "/login/student"
 
 
@@ -90,15 +86,8 @@ getProjects();
     });
   }
 
-
-
-  function getProjects() {
-    // get all the values you need from the table
-    $.get("allProjects", renderProjectsList)
-  }
-
   
-   function renderProjectsList(data) {
+function renderProjectsList(data) {
     var rowsToAdd = [];
     for (var i = 0; i < data.length; i++) {
       rowsToAdd.push(createProjectRow(data[i]));
@@ -110,5 +99,25 @@ getProjects();
     projectSelect.val();     // select is ready for the user to select a value
   }
 
+function createProjectRow(project) {
+
+    var listOption = $("<option>");
+    listOption.attr("value", project.id);
+    // listOption.text(project.name);  // Use this code when I can get the projects
+    listOption.text(project.username)   // This is for testing to see if I can still grab the teachers
+    return listOption;
+  }
+
+  function getProjects() {
+    // get all the values you need from the table
+    $.get("/api/projects", renderProjectsList)
+  }
+
+
+
+  function getTeachers() {
+    // get all the values you need from the table
+    $.get("/api/teachers", renderProjectsList)
+  }
 
 });
