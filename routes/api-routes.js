@@ -39,7 +39,7 @@ module.exports = function(app) {
   
 
   app.get("/api/teachers", function(req, res) {
-    db.Teacher.findAll({
+    db.Educator.findAll({
      
     }).then(function(dbTeacher) {
       res.json(dbTeacher);
