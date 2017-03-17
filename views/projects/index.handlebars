@@ -19,10 +19,10 @@
              
             <tr>
             
-              <td class='col-md-2'> <img  src= "{{this.image_url}}"  height="200" width="200"></td>
+              <td class='col-md-2'> <a href="/notes/view/{{this.id}}"><img  src= "{{this.image_url}}"  height="200" width="200"></a></td>
               <td class='col-md-8'>
                   <div>
-                    <h4>Name: {{this.name}} </h4>
+                    <h4><a href="/notes/view/{{this.id}}"> Name: {{this.name}} </a> </h4>
                  </div>
                   <div> Details: {{this.tagLine}} </div>
                   <div>Location: {{this.location}} </div>

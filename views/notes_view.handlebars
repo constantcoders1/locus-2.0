@@ -6,10 +6,13 @@
   <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
           <div class ="col-md-6">   
                   <div> Details: {{this.tagLine}} </div>
-                  <div> Location: {{this.location}} </div>
-                  <div> </div>
-                  <a href="../../notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a></p>
-            </div>      
+                  <div>Location: {{this.location}} </div>
+                  <div>Instructions: {{this.instructions}} </div>
+                  <div>Announcements: {{this.current_announcements}} </div>
+                 
+            </div>  
+             <div class ="col-md-3">
+                  <a href="../../notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a></p>  </div>    
   
      {{/each}}
 
