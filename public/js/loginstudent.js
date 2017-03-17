@@ -44,8 +44,10 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log("then:  " + JSON.stringify(data))
       console.log("should re route here?")
+
+      winddow.location.href="/student/view/{{" + data.id + "}}"
       
-      window.location.href = "/students/studentview?id=" + data.id
+      // window.location.href = "/students/studentview?id=" + data.id
    
      
     }).catch(function(err) {
