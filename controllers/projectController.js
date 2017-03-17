@@ -10,10 +10,12 @@ var router = express.Router();
 var mysql = require('mysql');
 
 // var connection = require('../config/connection.js')
-router.get('/viewall', function(req, res) {
+router.get('/viewall',  function(req, res) {
+  
+  
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
-    //console.log(dbFieldnotes);
+    //console.log(dbProject);
      res.render("projects/index", {data: dbProject});
        });
 });
@@ -29,6 +31,8 @@ router.get('/view/:educatorid', function(req, res) {
      res.render("projects/index", {data: dbProject});
        });
 });
+
+
 router.get('/update/:projectid', function(req, res) {
     console.log("here***");
     console.log(req.params.projectid);
@@ -84,11 +88,16 @@ router.post("/update/:projectid", function(req, res) {
       res.redirect("/project/viewall");
     });
   });
-router.get('/create/:projectid/:studentid', function(req, res) {
-    
+
+router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
+  if (req.user.role == "Educator") {
+    educator_id = req.user.id;
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("projects/project");
+    res.render("projects/project", {id: educator_id});
+  } else {
+    res.send("Sorry! You dont have permission to create a project")
+  }
       
 });
 

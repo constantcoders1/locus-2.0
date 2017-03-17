@@ -32,6 +32,13 @@ module.exports = function(sequelize, DataTypes) {
     tagLine:{
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    description:{
+       type: DataTypes.STRING
+    },
+    EducatorId:{
+       type: DataTypes.INTEGER,
+       allowNull: false,
     }
 	    // country: {
 	    //   type: DataTypes.STRING,
