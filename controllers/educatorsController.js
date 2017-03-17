@@ -25,7 +25,7 @@ router.get('/view/:edid', function(req,res){
  
     console.log(educatorsProjs);
     // send array of project objects to handlebars
-    res.render("educator-view", {"data": educatorsProjs} )
+    res.render("educators/educator-view", {"data": educatorsProjs} )
     });
   });
 
@@ -67,7 +67,7 @@ router.get('/my-students/:projid', function(req,res){
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
 
-      res.render("my-students", {data: objForHandlebars} )
+      res.render("educators/my-students", {data: objForHandlebars} )
 
     });
 });
@@ -90,7 +90,7 @@ router.get('/student-data/:studentid', function(req,res){
 
       objForHandlebars = {"student": student_obj,
                           "notes": notes_array}
-      res.render("student-data", {data: objForHandlebars} )
+      res.render("educators/student-data", {data: objForHandlebars} )
     });
 });
 
