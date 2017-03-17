@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 $(".modal").hide()
+getProjects();
   
   console.log("studentsignup");
   // Getting references to our form and input
@@ -9,8 +10,12 @@ $(".modal").hide()
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
   var countryInput = $("select#country-input");
+  var countryInput = $("select#project-input");
   var stateInput = $("input#state-input");
   var cityInput = $("input#city-input");
+
+
+  var projectSelect = $("#project-input");
 
 
   // When the signup button is clicked, we validate the email and password are not blank
@@ -48,7 +53,7 @@ $(".modal").hide()
   // *****  errors sometimes show up in then and sometimes in err ******* //
   
   function signUpUser(userData) {
-    debugger;
+    
     $.post("/api/signup/student", userData, function(dataSuccess, textStatus){
       // console.log("dataSuccess = "+ dataSuccess);
       // console.log("textStatus = "+ textStatus);
@@ -63,9 +68,14 @@ $(".modal").hide()
           // console.log(data.status);
           // $(".modal").show();
         }
+        // function postToMultiTable()
+
+        // INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (1,1);
+
+
 
        // window.location.replace="/student/login"
-       window.location.href = "/student/login"
+       window.location.href = "/login/student"
 
 
        console.log(data)
@@ -73,11 +83,32 @@ $(".modal").hide()
       
     }).catch(function(err) {
 
-      $(".modal-title").text("Error!");
-          $(".modal-body").text(err.responseJSON.errors[0].message)
-          $(".modal").show();
+        $(".modal-title").text("Error!");
+        $(".modal-body").text(err.responseJSON.errors[0].message)
+        $(".modal").show();
       // console.log("is this from sequelize?" + err);
     });
   }
+
+
+
+  function getProjects() {
+    // get all the values you need from the table
+    $.get("allProjects", renderProjectsList)
+  }
+
+  
+   function renderProjectsList(data) {
+    var rowsToAdd = [];
+    for (var i = 0; i < data.length; i++) {
+      rowsToAdd.push(createProjectRow(data[i]));
+    }
+    projectSelect.empty();    //empty any existing values
+    console.log(rowsToAdd);
+    console.log(projectSelect);
+    projectSelect.append(rowsToAdd);   // add the new row to the selection option
+    projectSelect.val();     // select is ready for the user to select a value
+  }
+
 
 });

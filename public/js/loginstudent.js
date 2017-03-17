@@ -42,8 +42,9 @@ $(document).ready(function() {
       email: email,
       password: password,
     }).then(function(data) {
-      console.log("then:  " + data)
+      console.log("then:  " + JSON.stringify(data))
       console.log("should re route here?")
+      
       // window.location.href = "/students/studentview.html"
      
     }).catch(function(err) {

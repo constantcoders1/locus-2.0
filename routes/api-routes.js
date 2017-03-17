@@ -12,6 +12,7 @@ module.exports = function(app) {
  app.post("/api/login/teacher", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    res.json(req.user);
     // They won't get this or even be able to access this page if they aren't authed
     // console.log("res:  "+ JSON.stringify(res));
     res.redirect("/teacher/educatorview.html")
@@ -26,6 +27,7 @@ module.exports = function(app) {
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
     // console.log()
+    res.json(req.user);
     // console.log("res:  "+ res)
     // res.redirect("/students/studentview.html")
   });
@@ -95,6 +97,13 @@ module.exports = function(app) {
 
     
   });
+
+app.get("/allProjects", function(req,res) {
+db.Project.findAll({}).then(function(dbProject) {
+    res.JSON(dbProject});
+   });
+
+
 
   // Route for logging user out
   app.get("/logout", function(req, res) {

@@ -49,6 +49,8 @@ $(document).ready(function() {
           throw new Error (data.errors[0].message)
         }
 
+
+        window.location.href = "/login/student"
         // go to login window
       console.log("post then.....");
       console.log(data);
