@@ -12,6 +12,7 @@ module.exports = function(app) {
  app.post("/api/login/teacher", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
+    res.json(req.user);
     // They won't get this or even be able to access this page if they aren't authed
     // console.log("res:  "+ JSON.stringify(res));
     res.redirect("/teacher/educatorview.html")
@@ -26,6 +27,7 @@ module.exports = function(app) {
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
     // They won't get this or even be able to access this page if they aren't authed
     // console.log()
+    res.json(req.user);
     // console.log("res:  "+ res)
     // res.redirect("/students/studentview.html")
   });
@@ -57,18 +59,20 @@ module.exports = function(app) {
       username: req.body.username,
     }).then(function() {
       console.log("post educator sign up then clause")
+       res.json(dbEducator);
        // window.location.href = "/teacher/login.html"
      
     }).catch(function(err) {
-      console.log(err)
-      res.json(err);
+      console.log("post ed add: "+ err)
+      if (err != undefined) {
+           res.status(500).json(err)
+    }
     });
   });
 
  app.post("/api/signup/student", function(req, res) {
     console.log("student sign up");
     console.log(req.body)
-    console.log("---------------------")
      db.Student.create(
      {
       email: req.body.email,
@@ -78,21 +82,28 @@ module.exports = function(app) {
       state: req.body.state,
       city: req.body.city,
     }
-    ).then(function(string) {
-      console.log("string:   ")
-      console.log(string)
+    ).then(function(dbStudent) {
       console.log("post student sign up then clause")
+       res.json(dbStudent);
+      // res.json(dbStudent);
       // window.location.href = "/student/login.html"
       // res.redirect("student/login.html");
     }).catch(function(err) {
       console.log("app post - " + err);
      if (err != undefined) {
-           res.json(err);
+           res.status(500).json(err)
     }
     });
 
     
   });
+
+app.get("/allProjects", function(req,res) {
+db.Project.findAll({}).then(function(dbProject) {
+    res.JSON(dbProject});
+   });
+
+
 
   // Route for logging user out
   app.get("/logout", function(req, res) {
