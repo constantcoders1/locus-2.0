@@ -29,10 +29,12 @@
                   <div>Instructions: {{this.instructions}} </div>
                   <div>Announcements: {{this.current_announcements}} </div>
               </td>
+
               <td class='col-md-2'>
-                <form method="get" action="/project/update/{{this.EducatorId}}"
-                  <a href="#" class="btn btn-default">Edit Project</a>   
+                <form method="get" action="/project/update/{{this.id}}">
+                  <button  class="btn btn-default">Edit Project</button>   
                 </form>
+                
               </td>
             </tr>
 
