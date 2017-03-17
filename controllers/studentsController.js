@@ -102,7 +102,7 @@ router.get('/new-entry/:studentid/:projectid', function(req,res){
 
 // Post new entry to the database 
 
-router.post('/new-entry/:studentid/:projectid', function(req,res){
+router.post('/join-project/:studentid/', function(req,res){
 	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
       res.send("Student posted new entry to the database");;
     // });
