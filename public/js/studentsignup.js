@@ -2,7 +2,8 @@ $(document).ready(function() {
 
   $(".modal").hide()
 
-  getProjects();
+  // getTeachers();   --- Just testing to see if the code still works
+  // getProjects();
   
   console.log("studentsignup");
   // Getting references to our form and input
@@ -102,13 +103,21 @@ function createProjectRow(project) {
 
     var listOption = $("<option>");
     listOption.attr("value", project.id);
-    listOption.text(project.name);
+    // listOption.text(project.name);  // Use this code when I can get the projects
+    listOption.text(project.username)   // This is for testing to see if I can still grab the teachers
     return listOption;
   }
 
   function getProjects() {
     // get all the values you need from the table
     $.get("/api/projects", renderProjectsList)
+  }
+
+
+
+  function getTeachers() {
+    // get all the values you need from the table
+    $.get("/api/teachers", renderProjectsList)
   }
 
 });
