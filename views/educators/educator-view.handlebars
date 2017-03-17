@@ -2,13 +2,13 @@
 <div class="container" >
     
       <h1>My Class</h1>
-        <div class="col-md-4">
+        <div class="col-md-8">
           <h3>Announcements</h3>
             <div class="form-group">
               <div class="well well-lg">
                 Your Announcements
                 {{#each data}}
-                  <form action="/educator/update-announcement/{{id}}?_method=PUT" method="POST">
+                  name: <form action="/educator/update-announcement/{{id}}?_method=PUT" method="POST">
                     <input type="text" name="announcement" value="{{current_announcements}}">
                     <button type="submit">UPDATE</button>
                   </form>
@@ -16,11 +16,6 @@
 
               </div>
             </div>
-        </div>
-        
-        <div class="col-md-4">
-          <h3>Your class keyword is: </h3>
-          <p> To add a new student send them this code and ask them to sign up on the home page <a href="../home.html">Here</a></p>
         </div>
 
         <div class="col-md-4">
@@ -56,55 +51,21 @@
     </div>
   
       <!-- Thumbnail Projects Display -->
-    <div class="container">
+    <div class="row">
         
         <div class="col-lg-12">
             <h1>Class Projects</h1>
         </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 ">
-          {{#each data}}
-          <h4>Title: {{name}}</h4>
-            <a class="thumbnail" href="#">
-              <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-          {{/each}}
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-xs-4 thumb">
-            <a class="thumbnail" href="#">
-                <img class="img-responsive" src="http://placehold.it/140x100" alt="">
-            </a>
-        </div>
-    
+            
+        {{#each data}}
+            <div class="col-lg-2 col-md-3 col-xs-4 ">
+        {{name}}
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="{{image_url}}" alt="">
+                </a>
+            {{tagLine}}
+            </div>
+        {{/each}}
     </div>
 
     <div class="container">

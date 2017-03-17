@@ -44,7 +44,7 @@ router.get('/view/:studentid', function(req,res){
         }
 
         console.log(obj_for_handlebars)
-        res.render("student-view", {projects: obj_for_handlebars} )
+        res.render("students/student-view", {projects: obj_for_handlebars} )
 
       });
 
@@ -83,7 +83,7 @@ router.get('/my-data/:studentid', function(req,res){
         }
 
         console.log(obj_for_handlebars)
-        res.render("my-data", {observations: obj_for_handlebars} )
+        res.render("students/my-data", {observations: obj_for_handlebars} )
 
       });
 
@@ -102,7 +102,7 @@ router.get('/new-entry/:studentid/:projectid', function(req,res){
 
 // Post new entry to the database 
 
-router.post('/new-entry/:studentid/:projectid', function(req,res){
+router.post('/join-project/:studentid/', function(req,res){
 	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
       res.send("Student posted new entry to the database");;
     // });
