@@ -2,8 +2,9 @@ $(document).ready(function() {
 
   $(".modal").hide()
 
-  // getTeachers();   --- Just testing to see if the code still works
-  // getProjects();
+  // getTeachers();
+     // --- Just testing to see if the code still works
+  getProjects();
   
   console.log("studentsignup");
   // Getting references to our form and input
@@ -31,14 +32,17 @@ $(document).ready(function() {
       state:  stateInput.val().trim(),
       city: cityInput.val().trim(),
     };
-    console.log("going to check email & pw")
+
+    var projectForStudent = projectInput.val()
+    console.log("project id = " + projectForStudent)
+
     if (!userData.email || !userData.password) {
       return;
     }
 
     
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData);
+    signUpUser(userData, projectForStudent);
     // the line below only executes on a successful sign up
     console.log("signed up?")
     // window.location.href = "/student/login.html"
@@ -53,29 +57,22 @@ $(document).ready(function() {
 
   // *****  errors sometimes show up in then and sometimes in err ******* //
   
-  function signUpUser(userData) {
+  function signUpUser(userData, projForStu) {
     
-    $.post("/api/signup/student", userData, function(dataSuccess, textStatus){
-      // console.log("dataSuccess = "+ dataSuccess);
-      // console.log("textStatus = "+ textStatus);
-    }).then(
-      function(data) {
+    $.post("/api/signup/student", userData)
+    .then(function(data) {
         // console.log("data - " + JSON.stringify(data));
         if (!data.id) {
           console.log()
           throw new Error(data.errors[0].message)
       
         }
+debugger
+        // console.log(JSON.stringify(data))
+        // console.log("student id:  "+ data.id)
+        addStuToProj(projForStu, data.id)
 
-        // function postToMultiTable()
-
-        // INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (1,1);
-
-       window.location.href = "/login/student"
-
-
-       console.log(data)
-        // alert(data.errors[0].message)
+       // window.location.href = "/login/student"
       
     }).catch(function(err) {
 
@@ -85,6 +82,22 @@ $(document).ready(function() {
       // console.log("is this from sequelize?" + err);
     });
   }
+
+
+
+function addStuToProj(Proj, Stu){
+
+        // INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (1,1);
+  console.log("Proj = "+ Proj + " Stu = " + Stu)
+  var projInfo = {
+      ProjId: Proj,
+      StuId: Stu,
+  }
+  console.log(projInfo)
+  $.post("api/studentAndProject", projInfo)
+  console.log("post post")
+}
+
 
   
 function renderProjectsList(data) {
@@ -103,8 +116,8 @@ function createProjectRow(project) {
 
     var listOption = $("<option>");
     listOption.attr("value", project.id);
-    // listOption.text(project.name);  // Use this code when I can get the projects
-    listOption.text(project.username)   // This is for testing to see if I can still grab the teachers
+    listOption.text(project.name);  // Use this code when I can get the projects
+    // listOption.text(project.username)   // This is for testing to see if I can still grab the teachers
     return listOption;
   }
 
@@ -115,9 +128,9 @@ function createProjectRow(project) {
 
 
 
-  function getTeachers() {
-    // get all the values you need from the table
-    $.get("/api/teachers", renderProjectsList)
-  }
+  // function getTeachers() {
+  //   // get all the values you need from the table
+  //   $.get("/api/teachers", renderProjectsList)
+  // }
 
 });

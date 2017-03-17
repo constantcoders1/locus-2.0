@@ -38,23 +38,33 @@ module.exports = function(app) {
   // otherwise send back an error
   
 
-  app.get("/api/teachers", function(req, res) {
-    db.Educator.findAll({
+  // app.get("/api/teachers", function(req, res) {
+  //   db.Educator.findAll({
      
-    }).then(function(dbTeacher) {
-      res.json(dbTeacher);
+  //   }).then(function(dbTeacher) {
+  //     res.json(dbTeacher);
+  //   });
+  // });
+
+  app.get("/api/projects", function(req, res) {
+    db.Project.findAll({
+     
+    }).then(function(dbProject) {
+      res.json(dbProject);
     });
   });
 
-
-    app.get("/api/projects", function(req,res) {
-      db.Project.findAll({
-
-      }).then(function(dbProject) {
-      res.json(dbProject)
+    app.post("api/studentAndProject", function(req, res) {
+      console.log(req.body);
+      db.StudentToProject.create({
+          ProjectId: req.body.ProjId,
+          StudentId: req.body.StuId,
+      }).then(function(){
+        console.log("added to StudentToProject")
+      }).catch(function(err){
+        console.log("error adding to StudentToProject  " + err)
+      });
     });
-   });
-
 
     app.post("/api/signup/teacher", function(req, res) {
     console.log("teacher sign up" );
@@ -66,8 +76,6 @@ module.exports = function(app) {
     }).then(function() {
       console.log("post educator sign up then clause")
        res.json(dbEducator);
-       // window.location.href = "/teacher/login.html"
-     
     }).catch(function(err) {
       console.log("post ed add: "+ err)
       if (err != undefined) {
