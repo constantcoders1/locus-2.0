@@ -54,7 +54,7 @@ module.exports = function(app) {
     });
   });
 
-    app.post("api/studentAndProject", function(req, res) {
+    app.post("/api/studentAndProject", function(req, res) {
       console.log(req.body);
       db.StudentToProject.create({
           ProjectId: req.body.ProjId,
