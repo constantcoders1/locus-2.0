@@ -70,6 +70,20 @@ router.post('/view', function(req, res) {
     res.send('View Projects');
 });
 
+router.post("/update/:projectid", function(req, res) {
+    // Update takes in an object describing the properties we want to update, and
+    // we use where to describe which objects we want to update
+    console.log("in update")
+    db.Project.update(
+      req.body
+    ,{
+      where: {
+        id: req.params.projectid
+      }
+    }).then(function(dbProject) {
+      res.redirect("/project/viewall");
+    });
+  });
 router.get('/create/:projectid/:studentid', function(req, res) {
     
     //res.send(dbFieldnotes);
