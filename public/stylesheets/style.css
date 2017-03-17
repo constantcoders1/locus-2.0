@@ -38,9 +38,9 @@ display: block;}
     margin-bottom: 30px;
 }
 
-nav {
+.page-wrap nav {
   padding-bottom: 0px;
-  margin-bottom: 0px
+  margin-bottom: 0px;
 }
 /*working to get the image to merge with navbar on home.html*/
 .homenav{
@@ -71,6 +71,10 @@ nav {
   height: 10em;
   margin: 0;
   padding-top: 0px;
+}
+
+.homebackground h1{
+  margin-top: 0px;
 }
 
 /*map image form home.html*/
