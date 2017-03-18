@@ -9,7 +9,7 @@ var mysql = require('mysql');
 // Educator's home view 
 // Need to grab from database: announcements, project thumbnails, project names, project 
 router.get('/view/:edid', isAuthenticated, function(req,res){
-
+  if (req.user.role == "Educator"){
 // Select all projects that this educator created 
   db.Project.findAll({ 
     where: {
@@ -26,8 +26,14 @@ router.get('/view/:edid', isAuthenticated, function(req,res){
     console.log(educatorsProjs);
     // send array of project objects to handlebars
     res.render("educators/educator-view", {"data": educatorsProjs} )
+  
     });
-  });
+  }else if (req.user.role == "Student"){
+    res.redirect("/student/view/req.user.id")
+  }else{
+    res.redirect("/home.html")
+  }
+});
 
 router.get('/viewprojects',  function(req, res) {
   
