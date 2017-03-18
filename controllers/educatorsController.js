@@ -140,6 +140,7 @@ router.post('/update-announcement/:projectid', function(req,res){
       }
     }).then(function(result) {
       console.log("Project " + req.params.projectid + " Announcement Update: " + req.body.announcement );
+    res.redirect("/educator/view/1")
     });
 });
 // TBI: Edit an existing entry 
