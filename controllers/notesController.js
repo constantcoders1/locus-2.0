@@ -29,20 +29,27 @@ router.get('/view/:projectid', function(req, res) {
     db.Fieldnote.findAll({
     		where: {
         ProjectId: req.params.projectid
-      }
+      },
+        include: [db.Student]
     }).then(function(dbFieldnotes) {
     //res.send(dbFieldnotes);
-    //console.log(dbFieldnotes);
+    console.log(dbFieldnotes.Student);
     res.render("notes_view", {data: dbFieldnotes, Project: dbProject })
        });
 });
    });
 
-router.get('/create/:projectid/:studentid', function(req, res) {
+router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
+  if (req.user.role == "Student") {
+     req.user.id;
+    //res.send(dbFieldnotes);
     
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("notes", {projectid: req.params.projectid, studentid: req.params.studentid });
+    res.render("notes", {projectid: req.params.projectid, studentid:  req.user.id });
+}else{
+	res.render("Sorry! you don't have the permissions to create this entry!")
+}
       
 });
 
