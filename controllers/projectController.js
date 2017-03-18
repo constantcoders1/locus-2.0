@@ -15,8 +15,15 @@ router.get('/viewall',  isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
       res.redirect("/student/viewprojects");
   } else if (req.user.role == "Educator") {
-     res.redirect("/student/viewprojects");
+     res.redirect("/educator/viewprojects");
   } else{
+  res.redirect("/educator/viewallprojects");
+  }
+    
+});
+
+router.get('/viewallprojects', function(req, res) {
+
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
     //console.log(dbProject);
