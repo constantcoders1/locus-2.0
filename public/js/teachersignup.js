@@ -50,7 +50,7 @@ $(document).ready(function() {
         }
 
 
-        window.location.href = "/login/student"
+        window.location.href = "/teacher/login.html"
         // go to login window
       console.log("post then.....");
       console.log(data);
