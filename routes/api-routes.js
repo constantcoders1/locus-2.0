@@ -1,5 +1,6 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
+var path = require("path")
 // var passportStudent = require("../config/passportStudent");
 // var passportTeacher = require("../config/passportTeacher");
 var passport = require("../config/passport");
@@ -15,7 +16,6 @@ module.exports = function(app) {
     res.json(req.user);
     // They won't get this or even be able to access this page if they aren't authed
     // console.log("res:  "+ JSON.stringify(res));
-    res.redirect("/teacher/educatorview.html")
 
     // res.json("/educators");
   });
@@ -32,6 +32,51 @@ module.exports = function(app) {
     // res.redirect("/students/studentview.html")
   });
 
+
+
+
+app.get('/view/studentid', function(req,res){
+
+  console.log("app get req.body = " + JSON.stringify(req.body))
+
+  db.Student.findAll({ 
+    where: {
+      // id: req.params.studentid,
+         id: req.body.id,
+    },
+    include: [db.StudentToProject]
+  }).then(function(result) {
+      var student_objs = result; 
+
+      // Get the ids of each of the projects the student is working on 
+      var projIds = []
+      for (i in student_objs){          
+        projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
+      }
+
+      console.log("projIds" + projIds)
+      db.Project.findAll({ 
+        where: {
+          id: projIds,
+        },
+        include: [db.Educator]
+
+      }).then(function(result) {
+
+        var obj_for_handlebars = []
+        for (i in result){
+          obj_for_handlebars.push(result[i].dataValues)
+        }
+
+        console.log(obj_for_handlebars)
+        // res.sendFile(path.join(__dirname + "/../public/students/student-view", obj_for_handlebars ))
+         res.sendFile(path.join(__dirname + "/../public/students/student-view" ))
+      
+
+      });
+
+    });
+});
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,

@@ -47,7 +47,8 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log("then:  " + data)
       console.log("should route to next page here")
-      window.location.href = "/teacher/educatorview.html"
+
+      window.location.href = "/educator/view/" + data.id
 
    }).catch(function(err) {
       // console.log("catch:  " + JSON.stringify(err))

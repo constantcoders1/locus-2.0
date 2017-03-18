@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
   $(".modal").hide()
   // Getting references to our form and inputs
   var loginForm = $("form.login");
@@ -44,8 +45,11 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log("then:  " + JSON.stringify(data))
       console.log("should re route here?")
-      
-      // window.location.href = "/students/studentview.html"
+      console.log("id?  " + data.id)
+
+   
+      window.location.href = " /student/view/" + data.id
+
      
     }).catch(function(err) {
       console.log("catch:  " + JSON.stringify(err))
