@@ -14,10 +14,10 @@ var mysql = require('mysql')
 // Student's home view 
 // Get announcements from student's teacher(s) and project(s) student is working on 
 
-router.get('/view/:studentid', function(req,res){
+router.get('/view/:studentid', isAuthenticated, function(req,res){
 	db.Student.findAll({ 
     where: {
-      id: req.params.studentid,
+      id: req.user.id,
     },
     include: [db.StudentToProject]
   }).then(function(result) {
@@ -54,10 +54,10 @@ router.get('/view/:studentid', function(req,res){
 // Student's individual data view 
 // Get all data from all projects posted by this student 
 
-router.get('/my-data/:studentid', function(req,res){
+router.get('/my-data/:studentid', isAuthenticated, function(req,res){
   db.Student.findAll({ 
     where: {
-      id: req.params.studentid,
+      id: req.user.id,
     },
     include: [db.StudentToProject]
   }).then(function(result) {
