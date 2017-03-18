@@ -20,18 +20,17 @@
 
               <td class='col-md-8'>
                     <div>
-                        <h4><a href="/notes/view/{{this.id}}"> Name: {{this.name}} </a> </h4>
+                    <h4><a href="/notes/view/{{this.id}}">{{this.name}} </a> </h4>
                     </div>
-                    <div> Details: {{this.tagLine}} </div>
-                    <div>Location: {{this.location}} </div>
-                    <div>Instructions: {{this.instructions}} </div>
-                    <div>Announcements: {{this.current_announcements}} </div>
+                    <div>{{this.tagLine}} </div>
+                    <div>Details: {{this.Description}} </div>
               </td>
 
               <td class='col-md-2'>
-                <form method="get" action="/project/update/{{this.id}}">
+                <form method="post" action="/student/join-project/{{this.id}}">
+                    {{#unless this.match}}
                     <button  class="btn btn-success">Join this Project</button> 
-                    <button  class="btn btn-default">Edit Project</button>   
+                    {{/unless}}   
                 </form>
               </td>
             </tr>

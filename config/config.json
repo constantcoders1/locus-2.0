@@ -1,9 +1,10 @@
 {
     "development": {
       "username": "root",
-     "password": "none",
+     "password": "root",
       "database": "observations_db",
-     "dialect": "mysql"
+     "dialect": "mysql",
+     "port": 8889
     },
     "test": {
       "username": "root",
