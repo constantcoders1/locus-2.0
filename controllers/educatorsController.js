@@ -8,12 +8,12 @@ var mysql = require('mysql');
 
 // Educator's home view 
 // Need to grab from database: announcements, project thumbnails, project names, project 
-router.get('/view/:edid', function(req,res){
+router.get('/view/:edid', isAuthenticated, function(req,res){
 
 // Select all projects that this educator created 
   db.Project.findAll({ 
     where: {
-      EducatorId: req.params.edid,
+      EducatorId: req.user.id,
     },
   }).then(function(result) {
 
@@ -32,20 +32,20 @@ router.get('/view/:edid', function(req,res){
 // ?? Not necessary 
 // Educator projects they've created 
 // Educator can click on a "view students" button to view all students working on the project
-router.get('/my-projects/:edid/', function(req,res){
-  db.Project.findAll({ 
-      where: {
-        EducatorId: req.params.edid,
-      }
-    }).then(function(result) {
+// router.get('/my-projects/:edid', isAuthenticated, function(req,res){
+//   db.Project.findAll({ 
+//       where: {
+//         EducatorId: req.user.id,
+//       }
+//     }).then(function(result) {
 
-      var educatorProjs = []
-      for (i in result){
-        educatorProjs.push(result[i].dataValues)
-      }
-      res.render("select-proj-view-students", {"data": educatorProjs} )
-    })
-  });
+//       var educatorProjs = []
+//       for (i in result){
+//         educatorProjs.push(result[i].dataValues)
+//       }
+//       res.render("select-proj-view-students", {"data": educatorProjs} )
+//     })
+//   });
 
 // Educator views all of the students on a particular project
 router.get('/my-students/:projid', function(req,res){
@@ -72,7 +72,8 @@ router.get('/my-students/:projid', function(req,res){
     });
 });
 
-router.get('/student-data/:studentid', function(req,res){
+router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
+  if (req.user.role == "Educator"){
   db.Student.findAll({ 
     where: {
       id: req.params.studentid,
@@ -92,6 +93,7 @@ router.get('/student-data/:studentid', function(req,res){
                           "notes": notes_array}
       res.render("educators/student-data", {data: objForHandlebars} )
     });
+  }
 });
 
 
