@@ -12,7 +12,7 @@
                  
             </div>  
              <div class ="col-md-3">
-                  <a href="../../notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a></p>  </div>    
+                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a></p>  </div>    
   
      {{/each}}
 
@@ -50,33 +50,14 @@
               <td> {{this.description}}</td>
               <td> {{this.notedate}}</td>
                <td> 
-               <!--form action="/update/{{this.id}}?_method=PUT" method="POST">
-                     <input type="hidden" name="sleepy" value="true">
-                     <button type="submit">Edit</button>
-                   </form-->
                     <form action="/notes/delete/{{this.id}}" method="GET">
                   
                      <button type="submit">Delete</button>
                    </form>
-                <a href="/notes/delete/{{this.id}}">delete</a>
+            
                 </td>
             </tr>
           {{/each}}
-
-           <!--  <ul>
-             {{#each cats}}
-               {{#unless this.sleepy}}
-                 <li>
-                   {{this.name}}
-           
-                   <form action="/{{this.id}}?_method=PUT" method="POST">
-                     <input type="hidden" name="sleepy" value="true">
-                     <button type="submit">SLEEP TIME!</button>
-                   </form>
-                 </li>
-               {{/unless}}
-             {{/each}}
-           </ul> -->
          
             
           </tbody>

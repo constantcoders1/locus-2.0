@@ -14,7 +14,7 @@ router.get('/viewall', function(req, res) {
     db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
     //res.send("View Notes");
     //console.log(dbFieldnotes);
-    res.render("show_notes_view", {data: dbFieldnotes})
+    res.render("notes/show_notes_view", {data: dbFieldnotes})
     //res.send(dbFieldnotes);
        });
 });
@@ -34,7 +34,7 @@ router.get('/view/:projectid', function(req, res) {
     }).then(function(dbFieldnotes) {
     //res.send(dbFieldnotes);
     console.log(dbFieldnotes.Student);
-    res.render("notes_view", {data: dbFieldnotes, Project: dbProject })
+    res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject })
        });
 });
    });
@@ -46,7 +46,7 @@ router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) 
     
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
-    res.render("notes", {projectid: req.params.projectid, studentid:  req.user.id });
+    res.render("notes/notes", {projectid: req.params.projectid, studentid:  req.user.id });
 }else{
 	res.render("Sorry! you don't have the permissions to create this entry!")
 }
