@@ -113,7 +113,7 @@ function createProjectRow(project) {
 
     var listOption = $("<option>");
     listOption.attr("value", project.id);
-    listOption.text(project.name);  // Use this code when I can get the projects
+    listOption.text(project.name + " - " + project.tagLine);  // Use this code when I can get the projects
     // listOption.text(project.username)   // This is for testing to see if I can still grab the teachers
     return listOption;
   }
