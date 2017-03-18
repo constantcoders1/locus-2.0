@@ -17,12 +17,17 @@ router.get('/viewall',  isAuthenticated, function(req, res) {
   } else if (req.user.role == "Educator") {
      res.redirect("/educator/viewprojects");
   } else{
+      res.redirect("/project/viewallprojects");
+  }
+    
+});
+
+router.get('/viewallprojects', function(req, res) {
+
     db.Project.findAll({}).then(function(dbProject) {
-    //res.send("View Notes");
-    //console.log(dbProject);
      res.render("projects/project-view", {data: dbProject});
        });
-  }
+  
     
 });
 
