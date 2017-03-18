@@ -13,7 +13,7 @@
               <th>Link</th>
               <th>Title</th>
               <th>Description</th>
-              <th>Date</th>
+              <th>Entry Date</th>
                <th>Edit</th>
             </tr>
           </thead>
@@ -22,17 +22,18 @@
              
 
               <tr>
-              <td>@ablue</td>
+              <td>{{this.Student.username}}</td>
               <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
               <td> {{this.title}}</td>
               <td> {{this.description}}</td>
-              <td> {{this.notedate}}</td>
+              <td> {{this.newnotedate}}</td>
                <td> 
-               <!--form action="/update/{{this.id}}?_method=PUT" method="POST">
-                     <input type="hidden" name="sleepy" value="true">
-                     <button type="submit">Edit</button>
-                   </form-->
-                 <button ><a href="/notes/delete/{{this.id}}">delete</a></button>
+               {{#if this.showDeleteBtn}}
+                 <form action="/notes/delete/{{this.id}}" method="GET">
+                  
+                     <button type="submit">Delete</button>
+                   </form>
+                  {{/if}}
                 </td>
             </tr>
           {{/each}}

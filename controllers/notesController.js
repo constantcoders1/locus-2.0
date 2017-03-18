@@ -8,12 +8,24 @@ var db = require("../models");
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var moment = require('moment');
+
 
 // var connection = require('../config/connection.js')
-router.get('/viewall', function(req, res) {
-    db.Fieldnote.findAll({}).then(function(dbFieldnotes) {
-    //res.send("View Notes");
-    //console.log(dbFieldnotes);
+router.get('/viewall', isAuthenticated, function(req, res) {
+   var sid = -1;
+  if (req.user.role == "Student") {
+     	sid = req.user.id;
+     }
+    db.Fieldnote.findAll({include: [db.Student]}).then(function(dbFieldnotes) {
+    var newFieldNotes = []
+        for (i in dbFieldnotes){
+        	 var showDelete = false;
+        	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
+        	 dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].showDeleteBtn = showDelete;
+          	newFieldNotes.push(dbFieldnotes[i].dataValues)
+        }
     res.render("notes/show_notes_view", {data: dbFieldnotes})
     //res.send(dbFieldnotes);
        });
@@ -33,7 +45,8 @@ router.get('/view/:projectid', function(req, res) {
         include: [db.Student]
     }).then(function(dbFieldnotes) {
     //res.send(dbFieldnotes);
-    console.log(dbFieldnotes.Student);
+    if(dbFieldnotes[i].notedate != null)
+    	dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
     res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject })
        });
 });
