@@ -118,7 +118,7 @@ app.get('/view/studentid', function(req,res){
       email: req.body.email,
       password: req.body.password,
       username: req.body.username,
-    }).then(function() {
+    }).then(function(dbEducator) {
       console.log("post educator sign up then clause")
        res.json(dbEducator);
     }).catch(function(err) {
