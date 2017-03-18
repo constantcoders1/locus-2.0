@@ -67,9 +67,13 @@ $(document).ready(function() {
           throw new Error(data.errors[0].message)
       
         }
+
+        debugger
         addStuToProj(projForStu, data.id)
 
-        window.location.href = "/login/student"
+       
+        window.location.href = "/student/login.html"
+    
       
     }).catch(function(err) {
 
@@ -92,7 +96,12 @@ function addStuToProj(Proj, Stu){
   }
   console.log(projInfo)
   $.post("/api/studentAndProject", projInfo)
-  console.log("post post")
+    .then(function(data) {
+      console.log("post post")
+      console.log("added student to project data = "+ JSON.stringify(data))
+     
+      });
+  
 }
 
 

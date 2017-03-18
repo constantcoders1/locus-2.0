@@ -44,15 +44,19 @@
              
 
               <tr>
-              <td>@ablue</td>
+              <td>{{this.Student.username}}</td>
               <td><a href="#"><span class="glyphicon glyphicon-file"></span></a></td>
               <td> {{this.title}}</td>
               <td> {{this.description}}</td>
               <td> {{this.notedate}}</td>
                <td> 
-               <form action="/update/{{this.id}}?_method=PUT" method="POST">
+               <!--form action="/update/{{this.id}}?_method=PUT" method="POST">
                      <input type="hidden" name="sleepy" value="true">
                      <button type="submit">Edit</button>
+                   </form-->
+                    <form action="/notes/delete/{{this.id}}" method="GET">
+                  
+                     <button type="submit">Delete</button>
                    </form>
                 <a href="/notes/delete/{{this.id}}">delete</a>
                 </td>
