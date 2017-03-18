@@ -28,11 +28,11 @@
               <td> {{this.description}}</td>
               <td> {{this.notedate}}</td>
                <td> 
-               <form action="/update/{{this.id}}?_method=PUT" method="POST">
+               <!--form action="/update/{{this.id}}?_method=PUT" method="POST">
                      <input type="hidden" name="sleepy" value="true">
                      <button type="submit">Edit</button>
-                   </form>
-                <a href="/notes/delete/{{this.id}}">delete</a>
+                   </form-->
+                 <button ><a href="/notes/delete/{{this.id}}">delete</a></button>
                 </td>
             </tr>
           {{/each}}

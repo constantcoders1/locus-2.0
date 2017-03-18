@@ -16,7 +16,7 @@ router.get('/viewall',  function(req, res) {
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
     //console.log(dbProject);
-     res.render("projects/index", {data: dbProject});
+     res.render("projects/project-view", {data: dbProject});
        });
 });
 router.get('/view/:educatorid', function(req, res) {
