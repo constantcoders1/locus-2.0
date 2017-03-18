@@ -29,6 +29,16 @@ router.get('/view/:edid', isAuthenticated, function(req,res){
     });
   });
 
+router.get('/viewprojects',  function(req, res) {
+  
+  
+    db.Project.findAll({}).then(function(dbProject) {
+    //res.send("View Notes");
+    //console.log(dbProject);
+     res.render("educators/project-view", {data: dbProject});
+       });
+});
+
 // ?? Not necessary 
 // Educator projects they've created 
 // Educator can click on a "view students" button to view all students working on the project
