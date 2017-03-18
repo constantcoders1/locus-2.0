@@ -50,10 +50,13 @@
               <td> {{this.description}}</td>
               <td> {{this.newnotedate}}</td>
                <td> 
-                    <form action="/notes/delete/{{this.id}}" method="GET">
+
+                 {{#if this.showDeleteBtn}}
+                 <form action="/notes/delete/{{this.id}}" method="GET">
                   
                      <button type="submit">Delete</button>
                    </form>
+                  {{/if}}
             
                 </td>
             </tr>

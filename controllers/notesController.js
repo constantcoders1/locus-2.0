@@ -31,7 +31,11 @@ router.get('/viewall', isAuthenticated, function(req, res) {
        });
 });
 
-router.get('/view/:projectid', function(req, res) {
+router.get('/view/:projectid', isAuthenticated, function(req, res) {
+   var sid = -1;
+  if (req.user.role == "Student") {
+     	sid = req.user.id;
+     }
 	 db.Project.findAll({
         where: {
         id: req.params.projectid
@@ -44,9 +48,16 @@ router.get('/view/:projectid', function(req, res) {
       },
         include: [db.Student]
     }).then(function(dbFieldnotes) {
-    //res.send(dbFieldnotes);
-    if(dbFieldnotes[i].notedate != null)
-    	dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+    	var newFieldNotes = []
+        for (i in dbFieldnotes){
+        	 var showDelete = false;
+        	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
+        	 dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].showDeleteBtn = showDelete;
+          	newFieldNotes.push(dbFieldnotes[i].dataValues)
+        }
+    	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+
     res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject })
        });
 });
