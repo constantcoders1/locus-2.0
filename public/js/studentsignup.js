@@ -68,7 +68,6 @@ $(document).ready(function() {
       
         }
 
-        debugger
         addStuToProj(projForStu, data.id)
 
        
