@@ -1,18 +1,19 @@
 $(document).ready(function() {
 
 
+  // student login are almost identical - need to know which table student or educator
+
   $(".modal").hide()
   // Getting references to our form and inputs
   var loginForm = $("form.login");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
 
-  console.log("student login")
 
   // When the form is submitted, we validate there's an email and password entered
  
   loginForm.on("submit", function(event) {
-    console.log("student login submit")
+  
     event.preventDefault();
     var userData = {
       email: emailInput.val().trim(),
@@ -44,10 +45,8 @@ $(document).ready(function() {
       password: password,
     }).then(function(data) {
       console.log("then:  " + JSON.stringify(data))
-      console.log("should re route here?")
-      console.log("id?  " + data.id)
-
-   
+      
+      // go to the student's page based on the student's id 
       window.location.href = " /student/view/" + data.id
 
      
