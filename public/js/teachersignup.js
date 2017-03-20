@@ -7,8 +7,6 @@ $(document).ready(function() {
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
 
-  console.log("teacher signup ready")
-
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
@@ -26,8 +24,8 @@ $(document).ready(function() {
     }
     // If we have an email and password, run the signUpUser function
     signUpEducator(userData);
-    console.log("signed up?")
-    // window.location.href = "/teacher/login.html"
+   
+   // clear the input fields
     emailInput.val("");
     passwordInput.val("");
     usernameInput.val("");
@@ -52,7 +50,7 @@ $(document).ready(function() {
 
         window.location.href = "/teacher/login.html"
         // go to login window
-      console.log("post then.....");
+      
       console.log(data);
 
         
@@ -66,7 +64,7 @@ $(document).ready(function() {
           $(".modal").show();
         }
 
-      console.log(err);
+      
     });
     console.log("end of signUpTeacher")
 

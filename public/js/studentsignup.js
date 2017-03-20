@@ -2,8 +2,7 @@ $(document).ready(function() {
 
   $(".modal").hide()
 
-  // getTeachers();
-     // --- Just testing to see if the code still works
+  
   getProjects();
   
   console.log("studentsignup");
@@ -20,7 +19,6 @@ $(document).ready(function() {
   var projectSelect = $("#project-input");
 
 
-  // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function(event) {
     console.log("signup form student")
     event.preventDefault();
@@ -43,99 +41,84 @@ $(document).ready(function() {
     
     // If we have an email and password, run the signUpUser function
     signUpUser(userData, projectForStudent);
-    // the line below only executes on a successful sign up
-    console.log("signed up?")
-    // window.location.href = "/student/login.html"
+   
     
   });
 
   $(".modal-close").on("click", function() {
           $(".modal").hide()
   });
-  // Does a post to the signup route. If succesful, we are redirected to the members page
-  // Otherwise we log any errors
-
-  // *****  errors sometimes show up in then and sometimes in err ******* //
   
   function signUpUser(userData, projForStu) {
     
     $.post("/api/signup/student", userData)
     .then(function(data) {
-        // console.log("data - " + JSON.stringify(data));
+       // this is to work around errors sometimes show up the here instead of err
+       // the error of duplicate emails would show up in the .then instead or err
         if (!data.id) {
           console.log()
           throw new Error(data.errors[0].message)
       
         }
-
+        // run the post to add the student to the project
         addStuToProj(projForStu, data.id)
 
-       
+       // go to the login pages
         window.location.href = "/student/login.html"
     
       
     }).catch(function(err) {
-
+        // if there is an error during sign up us the modal to show it
         $(".modal-title").text("Error!");
         $(".modal-body").text(err.responseJSON.errors[0].message)
         $(".modal").show();
-      // console.log("is this from sequelize?" + err);
+    
     });
   }
 
 
 
 function addStuToProj(Proj, Stu){
-
+      // what the post needs to do
         // INSERT INTO StudentToProjects (ProjectId, StudentId) VALUES (1,1);
-  console.log("Proj = "+ Proj + " Stu = " + Stu)
-  var projInfo = {
-      ProjId: Proj,
-      StuId: Stu,
-  }
-  console.log(projInfo)
-  $.post("/api/studentAndProject", projInfo)
-    .then(function(data) {
-      console.log("post post")
-      console.log("added student to project data = "+ JSON.stringify(data))
-     
-      });
+    console.log("Proj = "+ Proj + " Stu = " + Stu)
+    var projInfo = {
+        ProjId: Proj,
+        StuId: Stu,
+    }
   
+    $.post("/api/studentAndProject", projInfo)
+    .then(function(data) {
+        console.log("added student to project data = "+ JSON.stringify(data))
+     
+    });
 }
 
 
-  
-function renderProjectsList(data) {
-    var rowsToAdd = [];
-    for (var i = 0; i < data.length; i++) {
-      rowsToAdd.push(createProjectRow(data[i]));
+// The next 3 functions are used to populate the select list of projects in the HTML form
+// This allows the student to sign up for an existing project.
+    function renderProjectsList(data) {
+        var rowsToAdd = [];
+        for (var i = 0; i < data.length; i++) {
+          rowsToAdd.push(createProjectRow(data[i]));
+        }
+        projectSelect.empty();    //empty any existing values
+        projectSelect.append(rowsToAdd);   // add the new row to the selection option
+        projectSelect.val();     // select is ready for the user to select a value
     }
-    projectSelect.empty();    //empty any existing values
-    console.log(rowsToAdd);
-    console.log(projectSelect);
-    projectSelect.append(rowsToAdd);   // add the new row to the selection option
-    projectSelect.val();     // select is ready for the user to select a value
-  }
 
-function createProjectRow(project) {
+    function createProjectRow(project) {
+        var listOption = $("<option>");
+        listOption.attr("value", project.id);
+        listOption.text(project.name + " - " + project.tagLine);  
+        return listOption;
+    }
 
-    var listOption = $("<option>");
-    listOption.attr("value", project.id);
-    listOption.text(project.name + " - " + project.tagLine);  // Use this code when I can get the projects
-    // listOption.text(project.username)   // This is for testing to see if I can still grab the teachers
-    return listOption;
-  }
-
-  function getProjects() {
-    // get all the values you need from the table
-    $.get("/api/projects", renderProjectsList)
-  }
+    function getProjects() {
+        // get all the values you need from the table
+        $.get("/api/projects", renderProjectsList)
+   }
 
 
-
-  // function getTeachers() {
-  //   // get all the values you need from the table
-  //   $.get("/api/teachers", renderProjectsList)
-  // }
 
 });
