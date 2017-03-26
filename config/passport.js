@@ -1,3 +1,18 @@
+
+// only 1 version of passport-local can be running at a time.  Therefore a workaround was needed
+// student emails are prepended with S*
+// educator/teacher emails are prepended with E* or T* 
+// The first 2 characters are pull off, to know which table to check to know if the users has signed up
+// becuase of this trick the code could not do a 307 redirect
+//      normally after signup a user could be automatically logged in using the 307 redirect
+//      because this code needs to know if a student or educator is logging  the user
+//      has to log in manually
+
+// passport documentation:   http://passportjs.org/
+
+
+
+
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 // var LocalStrategy = require("teacher-local").Strategy;
@@ -17,13 +32,12 @@ passport.use(new LocalStrategy(
   email = email.substr(2)
 
 
-    // console.log("source - " + source);
     console.log("email - " + email);
     console.log("password - " + password);
-    // console.log("role = " + role)
+  
 
     // When a user tries to sign in this code runs
-    
+    // This lets us know an educator or teacher is trying to login
     if (role == "E*" || role == "T*") {
 
     db.Educator.findOne({
@@ -31,13 +45,11 @@ passport.use(new LocalStrategy(
         email: email
       }
     }).then(function(dbUser) {
-      // If there's no user with the given email
-      // console.log("then function:  " + JSON.stringify(dbUser));
+      // if there is no matching email send message to calling function
       if (!dbUser) {
         console.log("incorrect email")
         return done(null, false, {
           message: "Incorrect email."
-          // console.log("Incorrect email")
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
@@ -45,7 +57,7 @@ passport.use(new LocalStrategy(
         console.log("incorrect password");
         return done(null, false, {
           message: "Incorrect password."
-         
+          // send message to calling function  
         });
       }
       // If none of the above, return the user
@@ -70,10 +82,9 @@ passport.use(new LocalStrategy(
     }).then(function(dbUser) {
       // If there's no user with the given email
       if (!dbUser) {
-        console.log("incorrect email")
+    
         return done(null, false, {
           message: "Incorrect email."
-          // console.log("Incorrect email")
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect

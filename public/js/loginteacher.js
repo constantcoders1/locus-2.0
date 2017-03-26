@@ -11,12 +11,7 @@ $(document).ready(function() {
   // When the form is submitted, we validate there's an email and password entered
 
 
-  // pass a hidden variable to know if we are logging in a student or teacher
-  // we need to know which table we are looking in for the email/pw a
-
-
   loginForm.on("submit", function(event) {
-    console.log("teacher login submit")
     event.preventDefault();
     var userData = {
       email: emailInput.val().trim(),
@@ -27,6 +22,7 @@ $(document).ready(function() {
       return;
     }
 
+    // The E* lets passport know to check for login data in the educators table
     loginTeacher("E*"+userData.email, userData.password);
     
   
@@ -48,10 +44,11 @@ $(document).ready(function() {
       console.log("then:  " + data)
       console.log("should route to next page here")
 
+      // go to the educators view based on educators id
       window.location.href = "/educator/view/" + data.id
 
    }).catch(function(err) {
-      // console.log("catch:  " + JSON.stringify(err))
+      // If there was an error display it in this modal box
        $(".modal-title").text("Error!");
       if (err.readyState == 4) {
         $(".modal-body").text("Unauthorized user.  Please check your login.")

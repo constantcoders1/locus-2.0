@@ -7,29 +7,27 @@ var passport = require("../config/passport");
 
 module.exports = function(app) {
   console.log("apiroutes.js function")
+  // know that api routes is loaded & working
+
+
+
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
  app.post("/api/login/teacher", passport.authenticate("local"), function(req, res) {
     // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
     // So we're sending the user back the route to the members page because the redirect will happen on the front end
-    res.json(req.user);
     // They won't get this or even be able to access this page if they aren't authed
-    // console.log("res:  "+ JSON.stringify(res));
-
-    // res.json("/educators");
+    res.json(req.user);
+      // req.user let's us know that the usesr is logged.
   });
 
 
 
  app.post("/api/login/student", passport.authenticate("local"), function(req, res) {
-    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-    // So we're sending the user back the route to the members page because the redirect will happen on the front end
-    // They won't get this or even be able to access this page if they aren't authed
-    // console.log()
+  // just like teacher/educator - except for student
     res.json(req.user);
-    // console.log("res:  "+ res)
-    // res.redirect("/students/studentview.html")
+    
   });
 
 
@@ -129,10 +127,12 @@ app.get('/view/studentid', function(req,res){
     });
   });
 
+
+
+
+  // this posts the student information to the student table
  app.post("/api/signup/student", function(req, res) {
-    console.log("student sign up");
-    console.log(req.body)
-     db.Student.create(
+    db.Student.create(
      {
       email: req.body.email,
       password: req.body.password,
@@ -142,12 +142,14 @@ app.get('/view/studentid', function(req,res){
       city: req.body.city,
     }
     ).then(function(dbStudent) {
-      console.log("post student sign up then clause")
+      // return the student information
        res.json(dbStudent);
-      // res.json(dbStudent);
-      // window.location.href = "/student/login.html"
-      // res.redirect("student/login.html");
+            
     }).catch(function(err) {
+      // catch errors and send them back to the calling function
+      // emails must be unique
+      // some fields are also required
+      // these are the most common errors
       console.log("app post - " + err);
      if (err != undefined) {
            res.status(500).json(err)
