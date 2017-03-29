@@ -7,3 +7,6 @@ Locus is a web application  designed to encourage high school and college studen
 
 ## Creating a fieldnote or data entry
 ![alt text](https://github.com/smchow/locus/blob/master/public/images/ScreenShot2.PNG "ScreenShot 2")
+
+## Form for submitting a fieldnote or data entry
+![alt text](https://github.com/smchow/locus/blob/master/public/images/ScreenShot3.PNG "ScreenShot 3")
