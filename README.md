@@ -10,3 +10,14 @@ Locus is a web application  designed to encourage high school and college studen
 
 ## Form for submitting a fieldnote or data entry
 ![alt text](https://github.com/smchow/locus/blob/master/public/images/ScreenShot3.PNG "ScreenShot 3")
+
+
+Opening Screen - http://g.recordit.co/FBjnoUs0A2.gif
+
+Student Sign Up - http://g.recordit.co/tIyDv2oADm.gif
+
+Student Login & View - http://g.recordit.co/7KRC1zS41o.gif
+
+
+
+
