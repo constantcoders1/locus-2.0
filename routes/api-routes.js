@@ -14,23 +14,20 @@ module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
- app.post("/api/login/teacher", passport.authenticate("local"), function(req, res) {
-    // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
-    // So we're sending the user back the route to the members page because the redirect will happen on the front end
-    // They won't get this or even be able to access this page if they aren't authed
-    res.json(req.user);
-      // req.user let's us know that the usesr is logged.
-  });
+   app.post("/api/login/teacher", passport.authenticate("local"), function(req, res) {
+      // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
+      // So we're sending the user back the route to the members page because the redirect will happen on the front end
+      // They won't get this or even be able to access this page if they aren't authed
+      res.json(req.user);
+        // req.user let's us know that the usesr is logged.
+    });
 
 
-
- app.post("/api/login/student", passport.authenticate("local"), function(req, res) {
-  // just like teacher/educator - except for student
-    res.json(req.user);
-    
-  });
-
-
+   app.post("/api/login/student", passport.authenticate("local"), function(req, res) {
+    // just like teacher/educator - except for student
+      res.json(req.user);
+      
+    });
 
 
 app.get('/view/studentid', function(req,res){
@@ -89,13 +86,17 @@ app.get('/view/studentid', function(req,res){
   //   });
   // });
 
-  app.get("/api/projects", function(req, res) {
-    db.Project.findAll({
-     
-    }).then(function(dbProject) {
-      res.json(dbProject);
+    app.get("/api/projects", function(req, res) {
+
+      console.log("getting projects");
+      
+      db.Project.findAll({
+       
+      }).then(function(dbProject) {
+        res.json(dbProject);
+      });
     });
-  });
+
 
     app.post("/api/studentAndProject", function(req, res) {
       console.log(req.body);
@@ -108,6 +109,7 @@ app.get('/view/studentid', function(req,res){
         console.log("error adding to StudentToProject  " + err)
       });
     });
+
 
     app.post("/api/signup/teacher", function(req, res) {
     console.log("teacher sign up" );
@@ -126,8 +128,6 @@ app.get('/view/studentid', function(req,res){
     }
     });
   });
-
-
 
 
   // this posts the student information to the student table
@@ -155,25 +155,19 @@ app.get('/view/studentid', function(req,res){
            res.status(500).json(err)
     }
     });
-
-    
   });
 
 
+ 
 
 
-
-  // Route for logging user out
-  app.get("/logout", function(req, res) {
-    req.logout();
-    res.redirect("/");
-  });
 
    ////GET Route for entering observations
-app.get("/api/fieldnotes", function(req, res) {
+  app.get("/api/fieldnotes", function(req, res) {
     console.log(req.body);
     res.render('notes');
   });
+
 
   //POST Route for entering observations
   app.post("/api/fieldnotes", function(req, res) {
@@ -210,5 +204,17 @@ app.get("/api/fieldnotes", function(req, res) {
       });
     }
   });
+
+  
+
+  app.get('/logout', function(req,res){
+   req.logOut();
+   req.session.destroy(function (err) {
+          res.redirect('/'); 
+      });
+  });
+
+
+
 
 };
