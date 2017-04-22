@@ -1,23 +1,67 @@
 $(document).ready(function() {
 
-  $(".modal").hide()
 
+  $(".modal").hide()
+debugger
   
-  getProjects();
-  
+ 
+
+  // initMap();
+
+   getProjects();
+
+   initMap();
+
+
+      
+      function initMap() {
+
+      //   // var observationLocation = new google.maps.places.Autocomplete(locationInput);
+
+      
+
+        var pos = {lat: 40.5012257, lng: -74.5252189};
+
+         if (navigator.geolocation) {
+          console.log("navigator.geolocation")
+          navigator.geolocation.getCurrentPosition(function(position) {
+             var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+          });
+          console.log(pos)
+        }
+
+        console.log("position: " + pos.lat + " " + pos.lng)
+
+        map = new google.maps.Map(document.getElementById('gmap'), {
+          center: pos,
+          zoom: 10
+        });
+
+      }
+
+
+
+
+
   console.log("studentsignup");
   // Getting references to our form and input
   var signUpForm = $("form.signup");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
-  var countryInput = $("select#country-input");
   var projectInput = $("select#project-input");
-  var stateInput = $("input#state-input");
-  var cityInput = $("input#city-input");
+  // var countryInput = $("select#country-input");
+  // var stateInput = $("input#state-input");
+  // var cityInput = $("input#city-input");
+
+  // var locationInput = $("input#location-input")
+  // console.log(location-input)
 
   var projectSelect = $("#project-input");
-
+ 
 
   signUpForm.on("submit", function(event) {
     console.log("signup form student")
@@ -26,9 +70,9 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       username: usernameInput.val().trim(),
-      country: countryInput.val(),
-      state:  stateInput.val().trim(),
-      city: cityInput.val().trim(),
+      // country: countryInput.val(),
+      // state:  stateInput.val().trim(),
+      // city: cityInput.val().trim(),
     };
 
     var projectForStudent = projectInput.val()
@@ -118,7 +162,6 @@ function addStuToProj(Proj, Stu){
         // get all the values you need from the table
         $.get("/api/projects", renderProjectsList)
    }
-
 
 
 });
