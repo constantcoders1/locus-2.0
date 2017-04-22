@@ -52,12 +52,13 @@ Locus is unique in its ability to connect students across the globe through scie
 There are many apps developed for citizen science including, mPing, the Marine Debris Tracker, and Project Noah. These apps are developed to gather certain data points useful to scientists who take and analyze the gathered information. Locus is not another repository for data. Instead it is a forum for students to actively engage with each other by responding to and analyzing shared data.  
 
 ## Sketches of MVP
-![alt text](https://github.com/akimtis/locus-2.0/blob/master/public/images/login.PNG "Login")
-![alt text](https://github.com/akimtis/locus-2.0/blob/master/public/images/projectview.PNG "Project View")
-![alt text](https://github.com/akimtis/locus-2.0/blob/master/public/images/fieldnoteentry.PNG "Field Note Entry")
+![alt text](https://github.com/constantcoders1/locus-2.0/tree/master/public/images/login.png)
+![alt text](https://github.com/constantcoders1/locus-2.0/tree/master/public/images/projectview.png)
+![alt text](https://github.com/constantcoders1/locus-2.0/tree/master/public/images/fieldnoteentry.png)
 
 ## Database Architecture
 We are using MySQL for our database architecture.
+![alt text](https://github.com/constantcoders1/locus-2.0/tree/master/public/images/dbarchitecture.png)
 
 Our tables include:
 * Student to Projects
