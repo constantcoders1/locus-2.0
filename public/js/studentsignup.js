@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
   var marker;
+
   var markers = [];
 
 
@@ -16,12 +17,12 @@ debugger
    initMap();
 
 
-      
-      
 
-    // document.getElementById('go-btn').addEventListener('click', onClickGoHandler);
     google.maps.event.addListener(map, 'click', function(event) {
-      // deleteMarkers();
+      for (i=0; i<markers.length; i++){
+          markers[i].setMap(null)
+      }
+      markers=[];
       placeMarker(event.latLng);
     });
 
@@ -150,6 +151,7 @@ function addStuToProj(Proj, Stu){
 
 
   function placeMarker(location) {
+
       var marker = new google.maps.Marker({
         position: location,
         map: map,
@@ -159,18 +161,19 @@ function addStuToProj(Proj, Stu){
       markers.push(marker);
 
       // calculateAndDisplayRoute();
-      if (markers.length > 0) {
-        console.log("# of markers: " + markers.length)
+      // if (markers.length > 0) {
+        console.log("# of markers: " + markers.length);
+        console.log("location = " + location);
+        console.log("lat = " + location.lat);
+        console.log("lng = " + location.lng);
         // displayPlacesAroundMarker(markers);
         // $("a[href='#cities']").click();
-      }
+      // }
     }  // end of placeMarker function
 
     function initMap() {
 
       //   // var observationLocation = new google.maps.places.Autocomplete(locationInput);
-
-      
 
         var pos = {lat: 40.5012257, lng: -74.5252189};
 
@@ -191,6 +194,8 @@ function addStuToProj(Proj, Stu){
           center: pos,
           zoom: 10
         });
+
+        placeMarker(pos)
 
       }
 
