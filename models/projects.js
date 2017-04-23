@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
     location: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
   }, 
 	  instructions: {
@@ -23,7 +23,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     root_project: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
+      
     },
     image_url:{
       type: DataTypes.STRING,
