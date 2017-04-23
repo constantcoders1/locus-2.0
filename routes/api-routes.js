@@ -137,6 +137,8 @@ app.get('/view/studentid', function(req,res){
       email: req.body.email,
       password: req.body.password,
       username: req.body.username,
+      longitude: req.body.longitude,
+      latitude: req.body.latitude,
       country: req.body.country,
       state: req.body.state,
       city: req.body.city,
