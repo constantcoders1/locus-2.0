@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  var marker;
+  var markers = [];
+
 
   $(".modal").hide()
 debugger
@@ -14,33 +17,14 @@ debugger
 
 
       
-      function initMap() {
-
-      //   // var observationLocation = new google.maps.places.Autocomplete(locationInput);
-
       
 
-        var pos = {lat: 40.5012257, lng: -74.5252189};
+    // document.getElementById('go-btn').addEventListener('click', onClickGoHandler);
+    google.maps.event.addListener(map, 'click', function(event) {
+      // deleteMarkers();
+      placeMarker(event.latLng);
+    });
 
-         if (navigator.geolocation) {
-          console.log("navigator.geolocation")
-          navigator.geolocation.getCurrentPosition(function(position) {
-             var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-          });
-          console.log(pos)
-        }
-
-        console.log("position: " + pos.lat + " " + pos.lng)
-
-        map = new google.maps.Map(document.getElementById('gmap'), {
-          center: pos,
-          zoom: 10
-        });
-
-      }
 
 
 
@@ -163,5 +147,51 @@ function addStuToProj(Proj, Stu){
         $.get("/api/projects", renderProjectsList)
    }
 
+
+
+  function placeMarker(location) {
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        type: "nearby",
+        animation: google.maps.Animation.DROP
+      });
+      markers.push(marker);
+
+      // calculateAndDisplayRoute();
+      if (markers.length > 0) {
+        console.log("# of markers: " + markers.length)
+        // displayPlacesAroundMarker(markers);
+        // $("a[href='#cities']").click();
+      }
+    }  // end of placeMarker function
+
+    function initMap() {
+
+      //   // var observationLocation = new google.maps.places.Autocomplete(locationInput);
+
+      
+
+        var pos = {lat: 40.5012257, lng: -74.5252189};
+
+         if (navigator.geolocation) {
+          console.log("navigator.geolocation")
+          navigator.geolocation.getCurrentPosition(function(position) {
+             var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+          });
+          console.log(pos)
+        }
+
+        console.log("position: " + pos.lat + " " + pos.lng)
+
+        map = new google.maps.Map(document.getElementById('gmap'), {
+          center: pos,
+          zoom: 10
+        });
+
+      }
 
 });
