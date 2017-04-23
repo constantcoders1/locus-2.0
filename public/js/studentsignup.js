@@ -1,16 +1,11 @@
 $(document).ready(function() {
 
   var marker;
-
   var markers = [];
+  var pos = {lat: 40.5012257, lng: -74.5252189};
 
 
   $(".modal").hide()
-debugger
-  
- 
-
-  // initMap();
 
    getProjects();
 
@@ -55,10 +50,10 @@ debugger
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       username: usernameInput.val().trim(),
-      // country: countryInput.val(),
-      // state:  stateInput.val().trim(),
-      // city: cityInput.val().trim(),
+      latitude: markers[0].position.lat(),
+      longitude: markers[0].position.lng(),
     };
+
 
     var projectForStudent = projectInput.val()
     console.log("project id = " + projectForStudent)
@@ -79,7 +74,8 @@ debugger
   });
   
   function signUpUser(userData, projForStu) {
-    
+
+
     $.post("/api/signup/student", userData)
     .then(function(data) {
        // this is to work around errors sometimes show up the here instead of err
@@ -160,25 +156,12 @@ function addStuToProj(Proj, Stu){
       });
       markers.push(marker);
 
-      // calculateAndDisplayRoute();
-      // if (markers.length > 0) {
-        console.log("# of markers: " + markers.length);
-        console.log("location = " + location);
-        console.log("lat = " + location.lat);
-        console.log("lng = " + location.lng);
-        // displayPlacesAroundMarker(markers);
-        // $("a[href='#cities']").click();
-      // }
     }  // end of placeMarker function
+
 
     function initMap() {
 
-      //   // var observationLocation = new google.maps.places.Autocomplete(locationInput);
-
-        var pos = {lat: 40.5012257, lng: -74.5252189};
-
-         if (navigator.geolocation) {
-          console.log("navigator.geolocation")
+        if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
              var pos = {
               lat: position.coords.latitude,
@@ -187,8 +170,6 @@ function addStuToProj(Proj, Stu){
           });
           console.log(pos)
         }
-
-        console.log("position: " + pos.lat + " " + pos.lng)
 
         map = new google.maps.Map(document.getElementById('gmap'), {
           center: pos,
