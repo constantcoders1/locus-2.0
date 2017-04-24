@@ -1,14 +1,20 @@
 
 <div class="container" >
 
-            <div class="container">
-              <div class="col-lg-12">
-                <p><a href="/project/create/1/1" class="btn btn-success btn-lg">Create a New Project</a></p>
-              </div>
+           
+                        
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-md-3">
+              <h2>My Class</h2>
             </div>
-    
+            <div class="col-md-3 col-md-offset-6">
+              <a href="/project/create/1/1" class="btn btn-success btn-lg">Create a New Project</a>
+            </div>
+          </div>
+        </div>
 
-      <h1>My Class</h1>
+
         <div class="col-lg-12">
           <h3>Announcements</h3>
             <div class="form-group">        
@@ -22,10 +28,10 @@
                       </div>
                       <div class="col-lg-5 col-sm-offset-1">
                         <h4><b>{{name}}:</b></h4> <form action="/educator/update-announcement/{{id}}?_method=PUT" method="POST">
-                          <textarea class="form-control" rows="4" name="announcement">{{current_announcements}}</textarea>
+                          <textarea class="form-control" rows="3" name="announcement">{{current_announcements}}</textarea>
                           <br>
-                          <h4><a href="/educator/my-students/{{id}}">View Students</a></h4> 
-                          <button class="btn btn-success" type="submit">UPDATE</button>
+                          <button class="btn btn-success" type="submit">Update Announcement</button>
+                          <a href="/educator/my-students/{{id}}" class="btn btn-primary">View Students</a>
                         </form>
                       </div>
                       <br>
@@ -36,19 +42,6 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-
-          
-        
-
-          <br><br>
-            
-          </div>
-    </div>
-  
-  
-
-</div>
 
 
 
