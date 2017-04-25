@@ -9,6 +9,7 @@ var db = require("../models");
 var express = require('express');
 var router  = express.Router();
 var mysql = require('mysql')
+var moment = require('moment');
 // var connection = require('../config/connection.js')
 
 // Student's home view 
@@ -25,7 +26,9 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
       // Get the ids of each of the projects the student is working on 
       var projIds = []
-      for (i in student_objs){          
+      for (i in student_objs){     
+          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYY")        
+
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
 
@@ -40,10 +43,20 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
+          result[i].notedate = moment(result[i].notedate).format("MM-DD-YYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
+         
+ // for (i in dbFieldnotes){
+          
+ //           dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+       
+ //            newFieldNotes.push(dbFieldnotes[i].dataValues)
+ //        }
+
 
         console.log(obj_for_handlebars)
+        console.log("studentsController.js  router.get/view/:studentid")
         res.render("students/student-view", {projects: obj_for_handlebars} )
 
       });
@@ -65,7 +78,8 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
 
       // Get the ids of each of the projects the student is working on 
       var projIds = []
-      for (i in student_objs){          
+      for (i in student_objs){     
+          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
       console.log("projIds" + projIds)
@@ -79,10 +93,12 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
+          result[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
 
         console.log(obj_for_handlebars)
+        console.log("studentsController.js  router.get/mydata/:studentid")
         res.render("students/my-data", {observations: obj_for_handlebars} )
 
       });

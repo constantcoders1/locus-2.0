@@ -87,31 +87,31 @@ router.get('/delete/:noteid', function(req, res) {
   });
 });
 
-router.post('/view', function(req, res) {
+// router.post('/view', function(req, res) {
 
-    var query = "SELECT * FROM users WHERE email = ?";
+//     var query = "SELECT * FROM users WHERE email = ?";
 
-    connection.query(query, [req.body.email], function(err, response) {
-        if (response.length == 0) {
-            res.redirect('/users/sign-in')
-        }
+//     connection.query(query, [req.body.email], function(err, response) {
+//         if (response.length == 0) {
+//             res.redirect('/users/sign-in')
+//         }
 
-        bcrypt.compare(req.body.password, response[0].password_hash, function(err, result) {
-            if (result == true) {
+//         bcrypt.compare(req.body.password, response[0].password_hash, function(err, result) {
+//             if (result == true) {
 
-                req.session.logged_in = true;
-                req.session.user_id = response[0].id;
-                req.session.user_email = response[0].email;
-                req.session.company = response[0].company;
-                req.session.username = response[0].username;
+//                 req.session.logged_in = true;
+//                 req.session.user_id = response[0].id;
+//                 req.session.user_email = response[0].email;
+//                 req.session.company = response[0].company;
+//                 req.session.username = response[0].username;
 
-                res.redirect('/coupons');
-            } else {
-                res.redirect('/users/sign-in')
-            }
-        });
-    });
-});
+//                 res.redirect('/coupons');
+//             } else {
+//                 res.redirect('/users/sign-in')
+//             }
+//         });
+//     });
+// });
 
 router.post("/create/:projectid/:studentid", function(req, res) {
     console.log("creating note");
