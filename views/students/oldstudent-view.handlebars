@@ -1,0 +1,83 @@
+students\student-view.handlebars -->
+<div class="container">
+  
+    <div class="row" >
+    
+      <h1>My Projects</h1>
+       <div class="col-lg-12">
+              <p><a href="/student/my-data/req.user.id"class="btn btn-success btn-lg">View My Data</a></p>
+            </div>
+      	<div class="col-md-6">
+          <h3>Announcements</h3>
+      		<div class="form-group">
+				    {{#each projects}}
+	            <div class="well well-lg">
+	            <h4><b>{{name}}</b></h4>
+	            <p>{{current_announcements}}</p>
+	            <p> <i> - {{Educator.dataValues.username}} </i> </p>
+	            </div>
+	      		{{/each}}
+      		</div>
+        </div>
+        
+
+
+        <!-- <div class="col-md-6"> -->
+<!--           <h3>Search for a Project</h3>
+          <div class="input-group">
+            <div class="input-group-btn search-panel">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span id="search_concept">Filter by</span> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li class='sub' >
+                  <a tabindex="-1" href="#">Project Name</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Astronomy</a></li>
+                    <li><a href="#">Phenology</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Location</a></li>
+                <li><a href="#">User Name</a></li>
+                <li><a href="#">Date</a></li>
+                <li class="divider"></li>
+                <li><a href="#all">All</a></li>
+              </ul>
+          </div>
+            <input type="hidden" name="search_param" value="all" id="search_param">        
+            <input type="text" class="form-control" name="x" placeholder="Search term...">
+            <span class="input-group-btn">
+                <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>  -->
+
+ <!--          <br><br>
+          <div class="container">
+            <div class="col-lg-12">
+              <p><a href="/student/my-data/req.user.id"class="btn btn-success btn-lg">View My Data</a></p>
+            </div>
+          </div>
+
+        </div> -->
+
+    </div>
+
+    <div class="row">
+        
+        <div class="col-lg-12">
+            <h1>Class Projects</h1>
+        </div>
+		
+		{{#each projects}}
+        <div class="col-lg-2 col-md-3 col-xs-4 ">
+		<h3>{{name}}</h3>
+            <a class="thumbnail" href="/notes/view/{{id}}">
+                <img class="img-responsive" src="{{image_url}}" alt="{{name}} project thumbnail link">
+            </a>
+    <h4>{{tagLine}}</h4>
+        </div>
+		{{/each}}
+
+    </div>
+
+</div> <!-- container
