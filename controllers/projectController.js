@@ -8,6 +8,7 @@ var db = require("../models");
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var moment = require('moment');
 
 // var connection = require('../config/connection.js')
 router.get('/viewall',  isAuthenticated, function(req, res) {
@@ -58,6 +59,7 @@ router.get('/update/:projectid', function(req, res) {
 
     //res.send(dbFieldnotes);
     console.log(dbProject);
+    console.log("projectController  router.get/update/:projectid")
     res.render("projects/update_project", {data: dbProject, test:"Hello!!" })
        });
 });
@@ -75,6 +77,8 @@ router.get('/:projectid/:studentid', function(req, res) {
 
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
+    console.log(db.Project)
+    console.log("projectController  router.get/:projecti/:studentid")
     res.render("projects/index", {data: dbProject, test:"Hello!!" })
        });
 });

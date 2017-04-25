@@ -27,38 +27,18 @@
 				    {{#each projects}}
              <div class="well well-lg">
               <div class="row">
-               <!--  <div class="col-lg-2 col-md-3 col-xs-4 ">
-                  <h3>{{name}}</h3>
-                    <a class="thumbnail" href="/notes/view/{{id}}">
-                      <img class="img-responsive" src="{{image_url}}" alt="{{name}} project thumbnail link" style="width:200px;height:200px">
-                    </a>
+                <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
+                  <div class ="col-md-6">   
+                        <div> Details: {{this.tagLine}} </div>
+                        <div>Location: {{this.location}} </div>
+                        <div>Instructions: {{this.instructions}} </div>
+                        <div>Announcements: {{this.current_announcements}} </div>
+                  </div>  
+                  <div class ="col-md-3">
+                        <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a>
+                  </div>    
                 </div>
-                <div class="col-lg-5 col-sm-offset-2">
-                <h4>{{tagLine}}</h4>
-                  <br><br>
-	                 <p>{{current_announcements}}</p>
-	                 <p> <i> - {{Educator.dataValues.username}} </i> </p>
-                </div>
-      		    </div>
-            </div> -->
-
-
-          <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
-          <div class ="col-md-6">   
-                  <div> Details: {{this.tagLine}} </div>
-                  <div>Location: {{this.location}} </div>
-                  <div>Instructions: {{this.instructions}} </div>
-                  <div>Announcements: {{this.current_announcements}} </div>
-                 
-            </div>  
-             <div class ="col-md-3">
-                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a>
-            </div>    
-  
-
-
-            </div>
-            </div>
+              </div>
             {{/each}}
           </div>
         </div>
