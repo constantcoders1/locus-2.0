@@ -49,15 +49,15 @@ display: block;
 
 #bannernav{
   background-color: #78bcaf;
-  height: 100px;
+  height: 6em;
 }
 
 #logo{
   position: absolute;
-  left: 0px;
-  top: 0px;
+  padding-top: 0px;
   z-index: 1;
- height: 85px
+ height: 6em;
+ padding-right: 20px
 }
 
 .apptitle{
