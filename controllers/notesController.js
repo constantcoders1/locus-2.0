@@ -87,6 +87,11 @@ router.get('/delete/:noteid', function(req, res) {
   });
 });
 
+router.put('/weather/:projectid/:studentid', function(req, res){
+  console.log("clicked on get weather button - notes controller")
+
+})
+
 // router.post('/view', function(req, res) {
 
 //     var query = "SELECT * FROM users WHERE email = ?";
