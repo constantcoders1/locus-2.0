@@ -1,9 +1,12 @@
 <!-- notes\notes.handlebars -->
-     
 
-        <h2>Enter your observations <span class="member-name"></span></h2>
-      </div>
-      <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
+    <!-- <a href="notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET" class="btn btn-success">Get Weather</a> -->
+ 
+
+      <h2>Enter your observations <span class="member-name"></span></h2>
+       <a href="/weather/{{this.projectid}}/{{this.studentid}}" method="PUT" class="btn btn-success">Get Weather</a>
+
+  <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
     <label for="inputNote">Enter Data</label>
     <input type="note" class="form-control" id="note" name="doclink" placeholder="Enter Data">
@@ -13,6 +16,7 @@
     <input type="radio"  name="doctype" value="picture">Image
     <input type="radio"  name="doctype" value="film">Video
     <input type="radio"  name="doctype" value="file">Document
+    <input type="radio"  name="doctype" value="temperature-settings">Weather
   </div>
   <div class="form-group">
     <label for="inputTitle">Title</label>
@@ -30,9 +34,5 @@
 
  <input type="hidden" class="form-control" id="notedate"  name="ProjectId" value="{{this.projectid}}">
  <input type="hidden" class="form-control" id="notedate"  name="StudentId" value="{{this.studentid}}">
-  <button type="submit" class="btn btn-default">Submit</button>
+ <button type="submit" class="btn btn-default">Submit</button>
 </form>
- 
-    
-  
-  

@@ -64,6 +64,13 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
     });
 });
 
+
+
+router.put('/weather/:projectid/:studentid', function(req, res){
+  console.log("clicked on get weather student studentsController")
+
+})
+
 // Student's individual data view 
 // Get all data from all projects posted by this student 
 
@@ -79,7 +86,7 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
       // Get the ids of each of the projects the student is working on 
       var projIds = []
       for (i in student_objs){     
-          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          student_objs[i].notedate = moment(student_objs[i].notedate).format("MM-DD-YYYY")
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
       console.log("projIds" + projIds)
@@ -93,12 +100,13 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
+          result[i].newnotedate = moment(result[i].notedate).format("MM-DD-YYYY")
           result[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
 
         console.log(obj_for_handlebars)
-        console.log("studentsController.js  router.get/mydata/:studentid")
+        console.log("studentsController.js  router.get/my-data/:studentid")
         res.render("students/my-data", {observations: obj_for_handlebars} )
 
       });
