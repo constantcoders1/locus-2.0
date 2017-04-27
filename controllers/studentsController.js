@@ -66,11 +66,6 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
 
 
-router.put('/weather/:projectid/:studentid', function(req, res){
-  console.log("clicked on get weather student studentsController")
-
-})
-
 // Student's individual data view 
 // Get all data from all projects posted by this student 
 

@@ -11,6 +11,8 @@ var mysql = require('mysql');
 var moment = require('moment');
 
 
+
+
 // var connection = require('../config/connection.js')
 router.get('/viewall', isAuthenticated, function(req, res) {
    var sid = -1;
@@ -91,34 +93,30 @@ router.get('/delete/:noteid', function(req, res) {
 
 router.get('/weather/:projectid/:studentid', function(req, res){
   console.log("clicked on get weather button - notes controller")
+  db.Student.findAll({
+      where: {
+        id: req.params.studentid
+      }
+  }).then(function(studentdata) {
+    var lng = studentdata[0].longitude
+    var lat = studentdata[0].latitude
 
-})
+    var weatherloc = lat + "," + lng
 
-// router.post('/view', function(req, res) {
+    console.log("weather loc = " + weatherloc)
 
-//     var query = "SELECT * FROM users WHERE email = ?";
+    // app.get("/weather"){
 
-//     connection.query(query, [req.body.email], function(err, response) {
-//         if (response.length == 0) {
-//             res.redirect('/users/sign-in')
-//         }
+    // }
 
-//         bcrypt.compare(req.body.password, response[0].password_hash, function(err, result) {
-//             if (result == true) {
+  });
 
-//                 req.session.logged_in = true;
-//                 req.session.user_id = response[0].id;
-//                 req.session.user_email = response[0].email;
-//                 req.session.company = response[0].company;
-//                 req.session.username = response[0].username;
 
-//                 res.redirect('/coupons');
-//             } else {
-//                 res.redirect('/users/sign-in')
-//             }
-//         });
-//     });
-// });
+  });
+
+
+
+
 
 router.post("/create/:projectid/:studentid", function(req, res) {
     console.log("creating note");
