@@ -83,7 +83,10 @@ router.get('/:projectid/:studentid', function(req, res) {
        });
 });
 
+router.put('/weather/:projectid/:studentid', function(req, res){
+  console.log("clicked on get weather button project controller")
 
+})
 
 
 router.post('/view', function(req, res) {
