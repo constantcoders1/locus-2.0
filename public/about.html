@@ -1,66 +1,184 @@
-<div class ="functionrow">
-    <div class="container">
-      <div class="row">
-        <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-          <fieldset>
+<!DOCTYPE html>
+<html lang="en">
 
-            <!-- Form Name -->
-            <legend>Contact Us</legend>
+<head>
+  <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen" title="no title">
+</head>
 
-            <!-- Text input-->
-            <div class="form-group">
-              <label class="col-md-4 control-label">Name</label>  
-              <div class="col-md-4 inputGroupContainer">
-              <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
-                </div>
-              </div>
-            </div>
+<body>
+  <!-- home.html -->
+  <div class="page-wrap">
 
-            <div class="form-group">
-              <label class="col-md-4 control-label">E-Mail</label>  
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
-                </div>
-              </div>
-            </div>
-                   
-            <div class="form-group">
-              <label class="col-md-4 control-label">Phone #</label>  
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-              <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
-                </div>
-                </div>
-            </div>
-              
-            <div class="form-group">
-              <label class="col-md-4 control-label">Message</label>
-                <div class="col-md-4 inputGroupContainer">
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                  <textarea class="form-control" name="comment" placeholder="Write us a message"></textarea>
-                </div>
-                </div>
-            </div>
-           <!--  </div> -->
+    <nav class="navbar" id="bannernav">
+        <img class="navbar-brand" id="logo" alt="logo" src="images/locus.png">
+        <center><h3>SHARING SCIENCE GLOBALLY</h3></center>
+    </nav>
 
-            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+    <nav class="navbar navbar-default" class="homenav">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
 
-            <!-- Submit Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label"></label>
-              <div class="col-md-4">
-                <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-              </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/teacher/login.html">Educator Login <span class="sr-only">(current)</span></a></li>
+        <li><a href="/student/login.html">Student Login</a></li>
+        <li><a href="/project/viewallprojects">All Projects</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>  
+  
+ 
+    <div class="tanbackground">
+      <div class="functionrow">
+            <div class="col-lg-12">
+                <h2 class="page-header">Our Team</h2>
             </div>
-          </fieldset>
-        </form>
-        
+            <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="images/sunitac.jpg" alt="">
+                <h3>Sunita Chowdhury
+                    <small>Full Stack Web Developer</small>
+                </h3>
+                <p>Full stack web application developer proficient with JavaScript, JQuery, HTML5, Bootstrap, Node, Express, React, RESTful Api, JSON, Java, JSP, Sequelize, Handlebars, EJS, PHP, MongoDB and SQL.</p>
+            </div>
+           
+            <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="images/kathleenc.jpg" alt="">
+                <h3>Kathleen Catlett
+                    <small>Full Stack Web Developer</small>
+                </h3>
+                <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+            </div>
+            <div class="col-lg-4 col-sm-6 text-center">
+                <img class="img-circle img-responsive img-center" src="images/annak.jpeg" alt="">
+                <h3>Anna Kimtis
+                    <small>UI/UX Developer</small>
+                </h3>
+                <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- <div class="pinkbackground">
+      <div class="functionrow">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <img class="headshot" id="Sunita Profile" alt="logo" src="images/sunita.png">
+        </div>
+        <div class="col-md-4">
+          <p>All about Sunita<p>
+        </div>
+        <div class="col-md-2"></div>
       </div>
     </div>
-  </div>
+
+    <div class="tanbackground">
+      <img class="headshot" id="Sunita Profile" alt="logo" src="images/kathleen.png">
+      <p>All about Kathleen<p>
+    </div>
+
+    <div class="yellowbackground">
+      <img class="headshot" id="Anna Profile" alt="logo" src="images/anna.png">
+      <p>All about Anna<p>
+    </div>
+ -->
+<div class="aboutbackground">
+   
+    <div class ="functionrow">
+      <div class="container">
+        <div class="row">
+          <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+            <fieldset>
+
+              <!-- Form Name -->
+              <legend>Contact Us</legend>
+
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">Name</label>  
+                <div class="col-md-4 inputGroupContainer">
+                <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>  
+                  <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+                  </div>
+                </div>
+              </div>
+                     
+              <div class="form-group">
+                <label class="col-md-4 control-label">Phone #</label>  
+                  <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                  </div>
+                  </div>
+              </div>
+                
+              <div class="form-group">
+                <label class="col-md-4 control-label">Message</label>
+                  <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                    <textarea class="form-control" name="comment" placeholder="Write us a message"></textarea>
+                  </div>
+                  </div>
+              </div>
+             <!--  </div> -->
+
+              <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+
+              <!-- Submit Button -->
+              <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                  <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+ </div>
+
+  </div> <!-- page wrap -->
+
+</body>
+
+<footer class="site-footer">
+  <p>&copy; constantcoders 2017</p>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <script type="text/javascript" src="js/loginstudent.js"></script>
+
+</html>

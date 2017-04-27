@@ -90,6 +90,16 @@ display: block;
   margin-top: 0px;
 }
 
+.aboutbackground{
+  background: url('../images/dunes2.jpg') no-repeat center center scroll; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0;
+  padding-top: 0px;
+}
+
 /*map image form home.html*/
 .mapbackground{
   background: url("../images/googlemap.png")no-repeat center center scroll;
@@ -101,6 +111,35 @@ display: block;
   margin: 0;
   padding-top: 0px;
   padding-bottom: 2em;
+}
+
+.pinkbackground{
+  background-color: #f17a72;
+
+}
+
+.bluebackground{
+  background-color: #55b1e2;
+
+}
+
+.tanbackground{
+  background-color: #e9dccd;
+
+}
+
+.yellowbackground{
+  background-color: #ecc34f;
+
+}
+
+.headshot{
+  width: 5em;
+  padding: .5em;
+}
+
+.img-center {
+  margin: 0 auto;
 }
 
 /*contact element*/
