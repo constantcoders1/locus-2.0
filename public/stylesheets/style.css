@@ -98,6 +98,7 @@ display: block;
   background-size: cover;
   margin: 0;
   padding-top: 0px;
+  height: 100%;
 }
 
 /*map image form home.html*/
@@ -139,7 +140,7 @@ display: block;
 }
 
 .img-center {
-  margin: 0 auto;
+  margin: auto;
 }
 
 /*contact element*/
