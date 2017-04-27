@@ -30,8 +30,8 @@ display:none;
 position: absolute; left: 100%; top:0;}
 
 li.sub:hover ul{
-display: block;}
-
+display: block;
+}
 
 /*for thumbnail project gallery on studentview.html*/
 .thumb {
@@ -45,6 +45,19 @@ display: block;}
 /*working to get the image to merge with navbar on home.html*/
 .homenav{
   margin-bottom : 0;
+}
+
+#bannernav{
+  background-color: #78bcaf;
+  height: 6em;
+}
+
+#logo{
+  position: absolute;
+  padding-top: 0px;
+  z-index: 1;
+ height: 6em;
+ padding-right: 20px
 }
 
 .apptitle{
@@ -77,6 +90,17 @@ display: block;}
   margin-top: 0px;
 }
 
+.aboutbackground{
+  background: url('../images/dunes2.jpg') no-repeat center center scroll; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0;
+  padding-top: 0px;
+  height: 100%;
+}
+
 /*map image form home.html*/
 .mapbackground{
   background: url("../images/googlemap.png")no-repeat center center scroll;
@@ -88,6 +112,35 @@ display: block;}
   margin: 0;
   padding-top: 0px;
   padding-bottom: 2em;
+}
+
+.pinkbackground{
+  background-color: #f17a72;
+
+}
+
+.bluebackground{
+  background-color: #55b1e2;
+
+}
+
+.tanbackground{
+  background-color: #e9dccd;
+
+}
+
+.yellowbackground{
+  background-color: #ecc34f;
+
+}
+
+.headshot{
+  width: 5em;
+  padding: .5em;
+}
+
+.img-center {
+  margin: auto;
 }
 
 /*contact element*/
