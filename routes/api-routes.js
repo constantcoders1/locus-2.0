@@ -73,29 +73,17 @@ app.get('/view/studentid', function(req,res){
     });
 });
 
-  // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
-  // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
-  // otherwise send back an error
-  
 
-  // app.get("/api/teachers", function(req, res) {
-  //   db.Educator.findAll({
-     
-  //   }).then(function(dbTeacher) {
-  //     res.json(dbTeacher);
-  //   });
-  // });
 
-    app.get("/api/projects", function(req, res) {
+  app.get("/api/projects", function(req, res) {
 
       console.log("getting projects");
-      
       db.Project.findAll({
        
-      }).then(function(dbProject) {
-        res.json(dbProject);
-      });
+    }).then(function(dbProject) {
+      res.json(dbProject);
     });
+  });
 
 
     app.post("/api/studentAndProject", function(req, res) {
@@ -162,27 +150,18 @@ app.get('/view/studentid', function(req,res){
 
  
 
-
-
-   ////GET Route for entering observations
-  app.get("/api/fieldnotes", function(req, res) {
-    console.log(req.body);
-    res.render('notes');
-  });
-
-
-  //POST Route for entering observations
-  app.post("/api/fieldnotes", function(req, res) {
-    console.log(req.body);
-    /*db.User.create({
-      email: req.body.email,
-      password: req.body.password
-    }).then(function() {
-      res.redirect(307, "/api/login");
-    }).catch(function(err) {
-      res.json(err);
-    });*/
-  });
+  // //POST Route for entering observations
+  // app.post("/api/fieldnotes", function(req, res) {
+  //   console.log(req.body);
+  //   db.User.create({
+  //     email: req.body.email,
+  //     password: req.body.password
+  //   }).then(function() {
+  //     res.redirect(307, "/api/login");
+  //   }).catch(function(err) {
+  //     res.json(err);
+  //   });
+  // });
 
   // Route for getting some data about our user to be used client side
 
@@ -190,7 +169,7 @@ app.get('/view/studentid', function(req,res){
   // different tables if it is a student or teacher
 
 
-  app.get("/api/user_data", function(req, res) {
+app.get("/api/user_data", function(req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -206,6 +185,48 @@ app.get('/view/studentid', function(req,res){
       });
     }
   });
+
+
+
+
+
+ //      if (response == "Not Found") {
+ //        console.log("not found")
+ //        // $("#msgModaltitle").html("<span class=\"fa fa-exclamation-triangle\" style=\"font-size:24px\"></span> Oops")
+ //        // $("#modal-message").text("Sorry, weather data is not available right now.");
+ //        // $("#msgModal").modal("show");      
+ //      } else {
+ //        console.log(response)
+ //        // if (category == "destination") {
+ //        //   for (i=0; i<response.daily.data.length; i++) {
+ //        //     weatherdate =  weatherdate = moment().add(i, "d").format("MM/DD");
+ //        //     hightemp = response.daily.data[i].temperatureMax;
+ //        //     lowtemp = response.daily.data[i].temperatureMin;
+ //        //     weatherforecast = response.daily.data[i].summary;
+ //        //     $(".table-weather > tbody").append("<tr><td>" + weatherdate + "</td><td>" + hightemp + "</td><td>" + lowtemp + "</td><td>" + weatherforecast + "</td></tr>");
+ //        //   }
+ //        //   $("#weather-title").text(" Weather Forecast for " + city)
+ //        //   $(".panel-weather").show()
+ //        // } else {
+ //        //   $(".table-weather-modal > tbody").text(""); // empty table from previous request
+ //        //   for (i=0; i<response.daily.data.length; i++) {
+ //        //     weatherdate =  weatherdate = moment().add(i, "d").format("MM/DD");
+ //        //     hightemp = response.daily.data[i].temperatureMax;
+ //        //     lowtemp = response.daily.data[i].temperatureMin;
+ //        //     weatherforecast = response.daily.data[i].summary;
+ //        //     $(".table-weather-modal > tbody").append("<tr><td>" + weatherdate + "</td><td>" + hightemp + "</td><td>" + lowtemp + "</td><td>" + weatherforecast + "</td></tr>");
+ //        //   }
+ //        //   $("#weatherModalTitle").text(" Weather Forecast for " + city)
+ //        //   $("#weatherModal").modal("show");// put weather in a modal box
+
+ //        // }
+ //      }
+ //    });   // end of AJAX call to get weather
+  // });  // end of getWeather
+
+
+
+
 
   
 
