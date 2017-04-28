@@ -9,6 +9,9 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
+var rp = require('request-promise');
+// var app = require('../routes/api-routes');
+
 
 
 
@@ -101,19 +104,37 @@ router.get('/weather/:projectid/:studentid', function(req, res){
     var lng = studentdata[0].longitude
     var lat = studentdata[0].latitude
 
-    var weatherloc = lat + "," + lng
 
-    console.log("weather loc = " + weatherloc)
+  var options = {
+     "async": true,
+      "crossDomain": true,
+      "url": "https://api.darksky.net/forecast/21641b7b2b96f7eede5a22906c35deb8/" + lat + "," + lng + "?exclude=flags%2Cminutely%2Chourly",
+      "method": "GET",
+      "dataType": 'jsonp'
+    }
 
-    // app.get("/weather"){
+rp(options)
+    .then(function (response) {
+        console.log(response);
 
-    // }
+      for (i=0; i<response.daily.data.length; i++) {
+        weatherdate =  weatherdate = moment().add(i, "d").format("MM/DD/YYYY");
+        hightemp = response.daily.data[i].temperatureMax;
+        lowtemp = response.daily.data[i].temperatureMin;
+        weatherforecast = response.daily.data[i].summary;
+       console.log(weatherdate + ", " + hightemp + ", " + lowtemp)
+      }
+
+
+    })
+    .catch(function (err) {
+        // API call failed...
+    });
+
 
   });
 
-
-  });
-
+});
 
 
 
