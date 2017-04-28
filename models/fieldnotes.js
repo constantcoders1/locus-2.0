@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
     },
     notedate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
     },
     // project_id: {
