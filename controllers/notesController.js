@@ -128,13 +128,15 @@ rp(options)
        console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
        console.log("date: " + date)
 
-      var tempdata = "High - " + hightemp+ " Low - " + lowtemp
+      var tempdata = "High  " + hightemp+ "  Low  " + lowtemp
       var sundata =  "  Sunrise - " + sunrise + " Sunset - " + sunset;
+
+      var weatherdata = tempdata + " " + sundata
 
       console.log(tempdata)
       console.log(sundata)
 
-      res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, temp: tempdata, sun: sundata })
+      res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
 
     })
     .catch(function (err) {

@@ -7,19 +7,15 @@
        <!--  <a href="/notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET"  id="weatherbutton" class="btn btn-success">Get Weather</a> -->
 
       
- var weatherData = {{this.temp}} + " " + {{this.sun}}
+ {{this.temp}}  {{this.sun}}
       
 
   <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
     <label for="inputNote">Enter Data</label>
-    <input type="note" class="form-control" id="note" name="doclink" placeholder="Enter Data" value=WeatherData>
+    <input type="note" class="form-control" id="note" name="doclink" placeholder="Enter Data" value="">
   </div>
 
-
-
-  <div class="form-group">
-    <label for="inpuNoteType">Data Type: </label>
  
     <input type="hidden"  name="doctype" value="temperature-settings">
   </div>
@@ -30,7 +26,7 @@
   </div>
    <div class="form-group">
     <label for="inputDesc">Description</label>
-    <input type="description" class="form-control" id="description" name="description" value={{this.temp}}>
+    <input type="description" class="form-control" id="description" name="description" value="{{this.weather}}">
   </div>
   <div class="form-group">
     <label for="inputnotedate">Enter Date</label>
