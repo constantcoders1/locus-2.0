@@ -71,10 +71,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
      req.user.id;
-    //res.send(dbFieldnotes);
-    
-    //res.send(dbFieldnotes);
-    //console.log(dbFieldnotes);
+
     res.render("notes/notes", {projectid: req.params.projectid, studentid:  req.user.id });
 }else{
 	res.render("Sorry! you don't have the permissions to create this entry!")
@@ -95,7 +92,6 @@ router.get('/delete/:noteid', function(req, res) {
 
 
 router.get('/weather/:projectid/:studentid', function(req, res){
-  console.log("clicked on get weather button - notes controller")
   db.Student.findAll({
       where: {
         id: req.params.studentid
@@ -103,32 +99,46 @@ router.get('/weather/:projectid/:studentid', function(req, res){
   }).then(function(studentdata) {
     var lng = studentdata[0].longitude
     var lat = studentdata[0].latitude
+    console.log(lng + ", " + lat)
 
+    var proj = req.params.projectid;
+    var stud = req.params.studentid;
 
   var options = {
      "async": true,
       "crossDomain": true,
       "url": "https://api.darksky.net/forecast/21641b7b2b96f7eede5a22906c35deb8/" + lat + "," + lng + "?exclude=flags%2Cminutely%2Chourly",
       "method": "GET",
-      "dataType": 'jsonp'
+      "json": true,
+      // "dataType": 'jsonp'
     }
 
 rp(options)
     .then(function (response) {
-        console.log(response);
+      
+        var hightemp = response.daily.data[0].temperatureMax;
+        var lowtemp = response.daily.data[0].temperatureMin;
+        var sunrise = moment(response.daily.data[0].sunriseTime).format();
+        var sunset = moment(response.daily.data[0].sunsetTime).format();
+        var date = moment(response.currently).format( "MM-DD-YYYY");
 
-      for (i=0; i<response.daily.data.length; i++) {
-        weatherdate =  weatherdate = moment().add(i, "d").format("MM/DD/YYYY");
-        hightemp = response.daily.data[i].temperatureMax;
-        lowtemp = response.daily.data[i].temperatureMin;
-        weatherforecast = response.daily.data[i].summary;
-       console.log(weatherdate + ", " + hightemp + ", " + lowtemp)
-      }
+        // weatherforecast = response.daily.data[0].summary;
+       console.log("temp: " + hightemp + ", " + lowtemp);
+       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +"   set:  " + response.daily.data[0].sunsetTime)
+       console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
+       console.log("date: " + date)
 
+      var tempdata = "High - " + hightemp+ " Low - " + lowtemp
+      var sundata =  "  Sunrise - " + sunrise + " Sunset - " + sunset;
+
+      console.log(tempdata)
+      console.log(sundata)
+
+      res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, temp: tempdata, sun: sundata })
 
     })
     .catch(function (err) {
-        // API call failed...
+       // console.log("error")
     });
 
 
