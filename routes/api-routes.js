@@ -160,10 +160,6 @@ app.get('/view/studentid', function(req,res){
   });
 
 
- 
-
-
-
    ////GET Route for entering observations
   app.get("/api/fieldnotes", function(req, res) {
     console.log(req.body);

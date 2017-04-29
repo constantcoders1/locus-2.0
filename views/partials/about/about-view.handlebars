@@ -1,48 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Home</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen" title="no title">
-</head>
-
-<body>
-  <!-- home.html -->
-  <div class="page-wrap">
-
-    <nav class="navbar" id="bannernav">
-        <img class="navbar-brand" id="logo" alt="logo" src="images/locus.png">
-        <center><h3>SHARING SCIENCE GLOBALLY</h3></center>
-    </nav>
-
-    <nav class="navbar navbar-default" class="homenav">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/teacher/login.html">Educator Login <span class="sr-only">(current)</span></a></li>
-        <li><a href="/student/login.html">Student Login</a></li>
-        <li><a href="/project/viewallprojects">All Projects</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>  
-  
+      {{> /partials/nav/navbar}}
       <div class="tanbackground">
         <div class="container">
           <div class="functionrow">
@@ -75,7 +31,6 @@
           </div>
         </div>
       </div>
-
   
       <div class="aboutbackground">
         <div class="container">
@@ -146,18 +101,3 @@
           </div>
         </div>
       </div>
-
-  </div> <!-- page wrap -->
-
-</body>
-
-<footer class="site-footer">
-  <p>&copy; constantcoders 2017</p>
-</footer>
-
-
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-  <script type="text/javascript" src="js/loginstudent.js"></script>
-
-</html>
