@@ -41,6 +41,7 @@ var projectRoutes = require("./controllers/projectController.js");
 var educatorRoutes = require("./controllers/educatorsController.js")
 
 // app.use("/", applicationRoutes)
+
 app.use("/student", studentRoutes);
 app.use("/notes", notesRoutes);
 app.use("/project", projectRoutes);
