@@ -27,7 +27,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -57,7 +57,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -110,7 +110,6 @@ router.get('/weather/:projectid/:studentid', function(req, res){
       "url": "https://api.darksky.net/forecast/21641b7b2b96f7eede5a22906c35deb8/" + lat + "," + lng + "?exclude=flags%2Cminutely%2Chourly",
       "method": "GET",
       "json": true,
-      // "dataType": 'jsonp'
     }
 
 rp(options)
@@ -118,8 +117,8 @@ rp(options)
       
         var hightemp = response.daily.data[0].temperatureMax;
         var lowtemp = response.daily.data[0].temperatureMin;
-        var sunrise = moment(response.daily.data[0].sunriseTime).format();
-        var sunset = moment(response.daily.data[0].sunsetTime).format();
+        var sunrise = moment.unix(response.daily.data[0].sunriseTime).format("HH:MM a");
+        var sunset = moment.unix(response.daily.data[0].sunsetTime).format("HH:MM a");
         var date = moment(response.currently).format( "MM-DD-YYYY");
 
         // weatherforecast = response.daily.data[0].summary;
