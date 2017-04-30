@@ -1,11 +1,28 @@
-<!-- notes\notes.handlebars -->
-{{> nav/loggedinnavbar}}
-    <!-- <a href="notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET" class="btn btn-success">Get Weather</a> -->
- 
 
-      <h2>Enter your observations <span class="member-name"></span></h2>
-       <a href="/notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET" id='getweatherbtn' class="btn btn-success">Get Weather</a>
+
+
        <a href="/notes/fileupload/{{this.projectid}}/{{this.studentid}}" method="GET"  id="uploadbtn" class="btn btn-success">Upload a file</a>
+
+       <hr>
+
+    <h2>Your avatar</h2>
+
+    <input type="file" id="file-input">
+    <p id="status">Please select a file</p>
+    <img style="border:1px solid gray;width:300px;"  id="preview" src="/images/default.png">
+
+    <h2>Your information</h2>
+
+    <form method="POST" action="/save-details">
+      <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
+      <input type="text" name="username" placeholder="Username"><br>
+      <input type="text" name="full-name" placeholder="Full name"><br><br>
+
+      <hr>
+      <h2>Save changes</h2>
+
+      <input type="submit" value="Update profile">
+    </form>
 
   <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">

@@ -9,6 +9,15 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
+var rp = require('request-promise');
+//const S3_BUCKET = process.env.S3_BUCKET;
+const S3_BUCKET = 'locus-uploads';
+console.log(S3_BUCKET);
+
+// var app = require('../routes/api-routes');
+
+
+
 
 
 // var connection = require('../config/connection.js')
@@ -22,7 +31,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -52,7 +61,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -66,10 +75,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
      req.user.id;
-    //res.send(dbFieldnotes);
-    
-    //res.send(dbFieldnotes);
-    //console.log(dbFieldnotes);
+
     res.render("notes/notes", {projectid: req.params.projectid, studentid:  req.user.id });
 }else{
 	res.render("Sorry! you don't have the permissions to create this entry!")
@@ -90,35 +96,63 @@ router.get('/delete/:noteid', function(req, res) {
 
 
 router.get('/weather/:projectid/:studentid', function(req, res){
-  console.log("clicked on get weather button - notes controller")
+  db.Student.findAll({
+      where: {
+        id: req.params.studentid
+      }
+  }).then(function(studentdata) {
+    var lng = studentdata[0].longitude
+    var lat = studentdata[0].latitude
+    console.log(lng + ", " + lat)
 
-})
+    var proj = req.params.projectid;
+    var stud = req.params.studentid;
 
-// router.post('/view', function(req, res) {
+  var options = {
+     "async": true,
+      "crossDomain": true,
+      "url": "https://api.darksky.net/forecast/21641b7b2b96f7eede5a22906c35deb8/" + lat + "," + lng + "?exclude=flags%2Cminutely%2Chourly",
+      "method": "GET",
+      "json": true,
+    }
 
-//     var query = "SELECT * FROM users WHERE email = ?";
+rp(options)
+    .then(function (response) {
+      
+        var hightemp = response.daily.data[0].temperatureMax;
+        var lowtemp = response.daily.data[0].temperatureMin;
+        var sunrise = moment.unix(response.daily.data[0].sunriseTime).format("HH:MM a");
+        var sunset = moment.unix(response.daily.data[0].sunsetTime).format("HH:MM a");
+        var date = moment(response.currently).format( "MM-DD-YYYY");
 
-//     connection.query(query, [req.body.email], function(err, response) {
-//         if (response.length == 0) {
-//             res.redirect('/users/sign-in')
-//         }
+        // weatherforecast = response.daily.data[0].summary;
+       console.log("temp: " + hightemp + ", " + lowtemp);
+       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +"   set:  " + response.daily.data[0].sunsetTime)
+       console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
+       console.log("date: " + date)
 
-//         bcrypt.compare(req.body.password, response[0].password_hash, function(err, result) {
-//             if (result == true) {
+      var tempdata = "High  " + hightemp+ "  Low  " + lowtemp
+      var sundata =  "  Sunrise - " + sunrise + " Sunset - " + sunset;
 
-//                 req.session.logged_in = true;
-//                 req.session.user_id = response[0].id;
-//                 req.session.user_email = response[0].email;
-//                 req.session.company = response[0].company;
-//                 req.session.username = response[0].username;
+      var weatherdata = tempdata + " " + sundata
 
-//                 res.redirect('/coupons');
-//             } else {
-//                 res.redirect('/users/sign-in')
-//             }
-//         });
-//     });
-// });
+      console.log(tempdata)
+      console.log(sundata)
+
+      res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
+
+    })
+    .catch(function (err) {
+       // console.log("error")
+    });
+
+
+  });
+
+});
+
+
+
 
 router.post("/create/:projectid/:studentid", function(req, res) {
     console.log("creating note");
@@ -136,6 +170,10 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     }); 
 
     // need to get keyword & look up teacher id
+});
+
+router.get('/fileupload/:studentid/:projectid', isAuthenticated, function(req, res) {
+       res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id });
 });
 // Student's individual data view 
 // Get all data from all projects posted by this student 
