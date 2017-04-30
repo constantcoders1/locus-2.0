@@ -212,7 +212,4 @@ app.get('/view/studentid', function(req,res){
       });
   });
 
-
-
-
 };
