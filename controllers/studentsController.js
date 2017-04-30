@@ -15,6 +15,7 @@ var moment = require('moment');
 // Student's home view 
 // Get announcements from student's teacher(s) and project(s) student is working on 
 
+//added partials to the file path here//
 router.get('/view/:studentid', isAuthenticated, function(req,res){
 	db.Student.findAll({ 
     where: {
@@ -57,7 +58,7 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
         console.log(obj_for_handlebars)
         console.log("studentsController.js  router.get/view/:studentid")
-        res.render("students/student-view", {projects: obj_for_handlebars} )
+        res.render("partials/students/student-view", {projects: obj_for_handlebars} )
 
       });
 
