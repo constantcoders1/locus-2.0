@@ -1,23 +1,47 @@
 $(document).ready(function() {
 
+  var marker;
+  var markers = [];
+  var pos = {lat: 40.5012257, lng: -74.5252189};
+
+
   $(".modal").hide()
 
-  
-  getProjects();
-  
+   getProjects();
+
+   initMap();
+
+
+
+    google.maps.event.addListener(map, 'click', function(event) {
+      for (i=0; i<markers.length; i++){
+          markers[i].setMap(null)
+      }
+      markers=[];
+      placeMarker(event.latLng);
+    });
+
+
+
+
+
+
   console.log("studentsignup");
   // Getting references to our form and input
   var signUpForm = $("form.signup");
   var emailInput = $("input#email-input");
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
-  var countryInput = $("select#country-input");
   var projectInput = $("select#project-input");
-  var stateInput = $("input#state-input");
-  var cityInput = $("input#city-input");
+  // var countryInput = $("select#country-input");
+  // var stateInput = $("input#state-input");
+  // var cityInput = $("input#city-input");
+
+  // var locationInput = $("input#location-input")
+  // console.log(location-input)
 
   var projectSelect = $("#project-input");
-
+ 
 
   signUpForm.on("submit", function(event) {
     console.log("signup form student")
@@ -26,10 +50,10 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
       username: usernameInput.val().trim(),
-      country: countryInput.val(),
-      state:  stateInput.val().trim(),
-      city: cityInput.val().trim(),
+      latitude: markers[0].position.lat(),
+      longitude: markers[0].position.lng(),
     };
+
 
     var projectForStudent = projectInput.val()
     console.log("project id = " + projectForStudent)
@@ -50,7 +74,8 @@ $(document).ready(function() {
   });
   
   function signUpUser(userData, projForStu) {
-    
+
+
     $.post("/api/signup/student", userData)
     .then(function(data) {
        // this is to work around errors sometimes show up the here instead of err
@@ -120,5 +145,39 @@ function addStuToProj(Proj, Stu){
    }
 
 
+
+  function placeMarker(location) {
+
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        type: "nearby",
+        animation: google.maps.Animation.DROP
+      });
+      markers.push(marker);
+
+    }  // end of placeMarker function
+
+
+    function initMap() {
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+             var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+          });
+          console.log(pos)
+        }
+
+        map = new google.maps.Map(document.getElementById('gmap'), {
+          center: pos,
+          zoom: 10
+        });
+
+        placeMarker(pos)
+
+      }
 
 });

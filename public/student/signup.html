@@ -3,6 +3,7 @@
 <html lang="en"><head>
   <meta charset="UTF-8">
   <title>Student Signup</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" type="text/css" href="../stylesheets/reset.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
@@ -11,13 +12,21 @@
   <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
-   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js"></script> -->
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIGy493c6wH8i1UTUA-03QwEOzsEpuV78&libraries=places"></script>
   <script type="text/javascript" src="../js/studentsignup.js"></script>
+<style>
+   #gmap {
+        height: 100%;
+      }
+</style>
 
-  
 </head>
 
 <body>  
+  <!-- student\signup.html -->
   <div class="page-wrap">
 
     <nav class="navbar navbar-default">
@@ -54,65 +63,58 @@
           <fieldset>
             <legend>Student SignUp</legend>
 
-            <div class="form-group">
+          <div class="form-group">
               <label for="inputUserName" class="col-lg-2 control-label">User Name</label>
               <div class="col-lg-10">
-              <input class="form-control" id="username-input" placeholder="User Name *" type="text" required>
+                <input class="form-control" id="username-input" placeholder="User Name *" type="text" required>
               </div>
-            </div>
-            
-             <div class="form-group">
+
+              <br/>
+
               <label for="inputPassword" class="col-lg-2 control-label">Password</label>
               <div class="col-lg-10">
-              <input class="form-control" id="password-input" placeholder="Password *" type="password" required>
+                <input class="form-control" id="password-input" placeholder="Password *" type="password" required>
               </div>
-            </div>
 
-            <div class="form-group">
+              <br><br>
+
               <label for="inputEmail" class="col-lg-2 control-label">Email</label>
               <div class="col-lg-10">
-              <input class="form-control" id="email-input" placeholder="Email *" type="text" required>
+                <input class="form-control" id="email-input" placeholder="Email *" type="text" required>
               </div>
-            </div>
 
-            <div class="form-group">
+              <br>
+
               <label for="inputProject" class="col-lg-2 control-label">Project</label>
               <div class="col-lg-10">
-              <select class="form-control" id="project-input">
-              </select>
-              </div>
-            </div>
-
-
-            <div class="form-group">
-              <label for="select" class="col-lg-2 control-label">Country</label>
-              <div class="col-lg-10">
-                <select class="form-control" id="country-input">
-                  <option>United States of America</option>
-                  <option>South Africa</option>
+                <select class="form-control" id="project-input">
                 </select>
               </div>
-            </div>
 
-
-            <div class="form-group">
-              <label for="inputState" class="col-lg-2 control-label">State</label>
-              <div class="col-lg-10">
-              <input class="form-control" id="state-input" placeholder="State" type="text">
-              </div>
-            </div>
+              <br>
             
-            <div class="form-group">
-              <label for="inputCity" class="col-lg-2 control-label">City/Town/Province</label>
-              <div class="col-lg-10">
-              <input class="form-control" id="city-input" placeholder="City/Town/Province *" type="text" required>
-              </div>
-            </div>
+              <label for="inputLocation" class="col-lg-10 col-lg-offset-2">Use the map to enter your location</label>
+             
 
+                <div class="row">
+                  <div class="col-lg-10 col-lg-offset-2">
+                    <div id="gmap" style="width:500px;height:300px">
+                      Map Here?
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+          <!-- </div> -->
+
+        
+  
             </fieldset>
           
             <br />
-    <!--         <p>Or Login <a href="/login.html">Here</a></p> -->
+         <!--   <p>Or Login <a href="/login.html">Here</a></p> -->
             <button type="submit" class="btn btn-success" class="login-button">Sign Up</button>
            </form>
         </div>
@@ -143,4 +145,6 @@
 
 
 </html>
+
+
 

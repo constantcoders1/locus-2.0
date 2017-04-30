@@ -1,9 +1,11 @@
+<!-- notes\notes_view.handlebars -->
+
 <div class="jumbotron">
 {{#each Project}}
   <h2> {{this.name}}</h2>
-  <div class="container">
-  <div class="row">
-  <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
+    <div class="container">
+      <div class="row">
+        <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
           <div class ="col-md-6">   
                   <div> Details: {{this.tagLine}} </div>
                   <div>Location: {{this.location}} </div>
@@ -11,8 +13,8 @@
                   <div>Announcements: {{this.current_announcements}} </div>
                  
             </div>  
-             <div class ="col-md-3">
-                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a></p>  </div>    
+            <div class ="col-md-3">
+                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a>  </div>    
   
      {{/each}}
 
@@ -36,7 +38,7 @@
               <th>Title</th>
               <th>Description</th>
               <th>Date</th>
-               <th>Edit</th>
+               <th> </th>
             </tr>
           </thead>
           <tbody>
@@ -48,7 +50,7 @@
               <td><a href="{{doclink}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
               <td> {{this.title}}</td>
               <td> {{this.description}}</td>
-              <td> {{this.newnotedate}}</td>
+              <td> {{newnotedate}}</td>
                <td> 
 
                  {{#if this.showDeleteBtn}}

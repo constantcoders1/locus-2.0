@@ -33,4 +33,7 @@ router.get('/signup/student', function(req,res){
 });
 
 
+
+
+
 module.exports = router;

@@ -9,6 +9,11 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
+var rp = require('request-promise');
+// var app = require('../routes/api-routes');
+
+
+
 
 
 // var connection = require('../config/connection.js')
@@ -66,10 +71,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
      req.user.id;
-    //res.send(dbFieldnotes);
-    
-    //res.send(dbFieldnotes);
-    //console.log(dbFieldnotes);
+
     res.render("notes/notes", {projectid: req.params.projectid, studentid:  req.user.id });
 }else{
 	res.render("Sorry! you don't have the permissions to create this entry!")
@@ -87,31 +89,67 @@ router.get('/delete/:noteid', function(req, res) {
   });
 });
 
-router.post('/view', function(req, res) {
 
-    var query = "SELECT * FROM users WHERE email = ?";
 
-    connection.query(query, [req.body.email], function(err, response) {
-        if (response.length == 0) {
-            res.redirect('/users/sign-in')
-        }
+router.get('/weather/:projectid/:studentid', function(req, res){
+  db.Student.findAll({
+      where: {
+        id: req.params.studentid
+      }
+  }).then(function(studentdata) {
+    var lng = studentdata[0].longitude
+    var lat = studentdata[0].latitude
+    console.log(lng + ", " + lat)
 
-        bcrypt.compare(req.body.password, response[0].password_hash, function(err, result) {
-            if (result == true) {
+    var proj = req.params.projectid;
+    var stud = req.params.studentid;
 
-                req.session.logged_in = true;
-                req.session.user_id = response[0].id;
-                req.session.user_email = response[0].email;
-                req.session.company = response[0].company;
-                req.session.username = response[0].username;
+  var options = {
+     "async": true,
+      "crossDomain": true,
+      "url": "https://api.darksky.net/forecast/21641b7b2b96f7eede5a22906c35deb8/" + lat + "," + lng + "?exclude=flags%2Cminutely%2Chourly",
+      "method": "GET",
+      "json": true,
+      // "dataType": 'jsonp'
+    }
 
-                res.redirect('/coupons');
-            } else {
-                res.redirect('/users/sign-in')
-            }
-        });
+rp(options)
+    .then(function (response) {
+      
+        var hightemp = response.daily.data[0].temperatureMax;
+        var lowtemp = response.daily.data[0].temperatureMin;
+        var sunrise = moment(response.daily.data[0].sunriseTime).format();
+        var sunset = moment(response.daily.data[0].sunsetTime).format();
+        var date = moment(response.currently).format( "MM-DD-YYYY");
+
+        // weatherforecast = response.daily.data[0].summary;
+       console.log("temp: " + hightemp + ", " + lowtemp);
+       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +"   set:  " + response.daily.data[0].sunsetTime)
+       console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
+       console.log("date: " + date)
+
+      var tempdata = "High  " + hightemp+ "  Low  " + lowtemp
+      var sundata =  "  Sunrise - " + sunrise + " Sunset - " + sunset;
+
+      var weatherdata = tempdata + " " + sundata
+
+      console.log(tempdata)
+      console.log(sundata)
+
+      res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
+
+    })
+    .catch(function (err) {
+       // console.log("error")
     });
+
+
+  });
+
 });
+
+
+
 
 router.post("/create/:projectid/:studentid", function(req, res) {
     console.log("creating note");
