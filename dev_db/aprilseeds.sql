@@ -1,0 +1,21 @@
+/*
+-- Query: SELECT * FROM observations_db.educators
+LIMIT 0, 1000
+
+-- Date: 2017-04-30 12:20
+*/
+INSERT INTO `educators` (`id`,`email`,`password`,`username`,`createdAt`,`updatedAt`) VALUES (1,'sunita@sunita.sunita','$2a$10$hpDE./WpIxrmxGFAb.QTIOZU/uekg9pi2HKW0SdkDVeXMWuPsqmvm','Sunita','2017-04-30 15:48:05','2017-04-30 15:48:05');
+INSERT INTO `educators` (`id`,`email`,`password`,`username`,`createdAt`,`updatedAt`) VALUES (2,'anna@anna.anna','$2a$10$ORjAWLDYlh9b6NJi0GdQGehwgMXeWVaPOmFmx3ZuVfJXYjIpcugqy','Anna','2017-04-30 16:06:00','2017-04-30 16:06:00');
+INSERT INTO `students` (`id`,`email`,`password`,`username`,`longitude`,`latitude`,`gmtoffset`,`timezone`,`createdAt`,`updatedAt`) VALUES (1,'scott@scott.scott','$2a$10$gE6HVKpPVUUVnWShUrJT/./mM1WibtPXSw385PgrLGJ0pW7ld71c2','Scott','-84.50408935546875','38.03078569382294',NULL,NULL,'2017-04-30 15:52:19','2017-04-30 15:52:19');
+INSERT INTO `students` (`id`,`email`,`password`,`username`,`longitude`,`latitude`,`gmtoffset`,`timezone`,`createdAt`,`updatedAt`) VALUES (2,'joe@joe.joe','$2a$10$gU7y7iR0imVBQuWdJG4hV.S874ReIzUjFs/V7LQ59Kv78yTv/xqGi','joe','-74.52521890000003','40.5012257',NULL,NULL,'2017-04-30 16:13:07','2017-04-30 16:13:07');
+INSERT INTO `students` (`id`,`email`,`password`,`username`,`longitude`,`latitude`,`gmtoffset`,`timezone`,`createdAt`,`updatedAt`) VALUES (3,'jane@jane.jane','$2a$10$uf8ymglDi2QQhzNJK7hpCuftvqdX3.rUtkA3zwCyzj9imLOwYw33u','jane','-74.55116271972656','40.32560799973207',NULL,NULL,'2017-04-30 16:13:42','2017-04-30 16:13:42');
+INSERT INTO `students` (`id`,`email`,`password`,`username`,`longitude`,`latitude`,`gmtoffset`,`timezone`,`createdAt`,`updatedAt`) VALUES (4,'mike@mike.mike','$2a$10$.2agAs2DBMpk7ul71O028eK.JRgziBXo7VVGdT7IQQ/OHwRg/msau','mike','18.5943603515625','-33.88865750124074',NULL,NULL,'2017-04-30 16:14:42','2017-04-30 16:14:42');
+INSERT INTO `projects` (`id`,`name`,`location`,`instructions`,`current_announcements`,`root_project`,`image_url`,`tagLine`,`description`,`EducatorId`,`createdAt`,`updatedAt`) VALUES (1,'Project I','Here','Do ....','Hi',NULL,'https://upload.wikimedia.org/wikipedia/commons/0/04/Four_seasons.jpg',NULL,'sdkl skdj klsdj skdjfaskdfj kdj akdj aslkdj a',1,'2017-04-30 15:50:32','2017-04-30 15:50:32');
+INSERT INTO `projects` (`id`,`name`,`location`,`instructions`,`current_announcements`,`root_project`,`image_url`,`tagLine`,`description`,`EducatorId`,`createdAt`,`updatedAt`) VALUES (2,'Anna\'s Project','the doughnut','Look','None',NULL,'https://i1.wp.com/www.diaryinc.com/wp-content/uploads/2016/03/weather.gif',NULL,'slkd sdjlskdj laskjdalksjd ksjdakdfjakljsd akjdf klj',2,'2017-04-30 16:12:16','2017-04-30 16:12:16');
+INSERT INTO `studenttoprojects` (`id`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (1,'2017-04-30 15:52:19','2017-04-30 15:52:19',1,1);
+INSERT INTO `studenttoprojects` (`id`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (2,'2017-04-30 16:13:07','2017-04-30 16:13:07',2,2);
+INSERT INTO `studenttoprojects` (`id`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (3,'2017-04-30 16:13:42','2017-04-30 16:13:42',3,1);
+INSERT INTO `studenttoprojects` (`id`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (4,'2017-04-30 16:14:42','2017-04-30 16:14:42',4,1);
+INSERT INTO `fieldnotes` (`id`,`title`,`doctype`,`doclink`,`description`,`notedate`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (1,'Weather Report','temperature-settings','','High  85.69  Low  70.04   Sunrise - 06:04 am Sunset - 20:04 pm','2017-04-30 04:00:00','2017-04-30 16:04:46','2017-04-30 16:04:46',1,1);
+INSERT INTO `fieldnotes` (`id`,`title`,`doctype`,`doclink`,`description`,`notedate`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (2,'Weather Report','temperature-settings','','High  79.81  Low  61.23   Sunrise - 01:04 am Sunset - 12:04 pm','2017-04-30 04:00:00','2017-04-30 16:15:47','2017-04-30 16:15:47',4,1);
+INSERT INTO `fieldnotes` (`id`,`title`,`doctype`,`doclink`,`description`,`notedate`,`createdAt`,`updatedAt`,`StudentId`,`ProjectId`) VALUES (3,'Weather Report','temperature-settings','','High  67.78  Low  53.56   Sunrise - 05:04 am Sunset - 19:04 pm','2017-04-30 04:00:00','2017-04-30 16:16:09','2017-04-30 16:16:09',3,1);
