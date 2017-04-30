@@ -118,21 +118,30 @@ router.get('/weather/:projectid/:studentid', function(req, res){
 
 rp(options)
     .then(function (response) {
+
+        // console.log(response)
       
+        var timezone = response.timezone;
+        
         var hightemp = response.daily.data[0].temperatureMax;
         var lowtemp = response.daily.data[0].temperatureMin;
-        var sunrise = moment.unix(response.daily.data[0].sunriseTime).format("HH:MM a");
-        var sunset = moment.unix(response.daily.data[0].sunsetTime).format("HH:MM a");
+
+        var sunrise = moment.unix(response.daily.data[0].sunriseTime);
+        var sunriseLocal = moment.tz(sunrise, timezone).format("hh:mm a");
+
+        var sunset = moment.unix(response.daily.data[0].sunsetTime);
+        var sunsetLocal = moment.tz(sunset, timezone).format("hh:mm a");
+
         var date = moment(response.currently).format( "MM-DD-YYYY");
 
-        // weatherforecast = response.daily.data[0].summary;
-       console.log("temp: " + hightemp + ", " + lowtemp);
-       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +"   set:  " + response.daily.data[0].sunsetTime)
+       // for checking to make timezone conversions are correct.
+       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
        console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
-       console.log("date: " + date)
+       console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
+      console.log("timezone = "+ timezone)       
 
-      var tempdata = "High  " + hightemp+ "  Low  " + lowtemp
-      var sundata =  "  Sunrise - " + sunrise + " Sunset - " + sunset;
+      var tempdata = "High:  " + hightemp + "    Low:  " + lowtemp
+      var sundata =  "    Sunrise:  " + sunriseLocal + "    Sunset:  " + sunsetLocal;
 
       var weatherdata = tempdata + " " + sundata
 
