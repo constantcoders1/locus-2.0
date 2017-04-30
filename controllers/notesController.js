@@ -10,6 +10,10 @@ var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
 var rp = require('request-promise');
+//const S3_BUCKET = process.env.S3_BUCKET;
+const S3_BUCKET = 'locus-uploads';
+console.log(S3_BUCKET);
+
 // var app = require('../routes/api-routes');
 
 
@@ -166,6 +170,10 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     }); 
 
     // need to get keyword & look up teacher id
+});
+
+router.get('/fileupload/:studentid/:projectid', isAuthenticated, function(req, res) {
+       res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id });
 });
 // Student's individual data view 
 // Get all data from all projects posted by this student 
