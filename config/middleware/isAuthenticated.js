@@ -8,6 +8,11 @@ module.exports = function(req, res, next) {
     return next();
   }
 
+  console.log('--------------------')
+  console.log('-------------HIT LINE 12 isAuthenticated.js-------')
+  console.log('--------------------')
   // If the user isnt' logged in, redirect them to the login page
   return res.redirect("/");
 };
+
+

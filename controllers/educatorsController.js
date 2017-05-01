@@ -41,7 +41,11 @@ router.get('/viewprojects',  function(req, res) {
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
     //console.log(dbProject);
-     res.render("educators/project-view", {data: dbProject});
+     res.render("/educators/project-view", {data: dbProject});
+        console.log('---------------------------');
+        console.log('-----HIT LINE 47 in educatorsController.js----');
+        console.log('---------------------------');
+
        });
 });
 
@@ -83,8 +87,10 @@ router.get('/my-students/:projid', function(req,res){
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
 
-      res.render("educators/my-students", {data: objForHandlebars} )
-
+      res.render("/educators/my-students", {data: objForHandlebars} )
+        console.log('---------------------------');
+        console.log('-----HIT LINE 89 in educatorsController.js----');
+        console.log('---------------------------');
     });
 });
 
@@ -107,7 +113,7 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
 
       objForHandlebars = {"student": student_obj,
                           "notes": notes_array}
-      res.render("educators/student-data", {data: objForHandlebars} )
+      res.render("/educators/student-data", {data: objForHandlebars} )
     });
   }
 });
