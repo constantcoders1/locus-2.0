@@ -52,6 +52,10 @@ display: block;
   height: 6em;
 }
 
+.btn btn-success{
+  background-color: #78bcaf;
+}
+
 #logo{
   position: absolute;
   padding-top: 0px;
