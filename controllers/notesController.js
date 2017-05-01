@@ -12,7 +12,7 @@ var moment = require('moment');
 var rp = require('request-promise');
 const aws = require('aws-sdk');
 //const S3_BUCKET = process.env.S3_BUCKET;
-const S3_BUCKET = 'node-sdk-sample-test-04272017';
+const S3_BUCKET = 'locus-image-store';//'node-sdk-sample-test-04272017';
 console.log(S3_BUCKET);
 
 // var app = require('../routes/api-routes');
@@ -188,8 +188,6 @@ router.get('/fileupload/:studentid/:projectid', isAuthenticated, (req, res) =>
 
 /*
  * Respond to GET requests to /sign-s3.
- * Upon request, return JSON containing the temporarily-signed S3 request and
- * the anticipated URL of the image.
  */
 router.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
