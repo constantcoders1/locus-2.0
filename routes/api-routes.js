@@ -147,7 +147,6 @@ app.get('/view/studentid', function(req,res){
     });
   });
 
-
  
 
   // //POST Route for entering observations
@@ -162,6 +161,7 @@ app.get('/view/studentid', function(req,res){
   //     res.json(err);
   //   });
   // });
+
 
   // Route for getting some data about our user to be used client side
 
@@ -236,8 +236,5 @@ app.get("/api/user_data", function(req, res) {
           res.redirect('/'); 
       });
   });
-
-
-
 
 };

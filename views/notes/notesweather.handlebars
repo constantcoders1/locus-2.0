@@ -1,19 +1,12 @@
 <!-- notes\notesweather.handlebars -->
 
-    <!-- <a href="notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET" class="btn btn-success">Get Weather</a> -->
- 
 
-     
-       <!--  <a href="/notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET"  id="weatherbutton" class="btn btn-success">Get Weather</a> -->
-
-      
- {{this.temp}}  {{this.sun}}
       
 
   <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
     <label for="inputNote">Enter Data</label>
-    <input type="note" class="form-control" id="note" name="doclink" placeholder="Enter Data" value="">
+    <input type="note" type="hidden" class="form-control" id="note" name="doclink" placeholder="Enter Data" value="Weather">
   </div>
 
  
