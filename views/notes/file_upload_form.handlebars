@@ -1,11 +1,4 @@
-
-
-
-
-    <h2>Enter data</h2>
-
-    
-
+<h2>Enter data</h2>
   <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
     <label for="inputNote">Enter Data</label>
@@ -13,8 +6,8 @@
   </div>
   <div class="form-group">
   <input type="file" id="file-input">
-    <p id="status">Please select a file</p>
-    <img style="border:1px solid gray;width:300px;"  id="preview" src="/images/default.png">
+    <!--p id="status">Please select a file</p-->
+    <img style="border:1px solid gray;width:300px;"  id="preview" src="/images/placeholder.png">
       <input type="hidden" id="avatar-url" name="avatar-url" value="/images/placeholder.png">
     </div>
   <div class="form-group">
@@ -56,6 +49,7 @@
           if(xhr.status === 200){
             document.getElementById('preview').src = url;
             document.getElementById('avatar-url').value = url;
+            document.getElementById('note').value = url;
           }
           else{
             alert('Could not upload file.');
