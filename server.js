@@ -16,7 +16,14 @@ var db = require("./models");
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// app.use('/public', express.static(path.join(__dirname, 'public')))
+
 app.use(express.static("public"));
+// app.use(express.static(process.cwd() + "/public"));
+
+
+
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 
@@ -47,6 +54,8 @@ app.use("/student", studentRoutes);
 app.use("/notes", notesRoutes);
 app.use("/project", projectRoutes);
 app.use("/educator", educatorRoutes);
+
+app.use(express.static(process.cwd() + "/public"));
 
 
 // Syncing our database and logging a message to the user upon success
