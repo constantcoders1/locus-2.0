@@ -182,7 +182,7 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     // need to get keyword & look up teacher id
 });
 
-router.get('/fileupload/:studentid/:projectid', isAuthenticated, (req, res) =>
+router.get('/fileupload/:projectid/:studentid', isAuthenticated, (req, res) =>
        res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id }));
 
 
