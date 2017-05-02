@@ -1,5 +1,3 @@
-<!-- notes/file_upload_form.handlebars -->
-
 <h2>Enter data</h2>
   <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
@@ -17,7 +15,7 @@
     <input type="radio"  name="doctype" value="picture"> Image
     <input type="radio"  name="doctype" value="film"> Video
     <input type="radio"  name="doctype" value="file"> Document
-    <input type="radio"  name="doctype" value="sunglasses"> Weather
+    <input type="radio"  name="doctype" value="temperature-settings"> Weather
   </div>
   <div class="form-group">
     <label for="inputTitle">Title</label>
@@ -30,7 +28,7 @@
   </div>
   <div class="form-group">
     <label for="inputnotedate">Enter Date</label>
-    <input type="notedate" class="form-control" id="notedate"  name="notedate" placeholder="Enter Date in the form MM-DD-YYYY">
+    <input type="notedate" class="form-control" id="notedate"  name="notedate" placeholder="Enter Date">
   </div>
 
  <input type="hidden" class="form-control" id="notedate"  name="ProjectId" value="{{this.projectid}}">
@@ -104,4 +102,3 @@
     })();
 
     <{{!}}/script>
-
