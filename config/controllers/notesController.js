@@ -10,8 +10,9 @@ var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
 var rp = require('request-promise');
+const aws = require('aws-sdk');
 //const S3_BUCKET = process.env.S3_BUCKET;
-const S3_BUCKET = 'locus-uploads';
+const S3_BUCKET = 'locus-image-store';//'node-sdk-sample-test-04272017';
 console.log(S3_BUCKET);
 
 // var app = require('../routes/api-routes');
@@ -31,7 +32,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -61,7 +62,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -122,7 +123,7 @@ rp(options)
         // console.log(response)
       
         var timezone = response.timezone;
-
+        
         var hightemp = response.daily.data[0].temperatureMax;
         var lowtemp = response.daily.data[0].temperatureMin;
 
@@ -135,18 +136,18 @@ rp(options)
         var date = moment(response.currently).format( "MM-DD-YYYY");
 
        // for checking to make timezone conversions are correct.
-      //  console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
-      //  console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
-      //  console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
-      // console.log("timezone = "+ timezone)       
+       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
+       console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
+       console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
+      console.log("timezone = "+ timezone)       
 
-      var tempdata = "High:  " + hightemp +  "   Low:  " + lowtemp 
+      var tempdata = "High:  " + hightemp + "    Low:  " + lowtemp
       var sundata =  "    Sunrise:  " + sunriseLocal + "    Sunset:  " + sunsetLocal;
 
       var weatherdata = tempdata + " " + sundata
 
-      // console.log(tempdata)
-      // console.log(sundata)
+      console.log(tempdata)
+      console.log(sundata)
 
       res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
 
@@ -181,9 +182,40 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     // need to get keyword & look up teacher id
 });
 
-router.get('/fileupload/:studentid/:projectid', isAuthenticated, function(req, res) {
-       res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id });
+router.get('/fileupload/:studentid/:projectid', isAuthenticated, (req, res) =>
+       res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id }));
+
+
+/*
+ * Respond to GET requests to /sign-s3.
+ */
+router.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    console.log(returnData);
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
 });
+//);
 // Student's individual data view 
 // Get all data from all projects posted by this student 
 

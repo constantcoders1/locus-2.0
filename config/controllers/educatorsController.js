@@ -108,7 +108,6 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
 
       var notes_array = []
       for (i in result){
-        // UPDATEDATE HERE
         notes_array.push(result[i].dataValues.Fieldnote)
       }
 

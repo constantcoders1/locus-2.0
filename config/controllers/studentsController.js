@@ -28,8 +28,7 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
       // Get the ids of each of the projects the student is working on 
       var projIds = []
       for (i in student_objs){     
-         console.log("projIds " + moment(result[i].notedate).format("MM-DD-YYYY"))
-          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")        
+          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYY")        
 
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
@@ -45,15 +44,22 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
-          console.log("obj_for handlebars moment notedate" + moment(result[i].notedate).format("MM-DD-YYYY"))
-          result[i].dataValues.notedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          result[i].notedate = moment(result[i].notedate).format("MM-DD-YYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
          
+ // for (i in dbFieldnotes){
+          
+ //           dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+       
+ //            newFieldNotes.push(dbFieldnotes[i].dataValues)
+ //        }
+
+
         console.log(obj_for_handlebars)
         console.log("studentsController.js  router.get/view/:studentid")
-        // res.render("partials/students/student-view", {projects: obj_for_handlebars} )
         res.render("students/student-view", {projects: obj_for_handlebars} )
+
       });
 
     });
@@ -75,9 +81,8 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
 
       // Get the ids of each of the projects the student is working on 
       var projIds = []
-      for (i in student_objs){    
-        console.log("student_objs moment " + moment(result[i].notedate).format("MM-DD-YYYY") )
-          student_objs[i].dataValues.notedate = moment(student_objs[i].notedate).format("MM-DD-YYYY")
+      for (i in student_objs){     
+          student_objs[i].notedate = moment(student_objs[i].notedate).format("MM-DD-YYYY")
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
       console.log("projIds" + projIds)
@@ -91,7 +96,8 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
-          result[i].dataValues.notedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          result[i].newnotedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          result[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
 
