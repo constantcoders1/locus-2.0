@@ -58,7 +58,7 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
         console.log(obj_for_handlebars)
         console.log("studentsController.js  router.get/view/:studentid")
-        res.render("partials/students/student-view", {projects: obj_for_handlebars} )
+        res.render("students/student-view", {projects: obj_for_handlebars} )
 
       });
 
