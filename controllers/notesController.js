@@ -31,7 +31,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -61,7 +61,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -122,7 +122,7 @@ rp(options)
         // console.log(response)
       
         var timezone = response.timezone;
-        
+
         var hightemp = response.daily.data[0].temperatureMax;
         var lowtemp = response.daily.data[0].temperatureMin;
 
@@ -135,18 +135,18 @@ rp(options)
         var date = moment(response.currently).format( "MM-DD-YYYY");
 
        // for checking to make timezone conversions are correct.
-       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
-       console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
-       console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
-      console.log("timezone = "+ timezone)       
+      //  console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
+      //  console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
+      //  console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
+      // console.log("timezone = "+ timezone)       
 
-      var tempdata = "High:  " + hightemp + "    Low:  " + lowtemp
+      var tempdata = "High:  " + hightemp +  "   Low:  " + lowtemp 
       var sundata =  "    Sunrise:  " + sunriseLocal + "    Sunset:  " + sunsetLocal;
 
       var weatherdata = tempdata + " " + sundata
 
-      console.log(tempdata)
-      console.log(sundata)
+      // console.log(tempdata)
+      // console.log(sundata)
 
       res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
 
