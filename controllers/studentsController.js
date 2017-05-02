@@ -25,6 +25,9 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
   }).then(function(result) {
       var student_objs = result; 
 
+// for testing will be removed
+      console.log(result)
+
       // Get the ids of each of the projects the student is working on 
       var projIds = []
       for (i in student_objs){     
@@ -44,7 +47,7 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
-          result[i].notedate = moment(result[i].notedate).format("MM-DD-YYY")
+          result[i].dataValues.notedate = moment(result[i].notedate).format("MM-DD-YYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
          
@@ -79,6 +82,9 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
   }).then(function(result) {
       var student_objs = result; 
 
+// for testing will be removed
+      console.log(result)
+
       // Get the ids of each of the projects the student is working on 
       var projIds = []
       for (i in student_objs){     
@@ -96,8 +102,8 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
 
         var obj_for_handlebars = []
         for (i in result){
-          result[i].newnotedate = moment(result[i].notedate).format("MM-DD-YYYY")
-          result[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          // result[i].newnotedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          result[i].dataValues.notedate = moment(result[i].notedate).format("MM-DD-YYYY")
           obj_for_handlebars.push(result[i].dataValues)
         }
 

@@ -32,7 +32,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
@@ -62,7 +62,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
