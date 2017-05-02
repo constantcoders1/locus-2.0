@@ -1,0 +1,40 @@
+<!-- notes\notes.handlebars -->
+
+    <!-- <a href="notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET" class="btn btn-success">Get Weather</a> -->
+ 
+
+      <h2>Enter your observations <span class="member-name"></span></h2>
+       <a href="/notes/weather/{{this.projectid}}/{{this.studentid}}" method="GET" id='getweatherbtn' class="btn btn-success">Get Weather</a>
+       <a href="/notes/fileupload/{{this.projectid}}/{{this.studentid}}" method="GET"  id="uploadbtn" class="btn btn-success">Upload a file</a>
+
+  <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
+  <div class="form-group">
+    <label for="inputNote">Enter Data</label>
+    <input type="note" class="form-control" id="note" name="doclink" placeholder="Enter Data">
+  </div>
+  <div class="form-group">
+    <label for="inpuNoteType">Data Type: </label>
+    <input type="radio"  name="doctype" value="picture"> Image
+    <input type="radio"  name="doctype" value="film"> Video
+    <input type="radio"  name="doctype" value="file"> Document
+    <input type="radio"  name="doctype" value="temperature-settings"> Weather
+  </div>
+  <div class="form-group">
+    <label for="inputTitle">Title</label>
+    <input type="title" class="form-control" id="title" name="title"
+  placeholder="Enter Title">
+  </div>
+   <div class="form-group">
+    <label for="inputDesc">Description</label>
+    <input type="description" class="form-control" id="description" name="description" placeholder="Enter Description">
+  </div>
+  <div class="form-group">
+    <label for="inputnotedate">Enter Date</label>
+    <input type="notedate" class="form-control" id="notedate"  name="notedate" placeholder="Enter Date">
+  </div>
+
+ <input type="hidden" class="form-control" id="notedate"  name="ProjectId" value="{{this.projectid}}">
+ <input type="hidden" class="form-control" id="notedate"  name="StudentId" value="{{this.studentid}}">
+ <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
