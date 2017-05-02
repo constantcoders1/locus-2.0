@@ -16,6 +16,7 @@
               <th>Title</th>
               <th>Description</th>
               <th>Date</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -26,6 +27,14 @@
               <td>{{title}}</td>
               <td>{{description}}</td>
               <td>{{notedate}}</td>
+              <td>
+               {{#if this.showDeleteBtn}}
+                 <form action="/student/delete/{{this.id}}" method="GET">
+                  
+                     <button type="submit">Delete</button>
+                   </form>
+                  {{/if}}
+                </td>
             </tr>
 		      {{/each}}
           </tbody>

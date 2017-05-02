@@ -17,6 +17,13 @@ var moment = require('moment');
 
 //added partials to the file path here//
 router.get('/view/:studentid', isAuthenticated, function(req,res){
+
+  var sid = -1;
+  if (req.user.role == "Student") {
+      sid = req.user.id;
+     }
+
+
 	db.Student.findAll({ 
     where: {
       id: req.user.id,
@@ -51,14 +58,6 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
           obj_for_handlebars.push(result[i].dataValues)
         }
          
- // for (i in dbFieldnotes){
-          
- //           dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-       
- //            newFieldNotes.push(dbFieldnotes[i].dataValues)
- //        }
-
-
         console.log(obj_for_handlebars)
         console.log("studentsController.js  router.get/view/:studentid")
         res.render("students/student-view", {projects: obj_for_handlebars} )
@@ -74,6 +73,8 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 // Get all data from all projects posted by this student 
 
 router.get('/my-data/:studentid', isAuthenticated, function(req,res){
+  console.log("user  " + req.user.id)
+  
   db.Student.findAll({ 
     where: {
       id: req.user.id,
@@ -93,17 +94,23 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
       }
       console.log("projIds" + projIds)
       
-      db.Fieldnote.findAll({ 
+      // db.Fieldnote.findAll({ 
+      //   where: {
+      //     ProjectId: projIds,
+      //   }, include: [db.Project]
+
+       db.Fieldnote.findAll({ 
         where: {
-          ProjectId: projIds,
+          StudentId: req.user.id,
         }, include: [db.Project]
 
       }).then(function(result) {
 
+        console.log(result)
         var obj_for_handlebars = []
         for (i in result){
-          // result[i].newnotedate = moment(result[i].notedate).format("MM-DD-YYYY")
           result[i].dataValues.notedate = moment(result[i].notedate).format("MM-DD-YYYY")
+          result[i].dataValues.showDeleteBtn = true;
           obj_for_handlebars.push(result[i].dataValues)
         }
 
@@ -160,6 +167,20 @@ router.get('/viewprojects', isAuthenticated, function(req, res) {
 // });
 
 // Post new entry to the database 
+
+
+router.get('/delete/:noteid', function(req, res) {
+  db.Fieldnote.destroy({
+    where: {
+      id: req.params.noteid
+    }
+  }).then(function() {
+
+    res.redirect("/student/my-data/"+req.user.id)
+    // res.redirect('/notes/viewall');
+  });
+});
+
 
 router.post('/join-project/:projectid', isAuthenticated, function(req,res){
   db.StudentToProject.create({
