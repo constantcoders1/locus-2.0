@@ -29,6 +29,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
      }
     db.Fieldnote.findAll({include: [db.Student]}).then(function(dbFieldnotes) {
     var newFieldNotes = []
+    console.log(dbFieldnotes)
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
@@ -36,6 +37,7 @@ router.get('/viewall', isAuthenticated, function(req, res) {
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
+        console.log("notes/show_notes_view")
     res.render("notes/show_notes_view", {data: dbFieldnotes})
     //res.send(dbFieldnotes);
        });
@@ -58,6 +60,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
       },
         include: [db.Student]
     }).then(function(dbFieldnotes) {
+      console.log(dbFieldnotes)
     	var newFieldNotes = []
         for (i in dbFieldnotes){
         	 var showDelete = false;
@@ -67,7 +70,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
     	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-
+      console.log("notes/notes_view")
     res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject })
        });
 });

@@ -189,48 +189,8 @@ app.get("/api/user_data", function(req, res) {
 
 
 
-
- //      if (response == "Not Found") {
- //        console.log("not found")
- //        // $("#msgModaltitle").html("<span class=\"fa fa-exclamation-triangle\" style=\"font-size:24px\"></span> Oops")
- //        // $("#modal-message").text("Sorry, weather data is not available right now.");
- //        // $("#msgModal").modal("show");      
- //      } else {
- //        console.log(response)
- //        // if (category == "destination") {
- //        //   for (i=0; i<response.daily.data.length; i++) {
- //        //     weatherdate =  weatherdate = moment().add(i, "d").format("MM/DD");
- //        //     hightemp = response.daily.data[i].temperatureMax;
- //        //     lowtemp = response.daily.data[i].temperatureMin;
- //        //     weatherforecast = response.daily.data[i].summary;
- //        //     $(".table-weather > tbody").append("<tr><td>" + weatherdate + "</td><td>" + hightemp + "</td><td>" + lowtemp + "</td><td>" + weatherforecast + "</td></tr>");
- //        //   }
- //        //   $("#weather-title").text(" Weather Forecast for " + city)
- //        //   $(".panel-weather").show()
- //        // } else {
- //        //   $(".table-weather-modal > tbody").text(""); // empty table from previous request
- //        //   for (i=0; i<response.daily.data.length; i++) {
- //        //     weatherdate =  weatherdate = moment().add(i, "d").format("MM/DD");
- //        //     hightemp = response.daily.data[i].temperatureMax;
- //        //     lowtemp = response.daily.data[i].temperatureMin;
- //        //     weatherforecast = response.daily.data[i].summary;
- //        //     $(".table-weather-modal > tbody").append("<tr><td>" + weatherdate + "</td><td>" + hightemp + "</td><td>" + lowtemp + "</td><td>" + weatherforecast + "</td></tr>");
- //        //   }
- //        //   $("#weatherModalTitle").text(" Weather Forecast for " + city)
- //        //   $("#weatherModal").modal("show");// put weather in a modal box
-
- //        // }
- //      }
- //    });   // end of AJAX call to get weather
-  // });  // end of getWeather
-
-
-
-
-
-  
-
   app.get('/logout', function(req,res){
+    console.log("logging out")
    req.logOut();
    req.session.destroy(function (err) {
           res.redirect('/'); 
