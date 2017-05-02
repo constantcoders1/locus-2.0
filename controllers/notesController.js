@@ -23,10 +23,7 @@ console.log(S3_BUCKET);
 
 // var connection = require('../config/connection.js')
 router.get('/viewall', isAuthenticated, function(req, res) {
-   var sid = -1;
-  if (req.user.role == "Student") {
-     	sid = req.user.id;
-     }
+ 
     db.Fieldnote.findAll({include: [db.Student]}).then(function(dbFieldnotes) {
     var newFieldNotes = []
     console.log(dbFieldnotes)
