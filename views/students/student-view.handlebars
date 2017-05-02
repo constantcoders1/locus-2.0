@@ -1,0 +1,67 @@
+<!-- students\student-view.handlebars  -->
+{{> nav/loggedinstudent}}
+<div class="container">
+  
+<!--     <div class="row" >
+    
+      <h1>My Projects</h1>
+       <div class="col-lg-12"> -->
+
+
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3">
+            <h2>My Projects</h2>
+          </div>
+          <div class="col-md-3 col-md-offset-6">
+            <a href="/student/my-data/req.user.id"class="btn btn-success btn-lg">View My Data</a>
+          </div>
+        </div>
+      </div>
+
+      	<div class="col-md-12">
+      		<div class="form-group">
+				    {{#each projects}}
+             <div class="well well-lg">
+              <div class="row">
+                <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
+                  <div class ="col-md-6">   
+                        <div> Details: {{this.tagLine}} </div>
+                        <div>Location: {{this.location}} </div>
+                        <div>Instructions: {{this.instructions}} </div>
+                        <div>Announcements: {{this.current_announcements}} </div>
+                  </div>  
+                  <div class ="col-md-3">
+                        <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a>
+                  </div>    
+                </div>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+        
+
+
+   
+
+    
+
+      <!-- <div class="row">
+        
+        <div class="col-lg-12">
+            <h1>Class Projects</h1>
+        </div> -->
+		
+	<!-- 	{{#each projects}}
+        <div class="col-lg-2 col-md-3 col-xs-4 ">
+		<h3>{{name}}</h3>
+            <a class="thumbnail" href="/notes/view/{{id}}">
+                <img class="img-responsive" src="{{image_url}}" alt="{{name}} project thumbnail link">
+            </a>
+    <h4>{{tagLine}}</h4>
+        </div>
+		{{/each}}
+
+    </div> -->
+
+</div> <!-- container

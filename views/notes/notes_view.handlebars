@@ -1,0 +1,77 @@
+<!-- notes\notes_view.handlebars -->
+
+<div class="jumbotron">
+{{#each Project}}
+  <h2> {{this.name}}</h2>
+    <div class="container">
+      <div class="row">
+        <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
+          <div class ="col-md-6">   
+                  <div> Details: {{this.tagLine}} </div>
+                  <div>Location: {{this.location}} </div>
+                  <div>Instructions: {{this.instructions}} </div>
+                  <div>Announcements: {{this.current_announcements}} </div>
+                 
+            </div>  
+            <div class ="col-md-3">
+                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a>  
+                  </div>    
+  
+     {{/each}}
+
+ </div>
+ </div>
+
+  </div>
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Field Notes</h3>
+
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+              <th>Contributor</th>
+              <th>Link</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Date</th>
+               <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each data}}
+             
+
+              <tr>
+              <td>{{this.Student.username}}</td>
+              <td><a href="{{doclink}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
+              <td> {{this.title}}</td>
+              <td> {{this.description}}</td>
+              <td> {{newnotedate}}</td>
+               <td> 
+
+                 {{#if this.showDeleteBtn}}
+                 <form action="/notes/delete/{{this.id}}" method="GET">
+                  
+                     <button type="submit">Delete</button>
+                   </form>
+                  {{/if}}
+            
+                </td>
+            </tr>
+          {{/each}}
+         
+            
+          </tbody>
+        </table> 
+
+      </div>
+    </div>
+ 
+    
+  
+  
