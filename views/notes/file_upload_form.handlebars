@@ -1,5 +1,7 @@
 <!-- notes/file_upload_form.handlebars -->
 
+<!-- since only student should create a field note should only need loggedinstudent nav bar -->
+{{> nav/loggedinstudent}}
 <h2>Enter data</h2>
   <form class="create-update-form" action="/notes/create/{{this.projectid}}/{{this.studentid}}" method="POST">
   <div class="form-group">
