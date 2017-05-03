@@ -67,11 +67,13 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
     	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-      console.log("notes/notes_view")
+      console.log(req.user.role)
       
-      if (req.user.role = "Educator") {
-        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator:true })
+      if (req.user.role == "Educator") {
+        console.log("render Educator nav")
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: true })
       } else {
+        console.log("render student nav")
         res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: false })
       }
 
