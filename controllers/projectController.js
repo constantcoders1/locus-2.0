@@ -16,6 +16,7 @@ router.get('/viewall',  isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
       res.redirect("/student/viewprojects");
   } else if (req.user.role == "Educator") {
+     console.log("educator")
      res.redirect("/educator/viewprojects");
   } else{
       res.redirect("/project/viewallprojects");
