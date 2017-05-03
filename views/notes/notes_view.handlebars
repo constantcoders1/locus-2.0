@@ -1,4 +1,9 @@
 <!-- notes\notes_view.handlebars -->
+{{#if userEducator }}
+    {{> nav/loggedineducator}}
+{{else}}
+    {{>nav/loggedinstudent}}
+{{/if}}
 
 <div class="jumbotron">
 {{#each Project}}

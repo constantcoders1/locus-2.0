@@ -1,4 +1,11 @@
 <!-- notes\show_notes_view.handlebars -->
+
+{{#if userEducator }}
+    {{> nav/loggedineducator}}
+{{else}}
+    {{>nav/loggedinstudent}}
+{{/if}}
+
  
     <div class="panel panel-default">
       <div class="panel-heading">

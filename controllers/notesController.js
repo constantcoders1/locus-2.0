@@ -44,7 +44,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
    var sid = -1;
   if (req.user.role == "Student") {
      	sid = req.user.id;
-     }
+     } 
 	 db.Project.findAll({
         where: {
         id: req.params.projectid
@@ -68,9 +68,16 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         }
     	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
       console.log("notes/notes_view")
-    res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject })
+      
+      if (req.user.role = "Educator") {
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator:true })
+      } else {
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: false })
+      }
+
+   
        });
-});
+      });
    });
 
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {

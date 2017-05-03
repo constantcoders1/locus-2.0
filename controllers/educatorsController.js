@@ -119,7 +119,8 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
       }
 
       objForHandlebars = {"student": student_obj,
-                          "notes": notes_array}                 
+                          "notes": notes_array,
+                          "UserEducator": true}                 
       res.render("educators/student-data", {data: objForHandlebars} )
     });
   }
