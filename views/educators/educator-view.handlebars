@@ -1,7 +1,7 @@
 
 <!-- educators\educator-view.handlebars -->
 {{> nav/loggedineducator}}
-
+<h1></h1>
 <div class="container"> 
 <div class="col-md-12">
   <div class="row">
@@ -31,8 +31,8 @@
                   <textarea class="form-control" rows="3" name="announcement">{{current_announcements}}</textarea>
                   <br>
                   <button class="btn btn-success" type="submit">Update Announcement</button>
-                  <a href="/educator/my-students/{{id}}" class="btn btn-primary">View Students</a>
-                </form>
+                  <a href="/educator/my-students/{{id}}" method="GET" class="btn btn-primary">View Students</a>
+                 </form>
               </div>
             </div>
           </div>

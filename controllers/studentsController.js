@@ -38,7 +38,7 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
       // Get the ids of each of the projects the student is working on 
       var projIds = []
       for (i in student_objs){     
-          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYY")        
+          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")        
 
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }

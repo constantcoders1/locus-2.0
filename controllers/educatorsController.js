@@ -4,6 +4,7 @@ var db = require("../models");
 var express = require('express');
 var router  = express.Router();
 var mysql = require('mysql');
+var moment = require('moment');
 
 
 // Educator's home view 
@@ -81,20 +82,25 @@ router.get('/my-students/:projid', function(req,res){
       for (i in result){
         studentObjArray.push(result[i].dataValues.Student)
       }
-
+      console.log(studentObjArray)
       var projObj = result[0].dataValues.Project
+      console.log("projObj " + projObj)
 
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
+      
 
-      res.render("/educators/my-students", {data: objForHandlebars} )
+      res.render("educators/my-students", {data: objForHandlebars} )
         console.log('---------------------------');
         console.log('-----HIT LINE 89 in educatorsController.js----');
         console.log('---------------------------');
     });
 });
 
+
+
 router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
+  console.log("*****************")
   if (req.user.role == "Educator"){
   db.Student.findAll({ 
     where: {
@@ -102,18 +108,24 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
     },
     include: [db.Fieldnote]
   }).then(function(result) {
-      console.log(result)
+      console.log("result - "+ result)
       // Grab info about this student 
       var student_obj = result[0].dataValues; 
-
+      console.log(student_obj)
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
       var notes_array = []
       for (i in result){
+        console.log("resulti = "+ result[i])
+        console.log("DV " + result[i].dataValues.Fieldnote.notedate)
+        result[i].dataValues.Fieldnote.notedate = moment(result[i].dataValues.Fieldnote.notedate).format("MM-DD-YYYY")   
+        console.log(result[i].dataValues.Fieldnote.notedate)
         notes_array.push(result[i].dataValues.Fieldnote)
+
       }
 
       objForHandlebars = {"student": student_obj,
-                          "notes": notes_array}
-      res.render("/educators/student-data", {data: objForHandlebars} )
+                          "notes": notes_array}                 
+      res.render("educators/student-data", {data: objForHandlebars} )
     });
   }
 });
