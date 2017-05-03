@@ -82,9 +82,9 @@ router.get('/my-students/:projid', function(req,res){
       for (i in result){
         studentObjArray.push(result[i].dataValues.Student)
       }
-      console.log(studentObjArray)
+      
       var projObj = result[0].dataValues.Project
-      console.log("projObj " + projObj)
+      // console.log("projObj " + projObj)
 
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
@@ -100,7 +100,6 @@ router.get('/my-students/:projid', function(req,res){
 
 
 router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
-  console.log("*****************")
   if (req.user.role == "Educator"){
   db.Student.findAll({ 
     where: {
@@ -108,19 +107,15 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
     },
     include: [db.Fieldnote]
   }).then(function(result) {
-      console.log("result - "+ result)
       // Grab info about this student 
       var student_obj = result[0].dataValues; 
-      console.log(student_obj)
-      console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
       var notes_array = []
       for (i in result){
-        console.log("resulti = "+ result[i])
-        console.log("DV " + result[i].dataValues.Fieldnote.notedate)
-        result[i].dataValues.Fieldnote.notedate = moment(result[i].dataValues.Fieldnote.notedate).format("MM-DD-YYYY")   
-        console.log(result[i].dataValues.Fieldnote.notedate)
         notes_array.push(result[i].dataValues.Fieldnote)
-
+      }
+      // don't know why this was the only way I could get date to look correct
+      for (i in notes_array) {
+        notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
       }
 
       objForHandlebars = {"student": student_obj,
