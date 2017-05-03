@@ -41,8 +41,8 @@ router.get('/viewprojects',  function(req, res) {
   
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
-    //console.log(dbProject);
-     res.render("/educators/project-view", {data: dbProject});
+    console.log(dbProject);
+     res.render("educators/project-view", {data: dbProject});
         console.log('---------------------------');
         console.log('-----HIT LINE 47 in educatorsController.js----');
         console.log('---------------------------');
