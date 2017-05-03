@@ -4,6 +4,7 @@ var db = require("../models");
 var express = require('express');
 var router  = express.Router();
 var mysql = require('mysql');
+var moment = require('moment');
 
 
 // Educator's home view 
@@ -40,8 +41,8 @@ router.get('/viewprojects',  function(req, res) {
   
     db.Project.findAll({}).then(function(dbProject) {
     //res.send("View Notes");
-    //console.log(dbProject);
-     res.render("/educators/project-view", {data: dbProject});
+    console.log(dbProject);
+     res.render("educators/project-view", {data: dbProject});
         console.log('---------------------------');
         console.log('-----HIT LINE 47 in educatorsController.js----');
         console.log('---------------------------');
@@ -81,18 +82,22 @@ router.get('/my-students/:projid', function(req,res){
       for (i in result){
         studentObjArray.push(result[i].dataValues.Student)
       }
-
+      
       var projObj = result[0].dataValues.Project
+      // console.log("projObj " + projObj)
 
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
+      
 
-      res.render("/educators/my-students", {data: objForHandlebars} )
+      res.render("educators/my-students", {data: objForHandlebars} )
         console.log('---------------------------');
         console.log('-----HIT LINE 89 in educatorsController.js----');
         console.log('---------------------------');
     });
 });
+
+
 
 router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
   if (req.user.role == "Educator"){
@@ -102,18 +107,21 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
     },
     include: [db.Fieldnote]
   }).then(function(result) {
-      console.log(result)
       // Grab info about this student 
       var student_obj = result[0].dataValues; 
-
       var notes_array = []
       for (i in result){
         notes_array.push(result[i].dataValues.Fieldnote)
       }
+      // don't know why this was the only way I could get date to look correct
+      for (i in notes_array) {
+        notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
+      }
 
       objForHandlebars = {"student": student_obj,
-                          "notes": notes_array}
-      res.render("/educators/student-data", {data: objForHandlebars} )
+                          "notes": notes_array,
+                          "UserEducator": true}                 
+      res.render("educators/student-data", {data: objForHandlebars} )
     });
   }
 });

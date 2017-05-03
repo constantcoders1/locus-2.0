@@ -23,19 +23,18 @@ console.log(S3_BUCKET);
 
 // var connection = require('../config/connection.js')
 router.get('/viewall', isAuthenticated, function(req, res) {
-   var sid = -1;
-  if (req.user.role == "Student") {
-     	sid = req.user.id;
-     }
+ 
     db.Fieldnote.findAll({include: [db.Student]}).then(function(dbFieldnotes) {
     var newFieldNotes = []
+    console.log(dbFieldnotes)
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
+        console.log("notes/show_notes_view")
     res.render("notes/show_notes_view", {data: dbFieldnotes})
     //res.send(dbFieldnotes);
        });
@@ -45,7 +44,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
    var sid = -1;
   if (req.user.role == "Student") {
      	sid = req.user.id;
-     }
+     } 
 	 db.Project.findAll({
         where: {
         id: req.params.projectid
@@ -58,19 +57,29 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
       },
         include: [db.Student]
     }).then(function(dbFieldnotes) {
+      console.log(dbFieldnotes)
     	var newFieldNotes = []
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
         	 dbFieldnotes[i].showDeleteBtn = showDelete;
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
     	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+      console.log(req.user.role)
+      
+      if (req.user.role == "Educator") {
+        console.log("render Educator nav")
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: true })
+      } else {
+        console.log("render student nav")
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: false })
+      }
 
-    res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject })
+   
        });
-});
+      });
    });
 
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
@@ -182,7 +191,7 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     // need to get keyword & look up teacher id
 });
 
-router.get('/fileupload/:studentid/:projectid', isAuthenticated, (req, res) =>
+router.get('/fileupload/:projectid/:studentid', isAuthenticated, (req, res) =>
        res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id }));
 
 
