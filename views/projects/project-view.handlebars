@@ -1,9 +1,12 @@
 <!-- projects\project-view.handlebars -->
-  
-{{#if userEducator}}
-    {{> nav/loggedineducator}}
-{{else}}
-    {{>nav/loggedinstudent}}
+{{#if guest}}
+  {{>nav/homenavbar}}
+{{else}}  
+    {{#if userEducator}}
+        {{> nav/loggedineducator}}
+    {{else}}
+        {{>nav/loggedinstudent}}
+    {{/if}}
 {{/if}}
   
     <div class="panel panel-default">
@@ -48,6 +51,8 @@
         </table> 
       </div>
     </div>
+}
+}
  
     
   

@@ -55,6 +55,17 @@ router.get('/viewallprojects', function(req, res) {
     });    
 });
 
+router.get('/guestviewallprojects', function(req, res) {
+
+    db.Project.findAll({}).then(function(dbProject) {
+
+       
+        res.render("projects/project-view", {data: dbProject, guest: true });
+     
+
+    });    
+});
+
 router.get('/view/:educatorid', function(req, res) {
     db.Project.findAll({
       where: {
