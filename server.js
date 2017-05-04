@@ -14,7 +14,8 @@ var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser());
 app.use(bodyParser.json());
 
 // app.use('/public', express.static(path.join(__dirname, 'public')))
@@ -37,7 +38,28 @@ require("./routes/api-routes.js")(app);
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+
+
+var hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+    helpers: {
+        
+        studentOrTeacher: function(role) {
+        	return role
+      //   	if (role == "Educator" ) {
+      // 			console.log("Educator")
+      //   	return "> nav/loggedineducator"
+    		// } else {
+      // 			console.log("student")
+      //   	return "> nav/loggedinstudent"
+    		// }
+        }
+    },
+    defaultLayout: "main"
+});
+
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.

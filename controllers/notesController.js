@@ -71,10 +71,10 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
       
       if (req.user.role == "Educator") {
         console.log("render Educator nav")
-        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: true })
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, userEducator: true })
       } else {
         console.log("render student nav")
-        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, UserEducator: false })
+        res.render("notes/notes_view", {data: dbFieldnotes, Project: dbProject, userEducator: false })
       }
 
    

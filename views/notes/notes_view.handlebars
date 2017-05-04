@@ -1,29 +1,9 @@
-<!-- notes\notes_view.handlebars -->
-<script type="text/javascript">
-
-  var sOrT = checkstatus(userData.Role)
-
-function checkStatus( status ){
-    if (status == "Educator" ) {
-      console.log("Educator")
-        return true;
-    } else {
-      console.log("student")
-        return false;
-    }
-};
-
-</script>
-
-{{#if sOrT}}
-   {{> nav/loggedineducator}}
+{{#if userEducator}}
+    {{> nav/loggedineducator}}
 {{else}}
-    {{> nav/loggedinstudent}}
+    {{>nav/loggedinstudent}}
 {{/if}}
 
-
-Role: userData.Role
-Educator:  {{userEducator}}  /Educator
 <div class="jumbotron">
 {{#each Project}}     
   <h2> {{this.name}}</h2>
