@@ -10,6 +10,22 @@ var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
 
+router.get("/about/about-view", isAuthenticated, function(req,res) {
+
+    if (req.user.role == "Educator") {
+        console.log("render Educator nav")
+        res.render("about/about-view", { userEducator: true, userStudent: false });
+      } else {
+        // if (req.user.role == "Student") {
+          console.log("render Student nav")
+          res.render("about/about-view", { userStudent: true, userEducator: false});
+        //  } else {
+        //   console.log("render home nav bar for guest")
+        //   res.render("about/about-view", {userEducator: false, userStudent: false})
+        // }
+      }
+});
+
 // var connection = require('../config/connection.js')
 router.get('/viewall',  isAuthenticated, function(req, res) {
    
