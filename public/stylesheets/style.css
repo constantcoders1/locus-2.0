@@ -168,6 +168,10 @@ display: block;
   height: 50px; 
 }
 
+.align-right {
+  text-align: right;
+}
+
 footer {
   background: #2C3E50;
   clear: both;
