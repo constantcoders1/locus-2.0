@@ -27,10 +27,16 @@ router.get('/viewall',  isAuthenticated, function(req, res) {
 router.get('/viewallprojects', function(req, res) {
 
     db.Project.findAll({}).then(function(dbProject) {
-     res.render("projects/project-view", {data: dbProject});
-       });
-  
-    
+
+       if (req.user.role == "Educator") {
+        console.log("render Educator nav")
+        res.render("projects/project-view", {data: dbProject, userEducator: true });
+      } else {
+        console.log("render Student nav")
+        res.render("projects/project-view", {data: dbProject, userEducator: false });
+      } 
+
+    });    
 });
 
 router.get('/view/:educatorid', function(req, res) {
@@ -40,10 +46,14 @@ router.get('/view/:educatorid', function(req, res) {
       }
 
     }).then(function(dbProject) {
-    //res.send("View Notes");
-    //console.log(dbFieldnotes);
-     res.render("projects/index", {data: dbProject});
-       });
+        if (req.user.role == "Educator") {
+          console.log("render Educator nav")
+          res.render("projects/index", {data: dbProject, userEducator: true });
+        } else {
+          console.log("render Student nav")
+          res.render("projects/index", {data: dbProject, userEducator: false });
+        }
+  });
 });
 
 
@@ -80,8 +90,17 @@ router.get('/:projectid/:studentid', function(req, res) {
     //console.log(dbFieldnotes);
     console.log(db.Project)
     console.log("projectController  router.get/:projecti/:studentid")
-    res.render("projects/index", {data: dbProject, test:"Hello!!" })
-       });
+
+
+    if (req.user.role == "Educator") {
+        console.log("render Educator nav")
+        res.render("projects/index", {data: dbProject, userEducator: true });
+      } else {
+        console.log("render Student nav")
+        res.render("projects/index", {data: dbProject, userEducator: false });
+      }
+    // res.render("projects/index", {data: dbProject, test:"Hello!!" })
+  });
 });
 
 router.put('/weather/:projectid/:studentid', function(req, res){
