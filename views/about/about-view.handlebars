@@ -4,8 +4,51 @@
   {{>nav/loggedinstudent}}
 {{/if}}
 
-<!-- about/about-view.handlebars -->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen" title="no title">
+</head>
+
+<body>
+  <!-- home.html -->
+  <div class="page-wrap">
+
+    <nav class="navbar" id="bannernav">
+        <img class="navbar-brand" id="logo" alt="logo" src="images/locus.png">
+        <center><h3>SHARING SCIENCE GLOBALLY</h3></center>
+    </nav>
+
+    <nav class="navbar navbar-default" class="homenav">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/teacher/login.html">Educator Login <span class="sr-only">(current)</span></a></li>
+        <li><a href="/student/login.html">Student Login</a></li>
+        <li><a href="/project/guestviewallprojects">All Projects</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>  
+  
       <div class="tanbackground">
         <div class="container">
           <div class="functionrow">
@@ -14,100 +57,61 @@
                 <p>Locus is a web application designed to encourage high school and college students to participate in science and to teach each other . It helps students understand and enjoy science by collaborating on simple experiments with students from different parts of the globe. The application includes a form for the students to post their observations in the form of document links, data files or even pictures. This data is stored in a MySQL database and displayed on the landing page of the student. The students will also be able to view data entered by other students and post comments.</p>
                 <h2 class="page-header">Our Team</h2>
               </div>
-                <div class="col-lg-4 col-sm-4 text-center">
+                <div class="col-lg-3 col-sm-3 text-center">
                     <img class="img-circle img-responsive img-center" src="images/sunita.png" alt="">
                     <h3>Sunita Chowdhury
-                        <small>Full Stack Web Developer</small>
+                        <br><small style="color:black">Full Stack Web Developer</small>
                     </h3>
                     <p>Full stack web application developer proficient with JavaScript, JQuery, HTML5, Bootstrap, Node, Express, React, RESTful Api, JSON, Java, JSP, Sequelize, Handlebars, EJS, PHP, MongoDB and SQL.</p>
                 </div>
                
-                <div class="col-lg-4 col-sm-6 text-center">
+                <div class="col-lg-3 col-sm-3 text-center">
                     <img class="img-circle img-responsive img-center" src="images/kathleen.png" alt="">
                     <h3>Kathleen Catlett
-                        <small>Full Stack Web Developer</small>
+                        <br><small style="color:black">Full Stack Web Developer</small>
                     </h3>
-                    <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+                    <p>Full stack web application developer proficient with JavaScript, JQuery, HTML5, Bootstrap, Node, Express, RESTful Api, JSON, JSP, Sequelize, Handlebars, EJS, PHP, MongoDB and SQL</p>
                 </div>
-                <div class="col-lg-4 col-sm-6 text-center">
+                <div class="col-lg-3 col-sm-3 text-center">
                     <img class="img-circle img-responsive img-center" src="images/anna.png" alt="">
                     <h3>Anna Kimtis
-                        <small>UI/UX Developer</small>
+                        <br><small style="color:black">Educator and Full Stack Developer</small>
                     </h3>
-                    <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
+                    <p>Web developer and teacher who leverages technology for curriculum development. Proficient in JavaScript, HTML5, CSS, Bootstrap, and jQuery, MySQL, and styling React Native apps</p>
+                </div>
+                <div class="col-lg-3 col-sm-3 text-center">
+                    <img class="img-circle img-responsive img-center" src="images/kathleenc.jpg" alt="">
+                    <h3>Kristen Manning
+                        <br><small style="color:black">Full Stack Web Developer</small>
+                    </h3>
+                    <p>Full stack web application developer proficient with JavaScript, JQuery, HTML5, Bootstrap, Node, Express, RESTful Api, JSON, JSP, Sequelize, Handlebars, EJS, PHP, MongoDB and SQL</p>
+                </div>
+                <div class="row col-lg-12 text-center">
+                  <br>
+                  <h3>Contact Us</h3>
+                  <p>ConstantCoders1@gmail.com</p>
+                  <br>
+                  <br>
                 </div>
           </div>
         </div>
       </div>
-  
+
       <div class="aboutbackground">
-        <div class="container">
-          <div class ="functionrow">
-            <div class="container">
-              <div class="row">
-                <form class="well form-horizontal" action=" " method="post"  id="contact_form">
-                  <fieldset>
-
-                    <!-- Form Name -->
-                    <legend><h3>Contact Us</h3></legend>
-
-                    ConstantCoders1@gmail.com
-
-                    <!-- Text input-->
-                  <!--   <div class="form-group">
-                      <label class="col-md-4 control-label">Name</label>  
-                      <div class="col-md-4 inputGroupContainer">
-                      <div class="input-group">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
-                        </div>
-                      </div>
-                    </div>
- -->
-                    <!-- <div class="form-group">
-                      <label class="col-md-4 control-label">E-Mail</label>  
-                        <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                      <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
-                        </div>
-                      </div>
-                    </div> -->
-                           
-                    <!-- <div class="form-group">
-                      <label class="col-md-4 control-label">Phone #</label>  
-                        <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                      <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
-                        </div>
-                        </div>
-                    </div> -->
-                      
-                   <!--  <div class="form-group">
-                      <label class="col-md-4 control-label">Message</label>
-                        <div class="col-md-4 inputGroupContainer">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                          <textarea class="form-control" name="comment" placeholder="Write us a message"></textarea>
-                        </div>
-                        </div>
-                    </div> -->
-                   <!--  </div> -->
-
-                    <!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div> -->
-
-                    <!-- Submit Button -->
-                    <!-- <div class="form-group">
-                      <label class="col-md-4 control-label"></label>
-                      <div class="col-md-4">
-                        <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-                      </div>
-                    </div> -->
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
+      
+  </div> <!-- page wrap -->
+
+</body>
+
+<footer class="site-footer">
+  <p>&copy; constantcoders 2017</p>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <script type="text/javascript" src="js/loginstudent.js"></script>
+
+</html>
