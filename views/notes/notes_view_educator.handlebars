@@ -8,18 +8,15 @@
 <!-- notes/notes_view_educator.handlebars -->
 
 <div class="jumbotron">
-{{userEducator}}
-{{#each Project}}  
-{{userEducator}}
   <h2> {{this.name}}</h2>
     <div class="container">
       <div class="row">
         <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
           <div class ="col-md-6">   
-                  <div> Details: {{this.tagLine}} </div>
-                  <div>Location: {{this.location}} </div>
-                  <div>Instructions: {{this.instructions}} </div>
-                  <div>Announcements: {{this.current_announcements}} </div>
+                  <div><b>Details:</b> {{this.tagLine}} </div>
+                  <div><b>Location:</b> {{this.location}} </div>
+                  <div><b>Instructions:</b> {{this.instructions}} </div>
+                  <div><b>Announcements:</b> {{this.current_announcements}} </div>
                  
             </div>  
             <div class ="col-md-3">
@@ -82,5 +79,3 @@
 
       </div>
     </div>
- 
-    
