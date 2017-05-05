@@ -1,11 +1,16 @@
 {{#if userEducator}}
     {{> nav/loggedineducator}}
+<!-- notes/notes_view_student.handlebars as educator -->
 {{else}}
     {{>nav/loggedinstudent}}
+    <!-- notes/notes_view_student.handlebars as student -->
 {{/if}}
+<!-- notes/notes_view.handlebars -->
 
 <div class="jumbotron">
-{{#each Project}}     
+{{userEducator}}
+{{#each Project}}  
+{{userEducator}}
   <h2> {{this.name}}</h2>
     <div class="container">
       <div class="row">
@@ -18,7 +23,9 @@
                  
             </div>  
             <div class ="col-md-3">
-                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a>  
+                  <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a> 
+                
+
                   </div>    
   
      {{/each}}
