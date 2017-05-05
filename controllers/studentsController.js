@@ -68,6 +68,56 @@ router.get('/view/:studentid', isAuthenticated, function(req,res){
 });
 
 
+router.get('/navview', isAuthenticated, function(req,res){
+
+  var sid = -1;
+  if (req.user.role == "Student") {
+      sid = req.user.id;
+     }
+
+
+  db.Student.findAll({ 
+    where: {
+      id: req.user.id,
+    },
+    include: [db.StudentToProject]
+  }).then(function(result) {
+      var student_objs = result; 
+
+// for testing will be removed
+      console.log(result)
+
+      // Get the ids of each of the projects the student is working on 
+      var projIds = []
+      for (i in student_objs){     
+          student_objs[i].notedate = moment(result[i].notedate).format("MM-DD-YYYY")        
+
+        projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
+      }
+
+      console.log("projIds" + projIds)
+      db.Project.findAll({ 
+        where: {
+          id: projIds,
+        },
+        include: [db.Educator]
+
+      }).then(function(result) {
+
+        var obj_for_handlebars = []
+        for (i in result){
+          result[i].dataValues.notedate = moment(result[i].notedate).format("MM-DD-YYY")
+          obj_for_handlebars.push(result[i].dataValues)
+        }
+         
+        console.log(obj_for_handlebars)
+        console.log("studentsController.js  router.get/view/:studentid")
+        res.render("students/student-view", {projects: obj_for_handlebars} )
+
+      });
+
+    });
+});
 
 // Student's individual data view 
 // Get all data from all projects posted by this student 
