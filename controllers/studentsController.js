@@ -220,6 +220,8 @@ router.get('/viewprojects', isAuthenticated, function(req, res) {
 
 
 router.get('/delete/:noteid', function(req, res) {
+  console.log("delete note ")
+  console.log("student = " + req.user.id)
   db.Fieldnote.destroy({
     where: {
       id: req.params.noteid
