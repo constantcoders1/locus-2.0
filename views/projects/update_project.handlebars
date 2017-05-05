@@ -3,10 +3,11 @@
 
     {{> nav/loggedineducator}}
 
-
+<br><br><br>
 
 <form class="form-horizontal" class="create-update-form" action="/project/update/{{data.0.id}}?_method=PUT" method="POST">
         <fieldset>
+                  
           <legend>Update a Project<span class="member-name"></span></legend>
   
             <div class="form-group">
@@ -23,6 +24,7 @@
 
               </div>
             </div>
+
             <div class="form-group">
     
               <label for="inpuNoteType" class="col-lg-2 control-label">Instructions</label>
@@ -41,12 +43,11 @@
               </div>
                </div> -->
               <div class="form-group">
-
-              <label for="inputNote" class="col-lg-2 control-label">Announcements</label>
-              <div class="col-lg-10">
-                <input class="form-control" type="note" name="current_announcements" type="text" id="announcemets" value="{{data.0.current_announcements}}" placeholder="Current Announcements" >
-
+                <label for="inputNote" class="col-lg-2 control-label">Announcements</label>
+                <div class="col-lg-10">
+                  <input class="form-control" type="note" name="current_announcements" type="text" id="announcemets" value="{{data.0.current_announcements}}" placeholder="Current Announcements" >
               </div>
+
             </div>
             
             <!--div class="form-group">
@@ -79,11 +80,11 @@
 
               <div class="form-group">
                <input type="hidden" class="form-control"  name="educator_id" type="text" value="{{data.0.educator_id}}"></input>
-             
             </div>
             </div>
-          <div >
-          <button type="submit" class="btn btn-success">Submit</button>
+          
+          <div class="row col-md-2 control-label align-right">
+            <button type="submit" class="btn btn-success">Submit</button>
           </div>
           </fieldset>
       </form>

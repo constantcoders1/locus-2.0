@@ -1,13 +1,11 @@
 <!-- projects\project-view.handlebars -->
-{{#if guest}}
-  {{>nav/homenavbar}}
-{{else}}  
+ 
     {{#if userEducator}}
         {{> nav/loggedineducator}}
     {{else}}
         {{>nav/loggedinstudent}}
     {{/if}}
-{{/if}}
+
   
     <div class="panel panel-default">
       <div class="panel-heading">
