@@ -60,7 +60,7 @@ router.get('/guestviewallprojects', function(req, res) {
     db.Project.findAll({}).then(function(dbProject) {
 
        
-        res.render("projects/project-view", {data: dbProject, guest: true });
+        res.render("projects/guest-project-view", {data: dbProject, });
      
 
     });    
