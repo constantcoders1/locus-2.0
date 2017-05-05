@@ -23,6 +23,11 @@ console.log(S3_BUCKET);
 
 // var connection = require('../config/connection.js')
 router.get('/viewall', isAuthenticated, function(req, res) {
+
+    var sid = -1;
+    if (req.user.role == "Student") {
+      sid = req.user.id;
+    } 
  
     db.Fieldnote.findAll({include: [db.Student]}).then(function(dbFieldnotes) {
     var newFieldNotes = []
@@ -94,12 +99,13 @@ router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) 
 });
 
 router.get('/delete/:noteid', function(req, res) {
+  console.log("notes/delete/:noteid")
   db.Fieldnote.destroy({
     where: {
       id: req.params.noteid
     }
   }).then(function() {
-    res.redirect('/notes/viewall');
+    res.redirect('notes/notes_view');
   });
 });
 
