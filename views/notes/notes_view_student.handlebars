@@ -8,27 +8,25 @@
 <!-- notes/notes_view.handlebars -->
 
 <div class="jumbotron">
-{{userEducator}}
-{{#each Project}}  
-{{userEducator}}
+{{#each Project}} 
   <h2> {{this.name}}</h2>
     <div class="container">
       <div class="row">
         <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
           <div class ="col-md-6">   
-                  <div> Details: {{this.tagLine}} </div>
+                  <div>Details: {{this.tagLine}} </div>
                   <div>Location: {{this.location}} </div>
                   <div>Instructions: {{this.instructions}} </div>
                   <div>Announcements: {{this.current_announcements}} </div>
-                 
+
+
             </div>  
             <div class ="col-md-3">
                   <a href="/notes/create/{{this.id}}/1" class="btn btn-success">Create a Field Note</a> 
                 
-
-                  </div>    
-  
-     {{/each}}
+               </div>    
+  {{/each}}
+   
 
  </div>
  </div>
@@ -66,7 +64,7 @@
                <td> 
 
                  {{#if this.showDeleteBtn}}
-                 <form action="/notes/delete/{{this.id}}" method="GET">
+                 <form action="/notes/delete/{{this.id}}/{{this.ProjectId}}" method="GET">
                   
                      <button type="submit">Delete</button>
                    </form>

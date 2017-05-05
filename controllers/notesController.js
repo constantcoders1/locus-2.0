@@ -62,7 +62,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
       },
         include: [db.Student]
     }).then(function(dbFieldnotes) {
-      console.log(dbFieldnotes)
+      // console.log(dbFieldnotes)
     	var newFieldNotes = []
         for (i in dbFieldnotes){
         	 var showDelete = false;
@@ -73,6 +73,7 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         }
     	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
       console.log(req.user.role)
+      console.log(dbProject)
       
       if (req.user.role == "Educator") {
         console.log("render Educator nav")
@@ -98,14 +99,15 @@ router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) 
       
 });
 
-router.get('/delete/:noteid', function(req, res) {
-  console.log("notes/delete/:noteid")
+router.get('/delete/:noteid/:projectid', function(req, res) {
+  console.log("notes/delete/:noteid/:projectid")
+  projectid = req.params.projectid;
   db.Fieldnote.destroy({
     where: {
       id: req.params.noteid
     }
   }).then(function() {
-    res.redirect('notes/notes_view');
+    res.redirect("/notes/view/"+req.params.projectid);
   });
 });
 
