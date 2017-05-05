@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "root",
-     "password": null,
+     "password": "none",
       "database": "observations_db",
      "dialect": "mysql"
     },
