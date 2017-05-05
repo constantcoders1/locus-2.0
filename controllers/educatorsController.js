@@ -36,6 +36,34 @@ router.get('/view/:edid', isAuthenticated, function(req,res){
   }
 });
 
+
+router.get('/navview', isAuthenticated, function(req,res){
+  if (req.user.role == "Educator"){
+// Select all projects that this educator created 
+  db.Project.findAll({ 
+    where: {
+      EducatorId: req.user.id,
+    },
+  }).then(function(result) {
+
+    // grab data object from each project created by this educator
+    var educatorsProjs = []
+      for(i in result){
+        educatorsProjs.push(result[i].dataValues);
+      }
+ 
+    console.log(educatorsProjs);
+    // send array of project objects to handlebars
+    res.render("educators/educator-view", {"data": educatorsProjs} )
+  
+    });
+  }else if (req.user.role == "Student"){
+    res.redirect("/student/view/req.user.id")
+  }else{
+    res.redirect("/home.html")
+  }
+});
+
 router.get('/viewprojects',  function(req, res) {
   
   
