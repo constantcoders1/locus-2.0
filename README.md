@@ -18,7 +18,10 @@ Locus is a web application designed to encourage high school and college student
 - Handlebars
 - Passport
 - Sequelize
-- RESTful APIs
+- Google Maps
+- Dark Skies API
+- Moment and Moment TimeZone
+- Amazon Web Services
 
 ## Built With
 * Sublime 
