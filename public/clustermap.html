@@ -42,10 +42,13 @@
             var locations = []
     
             for (i in data) {
-              var tmpData = {
-                lat: parseFloat(data[i].latitude),
-                lng: parseFloat(data[i].longitude)
+              tmpData = {
+              "name": data[i].username,
+              "place" : {
+                lat : parseFloat(data[i].latitude),
+                lng : parseFloat(data[i].longitude),
               }
+            }
               console.log(tmpData)
               locations.push(tmpData)
             }
@@ -55,10 +58,11 @@
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
         // The map() method here has nothing to do with the Google Maps API.
-        var markers = locations.map(function(location, i) {
+        // var markers = locations.map(function(location, i) {
+         var markers = locations.map(function(locations, i) {
           return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
+            position: locations.place,
+            label: locations.name
           });
           console.log("markers:  "+ markers)
         });
