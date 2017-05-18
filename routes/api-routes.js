@@ -73,6 +73,29 @@ app.get('/view/studentid', function(req,res){
     });
 });
 
+  app.get("/studentlocations", function(req, res) {
+    debugger
+    console.log("getting student lat lng for heatmap");
+    db.Student.findAll({
+      attributes: ['latitude', 'longitude']
+    }).then(function(genMapData) {
+        console.log(genMapData)
+       var mapPoints = []
+      for(i in genMapData){
+        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
+         var pushPoint = genMapData[i].dataValues
+        mapPoints.push(pushPoint);
+
+        // new google.maps.LatLng(37.782551, -122.445368),
+
+      }
+ 
+
+      console.log(mapPoints);
+      res.json(mapPoints);
+      // var mapData=[]
+    })
+  })
 
 
   app.get("/api/projects", function(req, res) {

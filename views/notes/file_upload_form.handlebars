@@ -78,6 +78,7 @@
       Function to carry out the actual PUT request to S3 using the signed request from the app.
     */
     function uploadFile(file, signedRequest, url){
+      debugger
       const xhr = new XMLHttpRequest();
       xhr.open('PUT', signedRequest);
       xhr.onreadystatechange = () => {
@@ -86,6 +87,7 @@
             document.getElementById('preview').src = url;
             document.getElementById('avatar-url').value = url;
             document.getElementById('note').value = url;
+            console.log("url = " + url)
           }
           else{
             alert('Could not upload file.');
@@ -101,11 +103,15 @@
       request.
     */
     function getSignedRequest(file){
+      debugger
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/notes/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+      xhr.open("GET", "/notes/sign-s3?file-name=${file.name}&file-type=${file.type}");
       xhr.onreadystatechange = () => {
+        console.log("ready state - " + xhr.readyState)
         if(xhr.readyState === 4){
+          console.log("xhr status - " + xhr.status)
           if(xhr.status === 200){
+            console.log("response text - " + xhr.responseText)
             const response = JSON.parse(xhr.responseText);
             uploadFile(file, response.signedRequest, response.url);
           }
@@ -114,14 +120,19 @@
           }
         }
       };
+      
+      // error is in the xhr.send() withcredentials : false
+    
       xhr.send();
     }
+    
 
     /*
      Function called when file input updated. If there is a file selected, then
      start upload procedure by asking for a signed request from the app.
     */
     function initUpload(){
+      debugger
       const files = document.getElementById('file-input').files;
       const file = files[0];
       if(file == null){
@@ -138,4 +149,5 @@
     })();
 
     <{{!}}/script>
+
 

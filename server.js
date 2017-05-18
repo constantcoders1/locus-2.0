@@ -14,8 +14,8 @@ var db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 var app = express();
-// app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser());
 app.use(bodyParser.json());
 
 // app.use('/public', express.static(path.join(__dirname, 'public')))
