@@ -12,7 +12,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname + "/../public/home.html"));
   });
 
+// app.get("/heatmap", function(req, res) {
+//   res.sendFile(path.join(__dirname + "/../public/heatmap.html"))
+// });
    
+
+app.get("/clustermap", function(req, res) {
+  res.sendFile(path.join(__dirname + "/../public/clustermap.html"))
+});
+
  app.get("/student/signup", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
