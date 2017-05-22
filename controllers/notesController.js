@@ -45,6 +45,67 @@ router.get('/viewall', isAuthenticated, function(req, res) {
        });
 });
 
+
+// Sorting Test Code Start
+// figure out where it gets called to add extra req params
+// if sorting is descending order pass along with field in the call
+// ascending sort is assumed by sequelize
+
+router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(req, res) {
+  console.log("long sorting req = " + req.params.sortfield + ", " + req.params.direction)
+   if (req.params.direction == "ASC") {
+    sortinfo = req.params.sortfield
+   } else {
+    sortinfo =  req.params.sortfield + " DESC"
+   }
+   console.log("sort info:  " + sortinfo)
+   var sid = -1;
+  if (req.user.role == "Student") {
+      sid = req.user.id;
+     } 
+   db.Project.findAll({
+        where: {
+        id: req.params.projectid
+      }
+     
+    }).then(function(dbProject) {
+    db.Fieldnote.findAll({
+        where: {
+        ProjectId: req.params.projectid
+      },
+       order: sortinfo,
+        include: [db.Student]
+    }).then(function(dbFieldnotes) {
+      // console.log(dbFieldnotes)
+      var newFieldNotes = []
+        for (i in dbFieldnotes){
+           var showDelete = false;
+           if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
+           dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+           dbFieldnotes[i].showDeleteBtn = showDelete;
+            newFieldNotes.push(dbFieldnotes[i].dataValues)
+        }
+      //dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+      console.log(req.user.role)
+      console.log(dbProject)
+      
+      if (req.user.role == "Educator") {
+        console.log("render Educator nav")
+        res.render("notes/notes_view_educator", {data: dbFieldnotes, Project: dbProject, userEducator: true })
+      } else {
+        console.log("render student nav")
+        res.render("notes/notes_view_student", {data: dbFieldnotes, Project: dbProject, userEducator: false })
+      }
+
+   
+       });
+      });
+   });
+
+
+// Sorting Test Code End
+
+
 router.get('/view/:projectid', isAuthenticated, function(req, res) {
    var sid = -1;
   if (req.user.role == "Student") {
