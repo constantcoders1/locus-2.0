@@ -5,6 +5,8 @@
     {{>nav/loggedinstudent}}
     <!-- notes/notes_view_educator.handlebars as student -->
 {{/if}}
+
+
 <!-- notes/notes_view_educator.handlebars -->
 {{#each Project}}
 
@@ -27,7 +29,7 @@
 
                   </div>    
   
-     {{/each}}
+  <!-- Moved the end each from this line -->
 
  </div>
  </div>
@@ -54,8 +56,8 @@
                 <li class='sub' >
                   <a tabindex="-1" >Contributer<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Ascending</a></li>
-                    <li><a href="#">Descending</a></li>
+                    <li><a href="/notes/view/username/ASC/{{this.id}}">Ascending</a></li>
+                    <li><a href="/notes/view/username/DESC/{{this.id}}">Descending</a></li>
                   </ul>
                 </li>
 
@@ -63,12 +65,12 @@
                 <li class='sub' >
                   <a tabindex="-1" >Date<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Ascending</a></li>
-                    <li><a href="#">Descending</a></li>
+                    <li><a href="/notes/view/notedate/ASC/{{this.id}}">Ascending</a></li>
+                    <li><a href="/notes/view/notedate/DESC/{{this.id}}">Descending</a></li>
                   </ul>
                 </li>  
 
-                 <li><a href="#">Document Type</a></li>
+                 <li><a href="/notes/view/doclink/DESC/{{this.id}}">Document Type</a></li>
               </ul>
             </div>
           </div> 
@@ -76,17 +78,17 @@
     </div>
   </div>
 
-
+{{/each}}
 
       <div class="panel-body">
         <table class="table table-striped table-hover ">
           <thead>
             <tr>
-              <th>Contributor</th>
-              <th>Link</th>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Date</th>
+              <th><b>Contributor<b></th>
+              <th><b>Link</b></th>
+              <th><b>Title</b></th>
+              <th><b>Description</b></th>
+              <th><b>Date</b></th>
                <th> </th>
             </tr>
           </thead>
