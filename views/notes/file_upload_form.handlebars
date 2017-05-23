@@ -104,9 +104,8 @@
       request.
     */
     function getSignedRequest(file){
-      debugger
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "/notes/sign-s3?file-name=${file.name}&file-type=${file.type}");
+      xhr.open("GET", "/notes/sign-s3?file-name="+file.name+"&file-type="+file.type);
       xhr.onreadystatechange = () => {
         console.log("ready state - " + xhr.readyState)
         if(xhr.readyState === 4){
