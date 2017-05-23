@@ -3,7 +3,6 @@
 // var passportTeacher = require("../config/passportTeacher");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-
 var db = require("../models");
 var express = require('express');
 var router = express.Router();
@@ -289,7 +288,7 @@ router.get("/sign-s3", (req, res) => {
     }
     const returnData = {
       signedRequest: data,
-      url: "https://${S3_BUCKET}.s3.amazonaws.com/${fileName}"
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
     };
     console.log(returnData);
     res.write(JSON.stringify(returnData));
