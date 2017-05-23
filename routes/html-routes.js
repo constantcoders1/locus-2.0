@@ -84,25 +84,4 @@ app.get("/clustermap", function(req, res) {
   });
 
 
-  // /people/anna
-
-  // // This is middleware for restrictng routes a user is not allowed to visit if not logged in
-  // app.get('/people/:stuff', function(req, res, next) {
-
-  //   // If the user is logged in, continue with the request to the restricted route
-  //   if (req.user) {
-  //     return next();
-  //   }
-
-  //   res.sendFile(path.join(__dirname + "/../public/people/people.html"));
-
-  // };
-
-
-  // app.get('/people/:id', function(req, res, next) {
-
-  //   res.sendFile(path.join(__dirname + "/../public/people/signedinpeople.html"));
-
-  // };
-
 };

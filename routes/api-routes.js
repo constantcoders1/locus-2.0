@@ -73,9 +73,11 @@ app.get('/view/studentid', function(req,res){
     });
 });
 
-  app.get("/studentlocations", function(req, res) {
+
+app.get("/projectmap/?projid", function(req, res) {
     debugger
-    console.log("getting student lat lng for heatmap");
+    console.log(req.params.projid)
+    console.log("getting student lat lng for clustermap");
     db.Student.findAll({
       attributes: ['latitude', 'longitude', "username"]
     }).then(function(genMapData) {
@@ -94,8 +96,29 @@ app.get('/view/studentid', function(req,res){
   })
 
 
-   app.get("/studentheatlocations", function(req, res) {
+
+
+  app.get("/studentlocations", function(req, res) {
     debugger
+    console.log("getting student lat lng for heatmap");
+    db.Student.findAll({
+      attributes: ['latitude', 'longitude']
+    }).then(function(genMapData) {
+       var mapPoints = []
+      for(i in genMapData){
+        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
+         var pushPoint = genMapData[i].dataValues
+        mapPoints.push(pushPoint);
+      }
+      
+      console.log(mapPoints);
+      res.json(mapPoints);
+      // var mapData=[]
+    })
+  })
+
+
+   app.get("/studentheatlocations", function(req, res) {
     console.log("getting student lat lng for heatmap");
     db.Student.findAll({
       attributes: ['latitude', 'longitude']
@@ -186,28 +209,6 @@ app.get('/view/studentid', function(req,res){
     }
     });
   });
-
- 
-
-  // //POST Route for entering observations
-  // app.post("/api/fieldnotes", function(req, res) {
-  //   console.log(req.body);
-  //   db.User.create({
-  //     email: req.body.email,
-  //     password: req.body.password
-  //   }).then(function() {
-  //     res.redirect(307, "/api/login");
-  //   }).catch(function(err) {
-  //     res.json(err);
-  //   });
-  // });
-
-
-  // Route for getting some data about our user to be used client side
-
-  // this needs to be updated since we are pulling user info from
-  // different tables if it is a student or teacher
-
 
 app.get("/api/user_data", function(req, res) {
     if (!req.user) {
