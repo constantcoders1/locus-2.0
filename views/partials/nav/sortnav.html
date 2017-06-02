@@ -1,33 +1,59 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
+<!-- 
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown open">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Sort By: <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Contributor</a></li>
-            <li><a href="#">Date</a></li>
-            <li><a href="#">Type</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Cancel</a></li>
-          </ul>
-        </li>
+
+
+<nav class="navbar " class="fieldnotesnav">
+  <div class="container-fluid">
+
+ <h3>Field Notes</h3>
+
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div> -->
+<!--     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     
+      <ul class="nav navbar-nav navbar-right">
+
+
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+
+                  <!-- <span id="search_concept">Sort by</span> <span class="caret"></span> -->
+               <a tabindex="-1" >Sort by</span> <span class="caret"></span></a>
+               
+
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li class='sub' >
+                    <a tabindex="-1" >Contributer<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="/notes/view/username/ASC/{{this.id}}">Ascending</a></li>
+                      <li><a href="/notes/view/username/DESC/{{this.id}}">Descending</a></li>
+                    </ul>
+                  </li>
+
+                  <li class='sub' >
+                    <a tabindex="-1" >Date<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="/notes/view/notedate/ASC/{{this.id}}">Ascending</a></li>
+                      <li><a href="/notes/view/notedate/DESC/{{this.id}}">Descending</a></li>
+                    </ul>
+                  </li>  
+
+                  <li><a href="/notes/view/doclink/DESC/{{this.id}}">Document Type</a></li>
+                </ul>
+              </ul>
+            </ul>
+
+
+
+        <li><a href = "notes/projectmap/{{this.id}}">Class Map</a></li>
       </ul>
-       
-      </div>
-    </div>
-  </nav> 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>   --> -->

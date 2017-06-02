@@ -15,6 +15,23 @@ form.login {
   margin-top: 50px;
 }
 
+#nav-header {
+  font-weight: bold;
+  font-size: 26px;
+  color: #2c3e50;
+}
+
+#fieldnotesnav {
+  background-color: #ecf0f1;
+  color: black;
+}
+
+#notes-nav,
+#notes-nav2 {
+  color: #2c3e50;
+}
+
+
 /*required input field. this doesn't work yet*/
 
 input.required:after { content: " *"; }
@@ -45,11 +62,15 @@ display: block;
 /*working to get the image to merge with navbar on home.html*/
 .homenav{
   margin-bottom : 0;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 #bannernav{
   background-color: #78bcaf;
   height: 6em;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .btn btn-success{
@@ -160,21 +181,28 @@ display: block;
   /* equal to footer height */
   margin-bottom: -50px; 
 }
+
+
 .page-wrap:after {
   content: "";
   display: block;
 }
+
+
 #quesiton_button{
   float: right;
 }
+
 
 .site-footer, .page-wrap:after {
   height: 50px; 
 }
 
+
 .align-right {
   text-align: right;
 }
+
 
 footer {
   background: #2C3E50;
