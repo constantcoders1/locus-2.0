@@ -243,5 +243,48 @@ router.post('/join-project/:projectid', isAuthenticated, function(req,res){
     });
 });
 
+router.get('/leaderboard', isAuthenticated, function(req, res) {
+  // get all projects from database 
+  if (req.user){
+  db.Fieldnote.findAll({
+  group: ['StudentId'],
+  attributes: ['StudentId', [db.sequelize.fn('COUNT', 'StudentId'), 'DataCount']],
+}).then(function (data) {
+  res.json(data)
+});
+
+  /*if (req.user){
+    db.Project.findAll({include: [db.Educator]
+    }).then(function(dbProject1) {
+        // Find projects student is already signed up for 
+        db.StudentToProject.findAll({where: {StudentId: req.user.id}}).then(function(dbS2P) {
+          var matches = []
+          for (i in dbS2P){
+            matches.push(dbS2P[i].dataValues.ProjectId)
+          }
+
+          var data = []
+          for (p in dbProject1){
+            if (matches.indexOf(dbProject1[p].dataValues.id) > -1){
+              dbProject1[p]["match"] = true
+            }else{
+              dbProject1[p]["match"] = false
+            }
+            data.push(dbProject1[p])
+
+          }
+          console.log(data)
+     //      var objForHandlebars = {"data": dbProject1, "Matches": dbS2P}
+     //      console.log(objForHandlebars["Matches"])
+
+     // console.log(objForHandlebars)
+    
+    res.render("students/project-view", {"data": data})
+    });
+  });*/
+  }
+});
+
+
 
 module.exports = router;
