@@ -45,10 +45,6 @@ router.get('/viewall', isAuthenticated, function(req, res) {
 });
 
 
-// Sorting Test Code Start
-// figure out where it gets called to add extra req params
-// if sorting is descending order pass along with field in the call
-// ascending sort is assumed by sequelize
 
 router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(req, res) {
   console.log("long sorting req = " + req.params.sortfield + ", " + req.params.direction)
@@ -75,7 +71,8 @@ router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(r
        order: sortinfo,
         include: [db.Student]
     }).then(function(dbFieldnotes) {
-      // console.log(dbFieldnotes)
+      // console.log("***************************************")
+      // console.log("dbFieldnotes = " + dbFieldnotes)
       var newFieldNotes = []
         for (i in dbFieldnotes){
            var showDelete = false;
@@ -89,10 +86,8 @@ router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(r
       console.log(dbProject)
       
       if (req.user.role == "Educator") {
-        console.log("render Educator nav")
         res.render("notes/notes_view_educator", {data: dbFieldnotes, Project: dbProject, userEducator: true })
       } else {
-        console.log("render student nav")
         res.render("notes/notes_view_student", {data: dbFieldnotes, Project: dbProject, userEducator: false })
       }
 
@@ -102,7 +97,32 @@ router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(r
    });
 
 
-// Sorting Test Code End
+
+// router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
+//     console.log("project map!?!")
+//     debugger
+//     console.log(req.params.projid)
+//     console.log("getting student lat lng for clustermap");
+//     db.Student.findAll({
+//       attributes: ['latitude', 'longitude', 'username'],
+//       include: [{model: studentstoprojects,
+//                 where: {StudentId: sequelize.col("students.id")} 
+//               }]
+//     }).then(function(genMapData) {
+//         console.log(genMapData)
+//        var mapPoints = []
+//       for(i in genMapData){
+//         // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
+//          var pushPoint = genMapData[i].dataValues
+//         mapPoints.push(pushPoint);
+//       }
+      
+//       console.log(mapPoints);
+//       res.json(mapPoints);
+//       // var mapData=[]
+//     })
+//   })
+
 
 
 router.get('/view/:projectid', isAuthenticated, function(req, res) {
@@ -135,18 +155,17 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
       console.log(req.user.role)
       console.log(dbProject)
       
+
       if (req.user.role == "Educator") {
-        console.log("render Educator nav")
         res.render("notes/notes_view_educator", {data: dbFieldnotes, Project: dbProject, userEducator: true })
       } else {
-        console.log("render student nav")
         res.render("notes/notes_view_student", {data: dbFieldnotes, Project: dbProject, userEducator: false })
       }
 
-   
-       });
       });
    });
+  });
+
 
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
@@ -212,33 +231,27 @@ rp(options)
 
         var date = moment(response.currently).format( "MM-DD-YYYY");
 
-       // for checking to make timezone conversions are correct.
-       console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
-       console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
-       console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
-      console.log("timezone = "+ timezone)       
+        // for checking to make timezone conversions are correct.
+        console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
+        console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
+        console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
+        console.log("timezone = "+ timezone)       
 
-      var tempdata = "High:  " + hightemp + "    Low:  " + lowtemp
-      var sundata =  "    Sunrise:  " + sunriseLocal + "    Sunset:  " + sunsetLocal;
+        var tempdata = "High:  " + hightemp + "    Low:  " + lowtemp
+        var sundata =  "    Sunrise:  " + sunriseLocal + "    Sunset:  " + sunsetLocal;
 
-      var weatherdata = tempdata + " " + sundata
+        var weatherdata = tempdata + " " + sundata
 
-      console.log(tempdata)
-      console.log(sundata)
+        console.log(tempdata)
+        console.log(sundata)
 
-      res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
+        res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
 
-    })
-    .catch(function (err) {
+        }).catch(function (err) {
        // console.log("error")
+      });
     });
-
-
   });
-
-});
-
-
 
 
 router.post("/create/:projectid/:studentid", function(req, res) {

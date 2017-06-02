@@ -1,0 +1,31 @@
+
+<nav class="navbar navbar-default" id="fieldnotesnav">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     
+      <a class="navbar-brand" id="nav-header" href="#">Field Notes</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Sort by<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/notes/view/username/ASC/{{this.id}}">Contributer - Ascending</a></li>
+            <li><a href="/notes/view/username/DESC/{{this.id}}">Contributer - Descending</a></li>
+            <li class="divider"></li>
+            <li><a href="/notes/view/notedate/ASC/{{this.id}}"> Date - Ascending</a></li>
+            <li><a href="/notes/view/notedate/DESC/{{this.id}}">Date - Descending</a></li>
+            <li class="divider"></li>
+            <li><a href="/notes/view/doclink/DESC/{{this.id}}">Document Type</a></li>
+          </ul>
+        </li>
+        <li><a href = "/notes/projectmap/{{this.id}}">Class Map</a></li>
+      </ul>
+      
+
+    </div>
+  </div>
+</nav>
+
+
