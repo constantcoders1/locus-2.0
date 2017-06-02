@@ -40,7 +40,7 @@ app.get('/view/studentid', function(req,res){
          id: req.body.id,
     },
     include: [db.StudentToProject]
-  }).then(function(result) {
+    }).then(function(result) {
       var student_objs = result; 
 
       // Get the ids of each of the projects the student is working on 
@@ -74,66 +74,18 @@ app.get('/view/studentid', function(req,res){
 });
 
 
-app.get("/projectmap/?projid", function(req, res) {
-    debugger
-    console.log(req.params.projid)
-    console.log("getting student lat lng for clustermap");
-    db.Student.findAll({
-      attributes: ['latitude', 'longitude', "username"]
-    }).then(function(genMapData) {
-        console.log(genMapData)
-       var mapPoints = []
-      for(i in genMapData){
-        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
-         var pushPoint = genMapData[i].dataValues
-        mapPoints.push(pushPoint);
-      }
-      
-      console.log(mapPoints);
-      res.json(mapPoints);
-      // var mapData=[]
-    })
-  })
-
-
-
 
   app.get("/studentlocations", function(req, res) {
-    debugger
-    console.log("getting student lat lng for heatmap");
+
     db.Student.findAll({
       attributes: ['latitude', 'longitude']
     }).then(function(genMapData) {
        var mapPoints = []
       for(i in genMapData){
-        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
-         var pushPoint = genMapData[i].dataValues
+        var pushPoint = genMapData[i].dataValues
         mapPoints.push(pushPoint);
       }
-      
-      console.log(mapPoints);
       res.json(mapPoints);
-      // var mapData=[]
-    })
-  })
-
-
-   app.get("/studentheatlocations", function(req, res) {
-    console.log("getting student lat lng for heatmap");
-    db.Student.findAll({
-      attributes: ['latitude', 'longitude']
-    }).then(function(genMapData) {
-        console.log(genMapData)
-       var mapPoints = []
-      for(i in genMapData){
-        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
-         var pushPoint = genMapData[i].dataValues
-        mapPoints.push(pushPoint);
-      }
-      
-      console.log(mapPoints);
-      res.json(mapPoints);
-      // var mapData=[]
     })
   })
 

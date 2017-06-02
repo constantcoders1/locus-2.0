@@ -1,13 +1,10 @@
 {{#if userEducator}}
     {{> nav/loggedineducator}}
-<!-- notes/notes_view_educator.handlebars as educator -->
 {{else}}
     {{>nav/loggedinstudent}}
-    <!-- notes/notes_view_educator.handlebars as student -->
 {{/if}}
 
 
-<!-- notes/notes_view_educator.handlebars -->
 {{#each Project}}
 
 
@@ -16,74 +13,21 @@
     <div class="container">
       <div class="row">
         <div class ="col-md-3"><img  src= "{{this.image_url}}"  height="150" width="150"> </div>
-          <div class ="col-md-6">   
-                  <div><b>Details:</b> {{this.tagLine}} </div>
-                  <div><b>Location:</b> {{this.location}} </div>
-                  <div><b>Instructions:</b> {{this.instructions}} </div>
-                  <div><b>Announcements:</b> {{this.current_announcements}} </div>
-                 
-            </div>  
-            <div class ="col-md-3">
-                 
-                
-
-                  </div>    
-  
-  <!-- Moved the end each from this line -->
-
- </div>
- </div>
-
-  </div>
-
-
-
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="row">
-        <h3>Field Notes</h3>
-
-        <div class="col-md-1 col-md-offset-7">
-          <a href = "/clusterF?{{this.id}}" class="btn btn-default">Class Map</a>
-        </div>
-
-   
-     
-        <div class="col-md-1 col-md-offset-9">
-          <div class="input-group">
-            <div class="input-group-btn search-panel">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span id="search_concept">Sort by</span> <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <li class='sub' >
-                  <a tabindex="-1" >Contributer<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="/notes/view/username/ASC/{{this.id}}">Ascending</a></li>
-                    <li><a href="/notes/view/username/DESC/{{this.id}}">Descending</a></li>
-                  </ul>
-                </li>
-
-
-                <li class='sub' >
-                  <a tabindex="-1" >Date<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="/notes/view/notedate/ASC/{{this.id}}">Ascending</a></li>
-                    <li><a href="/notes/view/notedate/DESC/{{this.id}}">Descending</a></li>
-                  </ul>
-                </li>  
-
-                 <li><a href="/notes/view/doclink/DESC/{{this.id}}">Document Type</a></li>
-              </ul>
-            </div>
-          </div> 
-        </div>
+        <div class ="col-md-6">   
+                <div><b>Details:</b> {{this.tagLine}} </div>
+                <div><b>Location:</b> {{this.location}} </div>
+                <div><b>Instructions:</b> {{this.instructions}} </div>
+                <div><b>Announcements:</b> {{this.current_announcements}} </div>
+               
+        </div>  
+      </div>
     </div>
-  </div>
+</div>
 
+        {{>nav/fieldnotesnav}}
+          
 {{/each}}
-
+    <div class="panel panel-default">
       <div class="panel-body">
         <table class="table table-striped table-hover ">
           <thead>
@@ -124,4 +68,4 @@
         </table> 
 
       </div>
-    </div>
+    <!-- </div> -->
