@@ -26,6 +26,12 @@ form.login {
   color: black;
 }
 
+#notes-nav,
+#notes-nav2 {
+  color: #2c3e50;
+}
+
+
 /*required input field. this doesn't work yet*/
 
 input.required:after { content: " *"; }
