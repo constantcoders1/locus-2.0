@@ -98,30 +98,30 @@ router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(r
 
 
 
-// router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
-//     console.log("project map!?!")
-//     debugger
-//     console.log(req.params.projid)
-//     console.log("getting student lat lng for clustermap");
-//     db.Student.findAll({
-//       attributes: ['latitude', 'longitude', 'username'],
-//       include: [{model: studentstoprojects,
-//                 where: {StudentId: sequelize.col("students.id")} 
-//               }]
-//     }).then(function(genMapData) {
-//         console.log(genMapData)
-//        var mapPoints = []
-//       for(i in genMapData){
-//         // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
-//          var pushPoint = genMapData[i].dataValues
-//         mapPoints.push(pushPoint);
-//       }
+router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
+    console.log("project map!?!")
+    debugger
+    console.log(req.params.projid)
+    console.log("getting student lat lng for clustermap");
+    db.Student.findAll({
+      attributes: ['latitude', 'longitude', 'username'],
+      include: [{model: Studentstoproject,
+                where: {StudentId: sequelize.col("students.id")} 
+              }]
+    }).then(function(genMapData) {
+        console.log(genMapData)
+       var mapPoints = []
+      for(i in genMapData){
+        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
+         var pushPoint = genMapData[i].dataValues
+        mapPoints.push(pushPoint);
+      }
       
-//       console.log(mapPoints);
-//       res.json(mapPoints);
-//       // var mapData=[]
-//     })
-//   })
+      console.log(mapPoints);
+      res.json(mapPoints);
+      // var mapData=[]
+    })
+  })
 
 
 
