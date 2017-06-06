@@ -29,14 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    // projectId: {
-    //   type: DataTypes.INTEGER, 
-    //   allowNull: false, 
-    // },
-    // studentId: {
-    //   type: DataTypes.INTEGER, 
-    //   allowNull: false, 
-    // },
+   
   }, {
    
   });

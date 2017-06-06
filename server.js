@@ -40,24 +40,11 @@ var exphbs = require("express-handlebars");
 
 // app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 
-
 var hbs = exphbs.create({
-    // Specify helpers which are only registered on this instance.
-    helpers: {
-        
-        studentOrTeacher: function(role) {
-        	return role
-      //   	if (role == "Educator" ) {
-      // 			console.log("Educator")
-      //   	return "> nav/loggedineducator"
-    		// } else {
-      // 			console.log("student")
-      //   	return "> nav/loggedinstudent"
-    		// }
-        }
-    },
+
     defaultLayout: "main"
 });
+
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
