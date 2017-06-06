@@ -98,31 +98,38 @@ router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(r
 
 
 
+
 router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
     console.log("project map!?!")
     debugger
     console.log(req.params.projid)
     console.log("getting student lat lng for clustermap");
-    db.Student.findAll({
-      attributes: ['latitude', 'longitude', 'username'],
-      include: [{model: Studentstoproject,
-                where: {StudentId: sequelize.col("students.id")} 
-              }]
+      
+    db.StudentToProject.findAll({
+      where: {ProjectId: req.params.projid,
+      },
+      include: [db.Student]
     }).then(function(genMapData) {
         console.log(genMapData)
        var mapPoints = []
+       var pushPoint = {}
       for(i in genMapData){
-        // var pushPoint = genMapData[i].dataValues.latitude + ", " + genMapData[i].dataValues.longitude 
-         var pushPoint = genMapData[i].dataValues
+         pushPoint = {
+              "name": genMapData[i].Student.username,
+              "place" : {
+                lat : parseFloat(genMapData[i].Student.latitude),
+                lng : parseFloat(genMapData[i].Student.longitude),
+              },
+        }
         mapPoints.push(pushPoint);
+     
       }
-      
+      console.log("map points ************************************")
       console.log(mapPoints);
-      res.json(mapPoints);
-      // var mapData=[]
+      // res.json(mapPoints);
+      res.render("projects/projectmap", {locations: mapPoints})
     })
   })
-
 
 
 router.get('/view/:projectid', isAuthenticated, function(req, res) {

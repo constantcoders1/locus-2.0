@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- clustermap.html -->
+    <!-- studentmap.html -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Student Map</title>
+    <title>Class Map</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -25,8 +25,10 @@
   <body>
     <div id="map"></div>
     <script>
+      console.log("public/studentmap")
+      document.getElementById("proj").innerHTML = window.location.search;
 
-    
+      // var project=req.params.proj
       function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -34,34 +36,36 @@
           center: {lat: 37.775, lng: -122.434},
         });
 
-         $.get("/studentlocations")
-
-          .then(function(data){
-            var locations = []
-        
-            for (i in data) {
-              tmpData = {
-              "name": data[i].username,
-              "place" : {
-                lat : parseFloat(data[i].latitude),
-                lng : parseFloat(data[i].longitude),
-              }
-            }
-              console.log(tmpData)
-              locations.push(tmpData)
-            }
+          // $.get("/classloctions")
+          // .then(function(data){
+          //   var locations = []
+    
+            // for (i in data) {
+            //   tmpData = {
+            //   "name": data[i].username,
+            //   "place" : {
+            //     lat : parseFloat(data[i].latitude),
+            //     lng : parseFloat(data[i].longitude),
+            //   }
+            // }
+            //   console.log(tmpData)
+            //   locations.push(tmpData)
+            // }
            
+
+        
+       
          var markers = locations.map(function(locations, i) {
           return new google.maps.Marker({
             position: locations.place,
           });
           console.log("markers:  "+ markers)
-        });
+        };
 
         // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-       })
+       }
 
 }
 
