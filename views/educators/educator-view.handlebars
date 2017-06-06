@@ -16,7 +16,7 @@
 
 
 <div class="col-md-12">
-  <h3>Announcements</h3>
+ <!--  <h3>Announcements</h3> -->
     <div class="form-group">        
         {{#each data}}
          <div class="well well-lg">
@@ -31,7 +31,10 @@
                   <textarea class="form-control" rows="3" name="announcement">{{current_announcements}}</textarea>
                   <br>
                   <button class="btn btn-success" type="submit">Update Announcement</button>
+                  <a href="/notes/view/{{id}}" method="GET" class="btn btn-primary">View Field Notes</a>
+                  <br><br>
                   <a href="/educator/my-students/{{id}}" method="GET" class="btn btn-primary">View Students</a>
+                  <a href="/project/update/{{id}}" class="btn btn-success" method="GET">Update Project</a>
                  </form>
               </div>
             </div>
