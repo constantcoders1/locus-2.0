@@ -246,13 +246,16 @@ router.post('/join-project/:projectid', isAuthenticated, function(req,res){
 router.get('/leaderboard', isAuthenticated, function(req, res) {
   // get all projects from database 
   if (req.user){
-  db.Fieldnote.findAll({
+/*  db.Fieldnote.findAll({
   group: ['StudentId'],
   attributes: ['StudentId', [db.sequelize.fn('COUNT', 'StudentId'), 'DataCount']],
 }).then(function (data) {
   res.json(data)
+});*/
+db.sequelize.query("select count(*) projCt, st.username un, pj.name  pi , YEAR(fn.UpdatedAt) yr, MONTH(fn.UpdatedAt) mo , MONTHNAME(fn.UpdatedAt) mname from fieldnotes fn, students st, projects pj where fn.StudentId = st.id and pj.id = fn.ProjectId group by un, pi, yr, mo, mname order by projCt desc"
+  ).then(function(data) {
+    res.json(JSON.stringify(data));
 });
-
   /*if (req.user){
     db.Project.findAll({include: [db.Educator]
     }).then(function(dbProject1) {
