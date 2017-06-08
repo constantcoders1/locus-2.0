@@ -141,6 +141,13 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
       for (i in result){
         notes_array.push(result[i].dataValues.Fieldnote)
       }
+
+
+      // need to test for 0 results to avoid an error.
+
+      // This also returns all field notes for the student not just for the project.  We can add a 
+      // column to show the project or pass project to get only project specific notes.
+
       // don't know why this was the only way I could get date to look correct
       for (i in notes_array) {
         notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
