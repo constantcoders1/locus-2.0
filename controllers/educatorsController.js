@@ -135,29 +135,33 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
     },
     include: [db.Fieldnote]
   }).then(function(result) {
-      // Grab info about this student 
       var student_obj = result[0].dataValues; 
-      var notes_array = []
-      for (i in result){
-        notes_array.push(result[i].dataValues.Fieldnote)
-      }
 
+      if (result[0].dataValues.Fieldnote == null) {
+        var objForHandlebars = {"student": student_obj}      
+        res.render("errors/nofieldnotes", {data: objForHandlebars})
+      
+      } else {
+        // Grab info about this student 
+        var notes_array = []
+        for (i in result){
+          notes_array.push(result[i].dataValues.Fieldnote)
+        }
 
-      // need to test for 0 results to avoid an error.
+        // This also returns all field notes for the student not just for the project.  We can add a 
+        // column to show the project or pass project to get only project specific notes.
 
-      // This also returns all field notes for the student not just for the project.  We can add a 
-      // column to show the project or pass project to get only project specific notes.
+        // don't know why this was the only way I could get date to look correct
+        for (i in notes_array) {
+          notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
+        }
 
-      // don't know why this was the only way I could get date to look correct
-      for (i in notes_array) {
-        notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
-      }
-
-      objForHandlebars = {"student": student_obj,
-                          "notes": notes_array,
-                          "UserEducator": true}                 
-      res.render("educators/student-data", {data: objForHandlebars} )
-    });
+        objForHandlebars = {"student": student_obj,
+                            "notes": notes_array,
+                            "UserEducator": true}                 
+        res.render("educators/student-data", {data: objForHandlebars} )
+      } // end of else
+    });   // end of .then
   }
 });
 
