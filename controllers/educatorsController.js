@@ -68,7 +68,6 @@ router.get('/viewprojects',  function(req, res) {
   
   
     db.Project.findAll({}).then(function(dbProject) {
-    //res.send("View Notes");
     console.log(dbProject);
      res.render("educators/project-view", {data: dbProject});
         console.log('---------------------------');
@@ -112,19 +111,16 @@ router.get('/my-students/:projid', function(req,res){
       }
       
       var projObj = result[0].dataValues.Project
-      // console.log("projObj " + projObj)
 
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
       
-
       res.render("educators/my-students", {data: objForHandlebars} )
         console.log('---------------------------');
         console.log('-----HIT LINE 89 in educatorsController.js----');
         console.log('---------------------------');
     });
 });
-
 
 
 router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
@@ -170,21 +166,17 @@ router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
 // Get project(s) this student is working to display as options in the form 
 
 router.get('/new-entry/:studentid/:projectid', function(req,res){
-  // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-      res.send("Student's form for posting new data ");;
-    // });
+      res.send("Student's form for posting new data ");
 });
 
 // Post new entry to the database 
 
 router.post('/new-entry/:studentid/:projectid', function(req,res){
-  // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-      res.send("Student posted new entry to the database");;
-    // });
+      res.send("Student posted new entry to the database");
 });
 
-router.post('/update-announcement/:projectid', function(req,res){
 
+router.post('/update-announcement/:projectid', function(req,res){
   var newAnnouncement = {current_announcements: req.body.announcement}
   db.Project.update(newAnnouncement,
     {

@@ -222,8 +222,6 @@ router.get('/weather/:projectid/:studentid', function(req, res){
 
 rp(options)
     .then(function (response) {
-
-        // console.log(response)
       
         var timezone = response.timezone;
         
@@ -270,14 +268,12 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     db.Fieldnote.create(req.body).then(function() {
         console.log("created a note")
             res.redirect( myRoute);
-            //res.send(req.body);
     }).catch(function(err) {
         console.log(err);
         res.json(err);
     }); 
-
-    // need to get keyword & look up teacher id
 });
+
 
 router.get('/fileupload/:projectid/:studentid', isAuthenticated, (req, res) =>
        res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id }));
