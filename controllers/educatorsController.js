@@ -66,7 +66,6 @@ router.get('/navview', isAuthenticated, function(req,res){
 
 router.get('/viewprojects',  function(req, res) {
   
-  
     db.Project.findAll({}).then(function(dbProject) {
     console.log(dbProject);
      res.render("educators/project-view", {data: dbProject});
@@ -106,7 +105,9 @@ router.get('/my-students/:projid', function(req,res){
       console.log(result)
       // push data object for each student working on this project to an array 
       var studentObjArray = []
+      var projnum = req.params.projid
       for (i in result){
+        result[i].dataValues.Student.project = projnum
         studentObjArray.push(result[i].dataValues.Student)
       }
       
@@ -122,44 +123,50 @@ router.get('/my-students/:projid', function(req,res){
     });
 });
 
-
-router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
+// this is passing project id not studentid 
+router.get('/student-data/:studentid/:projectid', isAuthenticated,  function(req,res){
   if (req.user.role == "Educator"){
-  db.Student.findAll({ 
+  
+  db.Student.findAll({
     where: {
-      id: req.params.studentid,
+      id: req.params.studentid
     },
-    include: [db.Fieldnote]
-  }).then(function(result) {
-      var student_obj = result[0].dataValues; 
+    attributes: ["username"],
+  }).then(function(studentresults) {
 
-      if (result[0].dataValues.Fieldnote == null) {
-        var objForHandlebars = {"student": student_obj}      
-        res.render("errors/nofieldnotes", {data: objForHandlebars})
+    var student_obj = studentresults[0].dataValues;
+    console.log("student_obj = " + student_obj)
+
+    db.Fieldnote.findAll({ 
+      where: {
+        StudentId: req.params.studentid,
+        ProjectId: req.params.projectid
+        }
+      }).then(function(result) {
+
+        if (result[0] == null) {
+          var objForHandlebars = {"student": student_obj}      
+          res.render("errors/nofieldnotes", {data: objForHandlebars})
       
-      } else {
-        // Grab info about this student 
-        var notes_array = []
-        for (i in result){
-          notes_array.push(result[i].dataValues.Fieldnote)
-        }
+        } else {
+          // Grab info about this student 
+          var notes_array = []
+          for (i in result){
 
-        // This also returns all field notes for the student not just for the project.  We can add a 
-        // column to show the project or pass project to get only project specific notes.
+            notes_array.push(result[i].dataValues)
+            notes_array[i].notedate = moment(notes_array[i].notedate).format("MM-DD-YYYY") 
+          }
 
-        // don't know why this was the only way I could get date to look correct
-        for (i in notes_array) {
-          notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
-        }
-
-        objForHandlebars = {"student": student_obj,
+          objForHandlebars = {"student": student_obj,
                             "notes": notes_array,
                             "UserEducator": true}                 
-        res.render("educators/student-data", {data: objForHandlebars} )
+          res.render("educators/student-data", {data: objForHandlebars} )
       } // end of else
     });   // end of .then
-  }
-});
+  })  
+}
+
+})
 
 
 // Form for posting data 

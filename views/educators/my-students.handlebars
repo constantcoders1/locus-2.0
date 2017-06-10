@@ -10,16 +10,16 @@
       <table class="table table-striped table-hover ">
         <thead>
           <tr>
-            <th>Username</th>
-            <th>Link to Student Data</th>
-            <th>Email</th>
+            <th><b>Username</b></th>
+            <th><b>Link to Student Data</b></th>
+            <th><b>Email</b></th>
           </tr>
         </thead>
 		    <tbody>
 		    	{{#each data.students}}
 			      <tr>
-			        <td><a href="/educator/student-data/{{id}}">{{username}}</a></td>
-			        <td><a href="/educator/student-data/{{id}}""><span class="glyphicon glyphicon-file"></span></a></td>
+			        <td><a href="/educator/student-data/{{id}}/{{project}}" >{{username}}</a></td>
+			        <td><a href="/educator/student-data/{{id}}/{{project}}"><span class="glyphicon glyphicon-file"></span></a></td>
 			        <td>{{email}}</td>
 			      </tr>
 		      {{/each}}
