@@ -100,17 +100,12 @@ router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(r
 
 
 router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
-    console.log("project map!?!")
-    debugger
-    console.log(req.params.projid)
-    console.log("getting student lat lng for clustermap");
-      
+   
     db.StudentToProject.findAll({
       where: {ProjectId: req.params.projid,
       },
       include: [db.Student]
     }).then(function(genMapData) {
-        console.log(genMapData)
        var mapPoints = []
        var pushPoint = {}
       for(i in genMapData){
@@ -124,9 +119,6 @@ router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
         mapPoints.push(pushPoint);
      
       }
-      console.log("map points ************************************")
-      console.log(mapPoints);
-      // res.json(mapPoints);
       res.render("projects/projectmap", {locations: mapPoints})
     })
   })
@@ -162,7 +154,6 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
       console.log(req.user.role)
       console.log(dbProject)
       
-
       if (req.user.role == "Educator") {
         res.render("notes/notes_view_educator", {data: dbFieldnotes, Project: dbProject, userEducator: true })
       } else {
@@ -207,7 +198,6 @@ router.get('/weather/:projectid/:studentid', function(req, res){
   }).then(function(studentdata) {
     var lng = studentdata[0].longitude
     var lat = studentdata[0].latitude
-    console.log(lng + ", " + lat)
 
     var proj = req.params.projectid;
     var stud = req.params.studentid;
@@ -222,8 +212,6 @@ router.get('/weather/:projectid/:studentid', function(req, res){
 
 rp(options)
     .then(function (response) {
-
-        // console.log(response)
       
         var timezone = response.timezone;
         
@@ -270,14 +258,12 @@ router.post("/create/:projectid/:studentid", function(req, res) {
     db.Fieldnote.create(req.body).then(function() {
         console.log("created a note")
             res.redirect( myRoute);
-            //res.send(req.body);
     }).catch(function(err) {
         console.log(err);
         res.json(err);
     }); 
-
-    // need to get keyword & look up teacher id
 });
+
 
 router.get('/fileupload/:projectid/:studentid', isAuthenticated, (req, res) =>
        res.render("notes/file_upload_form", {projectid: req.params.projectid, studentid:  req.user.id }));
