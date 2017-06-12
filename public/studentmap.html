@@ -20,19 +20,23 @@
       #map {
         height: 100%;
       }
+
+      .page-wrap {
+        min-height: 10%;
+      }
       /* Optional: Makes the sample page fill the window. */
-     /* html, body {
-        height: 100%;
+      html, body {
+        height: 83%;
         margin: 0;
         padding: 0;
-      }*/
+      }
     </style>
  
      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
   </head>
   <body>
-
+    <div class="page-wrap">
    
       <nav class="navbar navbarEducator" id="bannernav">
         <img class="navbar-brand" id="logo" alt="logo" src="/images/locus.png">
@@ -66,8 +70,7 @@
         </div><!-- /.container-fluid -->
       </nav>  
 
-    
-
+    </div>
 
     <div id="map"></div>
     <script>
@@ -77,8 +80,8 @@
       function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 3,
-          center: {lat: 37.775, lng: -122.434},
+          zoom: 2,
+          center: {lat: 25.482951175355307, lng: -23.37890625},
         });
 
 
