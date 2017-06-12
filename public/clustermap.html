@@ -19,12 +19,16 @@
       #map {
         height: 100%;
       }
+
+      .page-wrap {
+        min-height: 10%;
+      }
       /* Optional: Makes the sample page fill the window. */
-      /*html, body {
-        height: 100%;
+      html, body {
+        height: 83%;
         margin: 0;
         padding: 0;
-      }*/
+      }
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
@@ -38,40 +42,42 @@
         <center><h3>SHARING SCIENCE GLOBALLY</h3></center>
       </nav>
 
-    <nav class="navbar navbar-default" class="homenav">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          
-        </div>
+      <nav class="navbar navbar-default" class="homenav">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            
+          </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="/teacher/login.html">Educator Login <span class="sr-only">(current)</span></a></li>
-            <li><a href="/student/login.html">Student Login</a></li>
-            <li><a href="/project/guestviewallprojects">All Projects</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-          <li><a href="/about.html">About</a></li>
-            <!-- <li><a href="#">Contact</a></li> -->
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>  
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+              <li><a href="/">Home</a></li>
+              <li><a href="/teacher/login.html">Educator Login <span class="sr-only">(current)</span></a></li>
+              <li><a href="/student/login.html">Student Login</a></li>
+              <li><a href="/project/guestviewallprojects">All Projects</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="/about.html">About</a></li>
+              <!-- <li><a href="#">Contact</a></li> -->
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>  
 
     </div>
-    
+
       <div id="map"></div>
     
     <!-- </div>   -->
-
+</body>
     <footer class="site-footer">
       <p>&copy; constantcoders 2017</p>
     </footer>
@@ -82,8 +88,8 @@
       function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 3,
-          center: {lat: 37.775, lng: -122.434},
+          zoom: 2,
+          center: {lat: 25.482951175355307, lng: -23.37890625},
         });
 
          $.get("/studentlocations")
@@ -122,6 +128,6 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIGy493c6wH8i1UTUA-03QwEOzsEpuV78&callback=initMap">
     </script>
    
-  </body>
+  <!-- </body> -->
 
 </html>
