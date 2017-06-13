@@ -103,23 +103,29 @@ router.get('/my-students/:projid', function(req,res){
       include: [db.Student, db.Project],
     }).then(function(result) {
       console.log(result)
-      // push data object for each student working on this project to an array 
-      var studentObjArray = []
-      var projnum = req.params.projid
-      for (i in result){
-        result[i].dataValues.Student.project = projnum
-        studentObjArray.push(result[i].dataValues.Student)
-      }
+      if (result[0] == null) {
+          // var objForHandlebars = {"error": student_obj}      
+          res.render("errors/errorpage", {errormsg: "There are no students for this project."})
       
-      var projObj = result[0].dataValues.Project
+        } else {
+          // push data object for each student working on this project to an array 
+          var studentObjArray = []
+          var projnum = req.params.projid
+          for (i in result){
+            result[i].dataValues.Student.project = projnum
+            studentObjArray.push(result[i].dataValues.Student)
+          }
+          
+          var projObj = result[0].dataValues.Project
 
-      var objForHandlebars = {"project": projObj,
-                              "students": studentObjArray}
-      
-      res.render("educators/my-students", {data: objForHandlebars} )
-        console.log('---------------------------');
-        console.log('-----HIT LINE 89 in educatorsController.js----');
-        console.log('---------------------------');
+          var objForHandlebars = {"project": projObj,
+                                  "students": studentObjArray}
+          
+          res.render("educators/my-students", {data: objForHandlebars} )
+            console.log('---------------------------');
+            console.log('-----HIT LINE 89 in educatorsController.js----');
+            console.log('---------------------------');
+      }
     });
 });
 
@@ -134,7 +140,7 @@ router.get('/student-data/:studentid/:projectid', isAuthenticated,  function(req
     attributes: ["username"],
   }).then(function(studentresults) {
 
-    var student_obj = studentresults[0].dataValues;
+    var student_obj = studentresults[0].dataValues.username;
     console.log("student_obj = " + student_obj)
 
     db.Fieldnote.findAll({ 
@@ -145,8 +151,8 @@ router.get('/student-data/:studentid/:projectid', isAuthenticated,  function(req
       }).then(function(result) {
 
         if (result[0] == null) {
-          var objForHandlebars = {"student": student_obj}      
-          res.render("errors/nofieldnotes", {data: objForHandlebars})
+          // var objForHandlebars = {"student": student_obj}      
+          res.render("errors/errorpage", {errormsg: "Sorry there are no field notes from " + student_obj +"."})
       
         } else {
           // Grab info about this student 
