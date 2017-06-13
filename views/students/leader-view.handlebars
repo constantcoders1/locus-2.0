@@ -1,10 +1,11 @@
 <!-- students\project-view.handlebars -->
   {{> nav/loggedinstudent}}
+  <div class="container">
     <div class="panel panel-default">
       <div class="panel-heading">
       <div class="row">
         <div class="col-md-10">
-          <h2>Leaders</h2>
+          <h2>Leader Board</h2>
         </div>
         <div class="col-md-2">
           
@@ -30,7 +31,7 @@
               <td class='col-md-2'> {{this.pname}}</td>
               <td class='col-md-2'> {{this.uname}}</td>
               <td class='col-md-2'> {{this.projCt}}</td>
-              <td class='col-md-2'> {{this.mname}}/{{this.yr}}</td>
+              <td class='col-md-2'> {{this.mname}} {{this.yr}}</td>
             </tr>
           {{/each}}
 
@@ -38,6 +39,7 @@
         </table> 
       </div>
     </div>
+  </div>
  
     
   
