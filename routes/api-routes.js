@@ -76,7 +76,7 @@ app.get('/view/studentid', function(req,res){
 
 
   app.get("/studentlocations", function(req, res) {
-
+    console.log("api-routes/studentlocations")
     db.Student.findAll({
       attributes: ['latitude', 'longitude']
     }).then(function(genMapData) {
@@ -88,6 +88,38 @@ app.get('/view/studentid', function(req,res){
       res.json(mapPoints);
     })
   })
+
+
+    app.get("/classlocations/:projid", function(req, res) {
+    console.log("api-routes/classlocations")
+    
+    console.log("proj = " + req.params.projid)
+
+      db.StudentToProject.findAll({
+      where: {ProjectId: req.params.projid,
+      },
+      include: [db.Student]
+    }).then(function(genMapData) {
+        console.log(genMapData)
+       var mapPoints = []
+      for(i in genMapData){
+        var pushPoint = {
+          "latitude": genMapData[i].Student.latitude,
+          "longitude": genMapData[i].Student.longitude,
+          "username": genMapData[i].Student.username,
+        }
+         
+        mapPoints.push(pushPoint);
+      }
+      console.log("map points ************************************")
+      console.log(mapPoints);
+      res.json(mapPoints);
+     
+    })
+
+  })
+
+
 
 
   app.get("/api/projects", function(req, res) {

@@ -3,12 +3,12 @@
 // var passportTeacher = require("../config/passportTeacher");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-
 var db = require("../models");
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
+
 
 router.get("/about/about-view", isAuthenticated, function(req,res) {
 
@@ -55,16 +55,14 @@ router.get('/viewallprojects', function(req, res) {
     });    
 });
 
+
 router.get('/guestviewallprojects', function(req, res) {
 
     db.Project.findAll({}).then(function(dbProject) {
-
-       
         res.render("projects/guest-project-view", {data: dbProject, });
-     
-
     });    
 });
+
 
 router.get('/view/:educatorid', function(req, res) {
     db.Project.findAll({
@@ -116,8 +114,7 @@ router.get('/:projectid/:studentid', function(req, res) {
     //res.send(dbFieldnotes);
     //console.log(dbFieldnotes);
     console.log(db.Project)
-    console.log("projectController  router.get/:projecti/:studentid")
-
+    console.log("projectController  router.get/:projectid/:studentid")
 
     if (req.user.role == "Educator") {
         console.log("render Educator nav")
@@ -132,13 +129,13 @@ router.get('/:projectid/:studentid', function(req, res) {
 
 router.put('/weather/:projectid/:studentid', function(req, res){
   console.log("clicked on get weather button project controller")
-
 })
 
 
 router.post('/view', function(req, res) {
     res.send('View Projects');
 });
+
 
 router.post("/update/:projectid", function(req, res) {
     // Update takes in an object describing the properties we want to update, and
@@ -154,6 +151,7 @@ router.post("/update/:projectid", function(req, res) {
       res.redirect("/project/viewall");
     });
   });
+
 
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Educator") {

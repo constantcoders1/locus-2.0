@@ -11,14 +11,19 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/home.html"));
   });
-
-// app.get("/heatmap", function(req, res) {
-//   res.sendFile(path.join(__dirname + "/../public/heatmap.html"))
-// });
    
 
 app.get("/clustermap", function(req, res) {
+  console.log("getting clustermap")
   res.sendFile(path.join(__dirname + "/../public/clustermap.html"))
+});
+
+
+app.get("/studentmap/:project", function(req, res) {
+  console.log("req = " + req)
+  res.send(req.params)
+  // res.render(req)
+  // res.sendFile(path.join(__dirname + "/../public/student.html"))
 });
 
  app.get("/student/signup", function(req, res) {

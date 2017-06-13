@@ -66,9 +66,7 @@ router.get('/navview', isAuthenticated, function(req,res){
 
 router.get('/viewprojects',  function(req, res) {
   
-  
     db.Project.findAll({}).then(function(dbProject) {
-    //res.send("View Notes");
     console.log(dbProject);
      res.render("educators/project-view", {data: dbProject});
         console.log('---------------------------');
@@ -107,17 +105,17 @@ router.get('/my-students/:projid', function(req,res){
       console.log(result)
       // push data object for each student working on this project to an array 
       var studentObjArray = []
+      var projnum = req.params.projid
       for (i in result){
+        result[i].dataValues.Student.project = projnum
         studentObjArray.push(result[i].dataValues.Student)
       }
       
       var projObj = result[0].dataValues.Project
-      // console.log("projObj " + projObj)
 
       var objForHandlebars = {"project": projObj,
                               "students": studentObjArray}
       
-
       res.render("educators/my-students", {data: objForHandlebars} )
         console.log('---------------------------');
         console.log('-----HIT LINE 89 in educatorsController.js----');
@@ -125,55 +123,67 @@ router.get('/my-students/:projid', function(req,res){
     });
 });
 
-
-
-router.get('/student-data/:studentid', isAuthenticated,  function(req,res){
+// this is passing project id not studentid 
+router.get('/student-data/:studentid/:projectid', isAuthenticated,  function(req,res){
   if (req.user.role == "Educator"){
-  db.Student.findAll({ 
+  
+  db.Student.findAll({
     where: {
-      id: req.params.studentid,
+      id: req.params.studentid
     },
-    include: [db.Fieldnote]
-  }).then(function(result) {
-      // Grab info about this student 
-      var student_obj = result[0].dataValues; 
-      var notes_array = []
-      for (i in result){
-        notes_array.push(result[i].dataValues.Fieldnote)
-      }
-      // don't know why this was the only way I could get date to look correct
-      for (i in notes_array) {
-        notes_array[i].dataValues.notedate = moment(notes_array[i].dataValues.notedate).format("MM-DD-YYYY")
-      }
+    attributes: ["username"],
+  }).then(function(studentresults) {
 
-      objForHandlebars = {"student": student_obj,
-                          "notes": notes_array,
-                          "UserEducator": true}                 
-      res.render("educators/student-data", {data: objForHandlebars} )
-    });
-  }
-});
+    var student_obj = studentresults[0].dataValues;
+    console.log("student_obj = " + student_obj)
+
+    db.Fieldnote.findAll({ 
+      where: {
+        StudentId: req.params.studentid,
+        ProjectId: req.params.projectid
+        }
+      }).then(function(result) {
+
+        if (result[0] == null) {
+          var objForHandlebars = {"student": student_obj}      
+          res.render("errors/nofieldnotes", {data: objForHandlebars})
+      
+        } else {
+          // Grab info about this student 
+          var notes_array = []
+          for (i in result){
+
+            notes_array.push(result[i].dataValues)
+            notes_array[i].notedate = moment(notes_array[i].notedate).format("MM-DD-YYYY") 
+          }
+
+          objForHandlebars = {"student": student_obj,
+                            "notes": notes_array,
+                            "UserEducator": true}                 
+          res.render("educators/student-data", {data: objForHandlebars} )
+      } // end of else
+    });   // end of .then
+  })  
+}
+
+})
 
 
 // Form for posting data 
 // Get project(s) this student is working to display as options in the form 
 
 router.get('/new-entry/:studentid/:projectid', function(req,res){
-  // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-      res.send("Student's form for posting new data ");;
-    // });
+      res.send("Student's form for posting new data ");
 });
 
 // Post new entry to the database 
 
 router.post('/new-entry/:studentid/:projectid', function(req,res){
-  // db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-      res.send("Student posted new entry to the database");;
-    // });
+      res.send("Student posted new entry to the database");
 });
 
-router.post('/update-announcement/:projectid', function(req,res){
 
+router.post('/update-announcement/:projectid', function(req,res){
   var newAnnouncement = {current_announcements: req.body.announcement}
   db.Project.update(newAnnouncement,
     {
