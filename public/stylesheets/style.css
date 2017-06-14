@@ -132,7 +132,7 @@ display: block;
 
 /*map image form home.html*/
 .mapbackground{
-  background: url("../images/googlemap.png")no-repeat center center scroll;
+  background: url('../images/aerial_shrubland.jpg')no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -161,6 +161,17 @@ display: block;
 .yellowbackground{
   background-color: #ecc34f;
 
+}
+
+.greenbackground{
+  background-color: #849974;
+}
+
+.centercontainer{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 .headshot{
