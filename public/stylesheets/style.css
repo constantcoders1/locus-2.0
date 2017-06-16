@@ -75,18 +75,38 @@ display: block;
 
 .btn btn-success{
   background-color: #78bcaf;
+  border-color: #78bcaf;
+}
+
+.btn-success.active {
+  color: #78bcaf;
+  border-color: #78bcaf;
+}
+
+.btn-default{
+  background: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.btn-default:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited {
+    background: #2c3e50;
+    border-color: #2c3e50;
 }
 
 #logo{
   position: absolute;
-  padding-top: 0px;
+  padding-top: 5px;
   z-index: 1;
  height: 6em;
- padding-right: 20px
+ padding-right: 20px;
+ padding-left: 5px;
+ margin-left: 10px;
+ margin-top: 5px;
+ 
 }
 
 .apptitle{
-  color: white;
+  color: #2c3e50;
   font-size: 10em;
   text-orientation: center;
 }
@@ -169,6 +189,8 @@ display: block;
 
 .centercontainer{ 
   width:30%;
+  margin-left: 35%;
+  margin-top: 150px;
 }
 
 .headshot{
