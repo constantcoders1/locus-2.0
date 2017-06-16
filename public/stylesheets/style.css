@@ -167,11 +167,8 @@ display: block;
   background-color: #849974;
 }
 
-.centercontainer{
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+.centercontainer{ 
+  width:30%;
 }
 
 .headshot{
