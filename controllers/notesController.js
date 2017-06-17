@@ -14,13 +14,7 @@ const aws = require('aws-sdk');
 const S3_BUCKET = 'locus-image-store';//'node-sdk-sample-test-04272017';
 console.log(S3_BUCKET);
 
-// var app = require('../routes/api-routes');
 
-
-
-
-
-// var connection = require('../config/connection.js')
 router.get('/viewall', isAuthenticated, function(req, res) {
 
     var sid = -1;
@@ -29,8 +23,9 @@ router.get('/viewall', isAuthenticated, function(req, res) {
     } 
  
     db.Fieldnote.findAll({include: [db.Student]}).then(function(dbFieldnotes) {
+    
     var newFieldNotes = []
-    console.log(dbFieldnotes)
+   
         for (i in dbFieldnotes){
         	 var showDelete = false;
         	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
@@ -39,64 +34,63 @@ router.get('/viewall', isAuthenticated, function(req, res) {
           	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
         console.log("notes/show_notes_view")
-    res.render("notes/show_notes_view", {data: dbFieldnotes})
-    //res.send(dbFieldnotes);
-       });
+        res.render("notes/show_notes_view", {data: dbFieldnotes})
+
+    });
 });
 
 
 
 router.get('/view/:sortfield/:direction/:projectid', isAuthenticated, function(req, res) {
-  console.log("long sorting req = " + req.params.sortfield + ", " + req.params.direction)
-   if (req.params.direction == "ASC") {
+    
+    if (req.params.direction == "ASC") {
     sortinfo = req.params.sortfield
-   } else {
+    } else {
     sortinfo =  req.params.sortfield + " DESC"
-   }
-   console.log("sort info:  " + sortinfo)
-   var sid = -1;
-  if (req.user.role == "Student") {
+    }
+    
+    
+    var sid = -1;
+    
+    if (req.user.role == "Student") {
       sid = req.user.id;
-     } 
-   db.Project.findAll({
+    } 
+    
+    db.Project.findAll({
         where: {
         id: req.params.projectid
-      }
+        }
      
     }).then(function(dbProject) {
+    
     db.Fieldnote.findAll({
         where: {
         ProjectId: req.params.projectid
-      },
-       order: sortinfo,
+        },
+        order: sortinfo,
         include: [db.Student]
     }).then(function(dbFieldnotes) {
-      // console.log("***************************************")
-      // console.log("dbFieldnotes = " + dbFieldnotes)
+    
       var newFieldNotes = []
-        for (i in dbFieldnotes){
+      
+      for (i in dbFieldnotes){
            var showDelete = false;
-           if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-           dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-           dbFieldnotes[i].showDeleteBtn = showDelete;
-            newFieldNotes.push(dbFieldnotes[i].dataValues)
-        }
-      //dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-      console.log(req.user.role)
-      console.log(dbProject)
+          if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
+            
+          dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+          dbFieldnotes[i].showDeleteBtn = showDelete;
+          newFieldNotes.push(dbFieldnotes[i].dataValues)
+      }
       
       if (req.user.role == "Educator") {
         res.render("notes/notes_view_educator", {data: dbFieldnotes, Project: dbProject, userEducator: true })
       } else {
         res.render("notes/notes_view_student", {data: dbFieldnotes, Project: dbProject, userEducator: false })
       }
-
    
-       });
-      });
-   });
-
-
+    });
+  });
+});
 
 
 router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
@@ -120,39 +114,38 @@ router.get('/projectmap/:projid', isAuthenticated, function(req, res) {
      
       }
       res.render("projects/projectmap", {locations: mapPoints})
-    })
   })
+})
 
 
 router.get('/view/:projectid', isAuthenticated, function(req, res) {
-   var sid = -1;
-  if (req.user.role == "Student") {
+    var sid = -1;
+    if (req.user.role == "Student") {
      	sid = req.user.id;
      } 
-	 db.Project.findAll({
+	   db.Project.findAll({
         where: {
         id: req.params.projectid
-      }
-     
-    }).then(function(dbProject) {
-    db.Fieldnote.findAll({
-    		where: {
-        ProjectId: req.params.projectid
-      },
-        include: [db.Student]
-    }).then(function(dbFieldnotes) {
-      // console.log(dbFieldnotes)
-    	var newFieldNotes = []
-        for (i in dbFieldnotes){
-        	 var showDelete = false;
-        	 if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
-        	 dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-        	 dbFieldnotes[i].showDeleteBtn = showDelete;
-          	newFieldNotes.push(dbFieldnotes[i].dataValues)
         }
-    	//dbFieldnotes[i].newnotedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
-      console.log(req.user.role)
-      console.log(dbProject)
+     
+      }).then(function(dbProject) {
+        db.Fieldnote.findAll({
+    		  where: {
+            ProjectId: req.params.projectid
+          },
+          include: [db.Student]
+      }).then(function(dbFieldnotes) {
+      
+    	var newFieldNotes = []
+        
+      for (i in dbFieldnotes){
+        var showDelete = false;
+        if (dbFieldnotes[i].StudentId == sid)  showDelete = true;
+        
+        dbFieldnotes[i].dataValues.notedate = moment(dbFieldnotes[i].notedate).format( "MM-DD-YYYY");
+        dbFieldnotes[i].showDeleteBtn = showDelete;
+        newFieldNotes.push(dbFieldnotes[i].dataValues)
+      }
       
       if (req.user.role == "Educator") {
         res.render("notes/notes_view_educator", {data: dbFieldnotes, Project: dbProject, userEducator: true })
@@ -160,34 +153,33 @@ router.get('/view/:projectid', isAuthenticated, function(req, res) {
         res.render("notes/notes_view_student", {data: dbFieldnotes, Project: dbProject, userEducator: false })
       }
 
-      });
-   });
+    });
   });
+});
 
 
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Student") {
-     req.user.id;
-
+    req.user.id;
     res.render("notes/notes", {projectid: req.params.projectid, studentid:  req.user.id });
-}else{
+  } else {
 	res.render("Sorry! you don't have the permissions to create this entry!")
-}
+  }
       
 });
 
+
 router.get('/delete/:noteid/:projectid', function(req, res) {
-  console.log("notes/delete/:noteid/:projectid")
+
   projectid = req.params.projectid;
   db.Fieldnote.destroy({
     where: {
       id: req.params.noteid
     }
   }).then(function() {
-    res.redirect("/notes/view/"+req.params.projectid);
+      res.redirect("/notes/view/"+req.params.projectid);
   });
 });
-
 
 
 router.get('/weather/:projectid/:studentid', function(req, res){
@@ -202,16 +194,16 @@ router.get('/weather/:projectid/:studentid', function(req, res){
     var proj = req.params.projectid;
     var stud = req.params.studentid;
 
-  var options = {
-     "async": true,
+    var options = {
+      "async": true,
       "crossDomain": true,
       "url": "https://api.darksky.net/forecast/21641b7b2b96f7eede5a22906c35deb8/" + lat + "," + lng + "?exclude=flags%2Cminutely%2Chourly",
       "method": "GET",
       "json": true,
     }
 
-rp(options)
-    .then(function (response) {
+    rp(options)
+      .then(function (response) {
       
         var timezone = response.timezone;
         
@@ -226,38 +218,27 @@ rp(options)
 
         var date = moment(response.currently).format( "MM-DD-YYYY");
 
-        // for checking to make timezone conversions are correct.
-        console.log("raw times:  rise: " + response.daily.data[0].sunriseTime +   "  set:  " + response.daily.data[0].sunsetTime)
-        console.log("sunrise:  " + sunrise + ", " +" sunset: " + sunset)
-        console.log("Local sunrise:  " + sunriseLocal + ", " +" sunset: " + sunsetLocal)
-        console.log("timezone = "+ timezone)       
-
         var tempdata = "High:  " + hightemp + "    Low:  " + lowtemp
         var sundata =  "    Sunrise:  " + sunriseLocal + "    Sunset:  " + sunsetLocal;
 
         var weatherdata = tempdata + " " + sundata
 
-        console.log(tempdata)
-        console.log(sundata)
-
         res.render("notes/notesweather", {projectid: proj, studentid: stud, date: date, weather:  weatherdata })
 
         }).catch(function (err) {
-       // console.log("error")
+          res.json(err)
+          console.log("error")
       });
     });
   });
 
 
 router.post("/create/:projectid/:studentid", function(req, res) {
-    console.log("creating note");
-    console.log(req.body);
+    
     var myRoute = "/notes/view/" + req.params.projectid;
-    console.log(myRoute);
-    console.log(req.params.projectid);
+    
     db.Fieldnote.create(req.body).then(function() {
-        console.log("created a note")
-            res.redirect( myRoute);
+        res.redirect( myRoute);
     }).catch(function(err) {
         console.log(err);
         res.json(err);
@@ -301,59 +282,6 @@ router.get("/sign-s3", (req, res) => {
     res.end();
   });
 });
-//);
-// Student's individual data view 
-// Get all data from all projects posted by this student 
 
-// router.get('/my-data/:studentid', function(req,res){
-// 	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's individual data view ");;
-//     });
-// });
-
-// // Form for posting data 
-// // Get project(s) this student is working to display as options in the form 
-
-// router.get('/new-entry/:studentid/:projectid', function(req,res){
-// 	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's form for posting new data ");;
-//     });
-// });
-
-// // Post new entry to the database 
-
-// router.post('/new-entry/:studentid/:projectid', function(req,res){
-// 	db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student posted new entry to the database");;
-//     });
-// });
-
-// TBI: Edit an existing entry 
-
-// router.put('/', function(req,res){
-// 	db.Fieldnotes.update({
-// 		// Form
-// 	      // text: req.body.text,
-// 	      // complete: req.body.complete
-//     }, {
-//       where: {
-//         id: req.body.id
-//       }
-//     }).then(function(dbFieldnotes) {
-//       res.send("Student Entry Edit");;
-//     });
-// });
-
-// TBI: Delete an existing entry 
-
-// router.delete('/', function(req,res){
-//     db.Fieldnotes.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     }).then(function(dbFieldnotes) {
-//       res.send("Student Entry Delete");;
-//     });
-// });
 
 module.exports = router;

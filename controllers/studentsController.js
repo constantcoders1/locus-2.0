@@ -1,9 +1,5 @@
-// Student Controller 
-// var passportStudent = require("../config/passportStudent");
-// var passportTeacher = require("../config/passportTeacher");
 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-
 
 var db = require("../models");
 var express = require('express');
@@ -133,22 +129,14 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
   }).then(function(result) {
       var student_objs = result; 
 
-// for testing will be removed
-      console.log(result)
-
       // Get the ids of each of the projects the student is working on 
       var projIds = []
       for (i in student_objs){     
-          student_objs[i].notedate = moment(student_objs[i].notedate).format("MM-DD-YYYY")
+        student_objs[i].notedate = moment(student_objs[i].notedate).format("MM-DD-YYYY")
         projIds.push(student_objs[i].dataValues.StudentToProject.dataValues.ProjectId)
       }
       console.log("projIds" + projIds)
       
-      // db.Fieldnote.findAll({ 
-      //   where: {
-      //     ProjectId: projIds,
-      //   }, include: [db.Project]
-
        db.Fieldnote.findAll({ 
         where: {
           StudentId: req.user.id,
@@ -173,6 +161,7 @@ router.get('/my-data/:studentid', isAuthenticated, function(req,res){
     });
 });
 
+
 router.get('/viewprojects', isAuthenticated, function(req, res) {
   // get all projects from database 
   if (req.user){
@@ -196,27 +185,12 @@ router.get('/viewprojects', isAuthenticated, function(req, res) {
 
           }
           console.log(data)
-     //      var objForHandlebars = {"data": dbProject1, "Matches": dbS2P}
-     //      console.log(objForHandlebars["Matches"])
-
-     // console.log(objForHandlebars)
     
-    res.render("students/project-view", {"data": data})
+        res.render("students/project-view", {"data": data})
+      });
     });
-  });
   }
 });
-
-// Form for posting data 
-// Get project(s) this student is working to display as options in the form 
-
-// router.get('/new-entry/:studentid/:projectid', function(req,res){
-// 	// db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's form for posting new data ");;
-//     // });
-// });
-
-// Post new entry to the database 
 
 
 router.get('/delete/:noteid', function(req, res) {
