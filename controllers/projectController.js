@@ -13,26 +13,18 @@ var moment = require('moment');
 router.get("/about/about-view", isAuthenticated, function(req,res) {
 
     if (req.user.role == "Educator") {
-        console.log("render Educator nav")
         res.render("about/about-view", { userEducator: true, userStudent: false });
       } else {
-        // if (req.user.role == "Student") {
-          console.log("render Student nav")
-          res.render("about/about-view", { userStudent: true, userEducator: false});
-        //  } else {
-        //   console.log("render home nav bar for guest")
-        //   res.render("about/about-view", {userEducator: false, userStudent: false})
-        // }
+        res.render("about/about-view", { userStudent: true, userEducator: false});
       }
 });
 
-// var connection = require('../config/connection.js')
+
 router.get('/viewall',  isAuthenticated, function(req, res) {
    
   if (req.user.role == "Student") {
       res.redirect("/student/viewprojects");
   } else if (req.user.role == "Educator") {
-     console.log("educator")
      res.redirect("/educator/viewprojects");
   } else{
       res.redirect("/project/viewallprojects");
@@ -40,19 +32,18 @@ router.get('/viewall',  isAuthenticated, function(req, res) {
     
 });
 
+
 router.get('/viewallprojects', function(req, res) {
 
     db.Project.findAll({}).then(function(dbProject) {
 
        if (req.user.role == "Educator") {
-        console.log("render Educator nav")
         res.render("projects/project-view", {data: dbProject, userEducator: true });
       } else {
-        console.log("render Student nav")
         res.render("projects/project-view", {data: dbProject, userEducator: false });
       } 
 
-    });    
+  });    
 });
 
 
@@ -72,10 +63,8 @@ router.get('/view/:educatorid', function(req, res) {
 
     }).then(function(dbProject) {
         if (req.user.role == "Educator") {
-          console.log("render Educator nav")
           res.render("projects/index", {data: dbProject, userEducator: true });
         } else {
-          console.log("render Student nav")
           res.render("projects/index", {data: dbProject, userEducator: false });
         }
   });
@@ -85,11 +74,11 @@ router.get('/view/:educatorid', function(req, res) {
 router.get('/update/:projectid', function(req, res) {
     console.log("here***");
     console.log(req.params.projectid);
-     //{ where: ["topicId = ? AND deletedAt IS NULL", req.params.id] }
+  
     db.Project.findAll({
         where: {
-        id: req.params.projectid
-      }
+          id: req.params.projectid
+        }
      
     }).then(function(dbProject) {
 
@@ -97,7 +86,8 @@ router.get('/update/:projectid', function(req, res) {
     console.log(dbProject);
     console.log("projectController  router.get/update/:projectid")
     res.render("projects/update_project", {data: dbProject, test:"Hello!!" })
-       });
+  
+  });
 });
 
 
@@ -117,15 +107,14 @@ router.get('/:projectid/:studentid', function(req, res) {
     console.log("projectController  router.get/:projectid/:studentid")
 
     if (req.user.role == "Educator") {
-        console.log("render Educator nav")
         res.render("projects/index", {data: dbProject, userEducator: true });
-      } else {
-        console.log("render Student nav")
+    } else {
         res.render("projects/index", {data: dbProject, userEducator: false });
-      }
-    // res.render("projects/index", {data: dbProject, test:"Hello!!" })
+    }
+
   });
 });
+
 
 router.put('/weather/:projectid/:studentid', function(req, res){
   console.log("clicked on get weather button project controller")
@@ -156,8 +145,6 @@ router.post("/update/:projectid", function(req, res) {
 router.get('/create/:projectid/:studentid', isAuthenticated, function(req, res) {
   if (req.user.role == "Educator") {
     educator_id = req.user.id;
-    //res.send(dbFieldnotes);
-    //console.log(dbFieldnotes);
     res.render("projects/project", {id: educator_id});
   } else {
     res.send("Sorry! You dont have permission to create a project")
@@ -180,58 +167,5 @@ router.post("/create", function(req, res) {
 
     // need to get keyword & look up teacher id
 });
-// Student's individual data view 
-// Get all data from all projects posted by this student 
-
-// router.get('/my-data/:studentid', function(req,res){
-//  db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's individual data view ");;
-//     });
-// });
-
-// // Form for posting data 
-// // Get project(s) this student is working to display as options in the form 
-
-// router.get('/new-entry/:studentid/:projectid', function(req,res){
-//  db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student's form for posting new data ");;
-//     });
-// });
-
-// // Post new entry to the database 
-
-// router.post('/new-entry/:studentid/:projectid', function(req,res){
-//  db.Fieldnotes.findAll({}).then(function(dbFieldnotes) {
-//       res.send("Student posted new entry to the database");;
-//     });
-// });
-
-// TBI: Edit an existing entry 
-
-// router.put('/', function(req,res){
-//  db.Fieldnotes.update({
-//    // Form
-//        // text: req.body.text,
-//        // complete: req.body.complete
-//     }, {
-//       where: {
-//         id: req.body.id
-//       }
-//     }).then(function(dbFieldnotes) {
-//       res.send("Student Entry Edit");;
-//     });
-// });
-
-// TBI: Delete an existing entry 
-
-// router.delete('/', function(req,res){
-//     db.Fieldnotes.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     }).then(function(dbFieldnotes) {
-//       res.send("Student Entry Delete");;
-//     });
-// });
 
 module.exports = router;
