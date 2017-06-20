@@ -15,6 +15,26 @@ const S3_BUCKET = 'locus-image-store';//'node-sdk-sample-test-04272017';
 console.log(S3_BUCKET);
 
 
+
+
+router.get("/fieldnote/:noteid/:type", function(req, res) {
+  
+  console.log("note id = "+ req.params.noteid)
+  console.log("type - " + req.params.type)
+
+  db.Fieldnote.findAll({
+    where: {
+        id: req.params.noteid
+       }
+      }).then(function(note) {
+
+        console.log(note)
+ 
+
+  })
+})
+
+
 router.get('/viewall', isAuthenticated, function(req, res) {
 
     var sid = -1;
