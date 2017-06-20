@@ -6,6 +6,7 @@
     {{>nav/loggedinstudent}}
 {{/if}}
 
+<!-- notes/show_notes_view.handlebars -->
  
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -30,7 +31,9 @@
 
               <tr>
               <td>{{this.Student.username}}</td>
-              <td><a href="#"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
+              <!-- <td><a href="{{doclink}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td> -->
+           
+              <td> <a href="/notes/fieldnote/{{this.id}}/{{doctype}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
               <td> {{this.title}}</td>
               <td> {{this.description}}</td>
               <td> {{this.notedate}}</td>

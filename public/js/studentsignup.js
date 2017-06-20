@@ -22,10 +22,6 @@ $(document).ready(function() {
     });
 
 
-
-
-
-
   console.log("studentsignup");
   // Getting references to our form and input
   var signUpForm = $("form.signup");
@@ -33,12 +29,7 @@ $(document).ready(function() {
   var passwordInput = $("input#password-input");
   var usernameInput = $("input#username-input");
   var projectInput = $("select#project-input");
-  // var countryInput = $("select#country-input");
-  // var stateInput = $("input#state-input");
-  // var cityInput = $("input#city-input");
 
-  // var locationInput = $("input#location-input")
-  // console.log(location-input)
 
   var projectSelect = $("#project-input");
  
