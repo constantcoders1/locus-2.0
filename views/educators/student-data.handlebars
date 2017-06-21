@@ -22,7 +22,8 @@
 		    	{{#each data.notes}}
 			      <tr>
 			        <td>{{title}}</td>
-			        <td><a href="{{doclink}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
+              <td> <a href="/notes/fieldnote/{{this.id}}/{{doctype}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
+			        <!-- <td><a href="{{doclink}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td> -->
               <td>{{description}}</td>
 			        <td>{{notedate}}</td>
 			      </tr>

@@ -23,7 +23,8 @@
           {{#each observations}}
             <tr>
               <td>{{Project.name}}</td>
-              <td><a href="{{doclink}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
+              <td> <a href="/notes/fieldnote/{{this.id}}/{{doctype}}"><span class="glyphicon glyphicon-{{doctype}}"></span></a></td>
+             
               <td>{{title}}</td>
               <td>{{description}}</td>
               <td>{{notedate}}</td>
