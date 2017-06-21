@@ -1,8 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var path = require("path")
-// var passportStudent = require("../config/passportStudent");
-// var passportTeacher = require("../config/passportTeacher");
+
 var passport = require("../config/passport");
 
 module.exports = function(app) {
@@ -64,7 +63,7 @@ app.get('/view/studentid', function(req,res){
         }
 
         console.log(obj_for_handlebars)
-        // res.sendFile(path.join(__dirname + "/../public/students/student-view", obj_for_handlebars ))
+
          res.sendFile(path.join(__dirname + "/../public/students/student-view" ))
       
 

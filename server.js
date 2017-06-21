@@ -18,11 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser());
 app.use(bodyParser.json());
 
-// app.use('/public', express.static(path.join(__dirname, 'public')))
+
 
 app.use(express.static("public"));
-// app.use(express.static(process.cwd() + "/public"));
-
 
 
 // We need to use sessions to keep track of our user's login status
@@ -38,7 +36,6 @@ require("./routes/api-routes.js")(app);
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 
 var hbs = exphbs.create({
 
