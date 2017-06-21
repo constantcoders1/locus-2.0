@@ -6,11 +6,9 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
-
-
-  app.get("/", function(req, res) {
+app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/home.html"));
-  });
+});
    
 
 app.get("/clustermap", function(req, res) {
@@ -22,11 +20,11 @@ app.get("/clustermap", function(req, res) {
 app.get("/studentmap/:project", function(req, res) {
   console.log("req = " + req)
   res.send(req.params)
-  // res.render(req)
-  // res.sendFile(path.join(__dirname + "/../public/student.html"))
+
 });
 
- app.get("/student/signup", function(req, res) {
+
+app.get("/student/signup", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/students");
@@ -34,7 +32,8 @@ app.get("/studentmap/:project", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/student/signup.html"));
   });
 
-  app.get("/teacher/signup", function(req, res) {
+
+app.get("/teacher/signup", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/teachers");
@@ -42,7 +41,8 @@ app.get("/studentmap/:project", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/teacher/signup.html"));
   });
 
-  app.get("student/login", function(req, res) {
+
+app.get("student/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/students");
@@ -50,7 +50,8 @@ app.get("/studentmap/:project", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/student/login.html"));
   });
 
-  app.get("teacher/login", function(req, res) {
+
+app.get("teacher/login", function(req, res) {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/teachers");
@@ -58,33 +59,30 @@ app.get("/studentmap/:project", function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/teacher/login.html"));
   });
 
-  // Here we've add our isAuthenticated middleware to this route.
+
+  // Here we've added our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/students", isAuthenticated, function(req, res) {
-  
+app.get("/students", isAuthenticated, function(req, res) {  
     res.sendFile(path.join(__dirname + "/../public/students.html"));
   });
 
-  app.get("/teachers", isAuthenticated, function(req, res) {
-   
+
+app.get("/teachers", isAuthenticated, function(req, res) {   
     res.sendFile(path.join(__dirname + "/../public/teachers.html"));
   });
 
-  app.get("/educators", isAuthenticated, function(req, res) {
-   
-    
-  // res.sendFile(path.join(__dirname + "/../educatorview.html"));
-  res.sendFile(path.join(__dirname + "/../educatorview.html"));
+
+app.get("/educators", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname + "/../educatorview.html"));
   });
 
-  app.get("/students/view-field-notes", isAuthenticated, function(req, res) {
-  
+
+app.get("/students/view-field-notes", isAuthenticated, function(req, res) {  
     res.sendFile(path.join(__dirname + "/../public/student/fieldNotes.html"));
   });
 
-  app.get("/teachers/view-field-notes", isAuthenticated, function(req, res) {
-    
 
+app.get("/teachers/view-field-notes", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname + "/../public/student/fieldNotes.html"));
   });
 
