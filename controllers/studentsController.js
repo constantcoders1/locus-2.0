@@ -226,7 +226,9 @@ router.get('/leaderboard', isAuthenticated, function(req, res) {
 }).then(function (data) {
   res.json(data)
 });*/
-db.sequelize.query("select count(*) projCt, st.username uname, pj.name  pname , YEAR(fn.UpdatedAt) yr, MONTH(fn.UpdatedAt) mo , MONTHNAME(fn.UpdatedAt) mname from Fieldnotes fn, Students st, Projects pj where fn.StudentId = st.id and pj.id = fn.ProjectId group by uname, pname, yr, mo, mname having projCt > 2 order by  yr desc, mo desc, projCt desc"
+
+db.sequelize.query("select count(*) project, st.username uname, pj.name  pname , YEAR(fn.UpdatedAt) yr, MONTH(fn.UpdatedAt) mo , MONTHNAME(fn.UpdatedAt) mname from fieldnotes fn, students st, projects pj where fn.StudentId = st.id and pj.id = fn.ProjectId group by uname, pname, yr, mo, mname having project > 2 order by  yr desc, mo desc, project desc"
+
   ).then(function(data) {
     //res.json(data[0]);
     res.render("students/leader-view", {"data": data[0]})
