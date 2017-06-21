@@ -43,7 +43,7 @@ router.get("/fieldnote/:noteid/:type", function(req, res) {
            
             console.log("show file or pic")
             console.log(userEd)
-            res.render("notes/uploadview",  {data: note, userEducator: userEd})
+            res.render("notes/notes_file_view",  {data: note, userEducator: userEd})
          
           } else {
 
