@@ -15,10 +15,15 @@ const S3_BUCKET = 'locus-image-store';//'node-sdk-sample-test-04272017';
 console.log(S3_BUCKET);
 
 
-
-
 router.get("/fieldnote/:noteid/:type", function(req, res) {
+
+  if(req.user.role == "Educator") {
+    userEd = true;
+  } else {
+    userEd = false;
+  }
   
+  console.log("educator? = "+ userEd)
   console.log("note id = "+ req.params.noteid)
   console.log("type - " + req.params.type)
 
@@ -28,7 +33,24 @@ router.get("/fieldnote/:noteid/:type", function(req, res) {
        }
       }).then(function(note) {
 
-        console.log(note)
+          console.log(note)
+
+          note[0].dataValues.notedate = moment(note[0].dataValues.notedate).format( "MM-DD-YYYY");
+        
+          
+          if (req.params.type == 'picture' || req.params.type == 'file') {
+           
+            console.log("show file or pic")
+            console.log(userEd)
+            res.render("notes/uploadview",  {data: note, userEducator: userEd})
+         
+          } else {
+
+            console.log("not pic or doc")
+            
+            res.render("notes/notesview", {data: note, userEducator: userEd})
+         
+          }
  
 
   })
