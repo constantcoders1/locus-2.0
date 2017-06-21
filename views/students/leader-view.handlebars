@@ -17,10 +17,10 @@
          <thead>
              <tr>
               <th class='col-md-1'>
+              <th class='col-md-2'> <b>Month/Year</b></th>
               <th class='col-md-2'> <b>Project Name</b></th>
               <th class='col-md-2'> <b>User</b></th>
               <th class='col-md-2'> <b>Entries</b></th>
-              <th class='col-md-2'> <b>Month/Year</b></th>
             </tr>
          </thead>
           <tbody>
@@ -28,15 +28,16 @@
           {{#each data}}
             <tr>
               <td class='col-md-1'>
+              <td class='col-md-2'> {{this.mname}} {{this.yr}}</td>
               <td class='col-md-2'> {{this.pname}}</td>
               <td class='col-md-2'> {{this.uname}}</td>
               <td class='col-md-2'> {{this.projCt}}</td>
-              <td class='col-md-2'> {{this.mname}} {{this.yr}}</td>
             </tr>
           {{/each}}
 
           </tbody>
         </table> 
+      
       </div>
     </div>
   </div>
