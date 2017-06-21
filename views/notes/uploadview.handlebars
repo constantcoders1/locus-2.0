@@ -1,0 +1,78 @@
+<!-- notes/uploadview.handlebars -->
+
+<!-- since only student should create a field note should only need loggedinstudent nav bar -->
+{{#if userEducator}}
+    {{> nav/loggedineducator}}
+{{else}}
+    {{>nav/loggedinstudent}}
+{{/if}}
+
+<h2>View a Photo or Document</h2>
+ 
+
+  <div class="row">
+    <div class="form-group">
+      <label for="inputNote" class="col-md-2 control-label align-right">Data</label>
+      <div class="col-md-8">  
+        <input type="note" class="form-control" id="note" name="doclink" disabled value="{{data.0.doclink}}">
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="form-group">
+        <input type="file" id="file-input">
+    <!--p id="status">Please select a file</p-->
+        <img style="border:1px solid gray;width:300px;"  id="preview" src="/images/placeholder.png">
+        <input type="hidden" id="avatar-url" name="avatar-url" value="/images/placeholder.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <label for="inpuNoteType" class="col-md-2 control-label align-right">Data Type: </label>
+      <div class="col-lg-8">
+        <input type="radio"  name="doctype" value="picture"> Image
+        <input type="radio"  name="doctype" value="file"> Document
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="inputTitle" class="col-md-2 control-label align-right">Title</label>
+      <div class="col-lg-8">
+        <input type="title" class="form-control" id="title" name="title" disabled value="{{data.0.title}}" >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="inputDesc" class="col-md-2 control-label align-right">Description</label>
+      <div class="col-lg-8">
+        <input type="description" class="form-control" id="description" disabled name="description" value="{{data.0.description}}">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <label for="inputnotedate" class="col-md-2 control-label align-right">Enter Date</label>
+      <div class="col-lg-8">
+        <input type="notedate" class="form-control" id="notedate"  name="notedate" disabled value={{data.0.notedate}}>
+      </div>
+    </div>
+  </div>
+
+  <!-- <input type="hidden" class="form-control" id="notedate"  name="ProjectId" value="{{this.projectid}}">
+  <input type="hidden" class="form-control" id="notedate"  name="StudentId" value="{{this.studentid}}">
+  <div class="row col-md-2 control-label align-right">
+    <button type="submit" class="btn btn-default">Submit</button>
+    <br><br>
+  </div> -->
+</form>

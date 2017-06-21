@@ -129,7 +129,7 @@ router.post('/view', function(req, res) {
 router.post("/update/:projectid", function(req, res) {
     // Update takes in an object describing the properties we want to update, and
     // we use where to describe which objects we want to update
-    console.log("in update")
+    console.log("in update ")
     db.Project.update(
       req.body
     ,{
