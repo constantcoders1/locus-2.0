@@ -1,0 +1,80 @@
+<!-- notes\notesweatherview.handlebars -->
+{{#if userEducator}}
+    {{> nav/loggedineducator}}
+{{else}}
+    {{>nav/loggedinstudent}}
+{{/if}}
+
+
+
+  <br>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <h2>Field Note<span class="member-name"></span></h2>
+    </div>
+    <br><br><br>
+    
+  </div>
+
+  
+  <br><br>
+
+
+  <div class="row">
+    <div class="form-group">
+      <label for="inputNote" class="col-md-2 control-label align-right">Data</label>
+      <div class="col-md-8">     
+        <input type="note" class="form-control" disabled id="note" name="doclink" value="{{data.0.doclink}}">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      
+      <label for="inputNote" class="col-md-2 control-label align-right">Preview:</label>
+      <div class="col-md-8"> 
+      <a href="{{data.0.doclink}}">    
+       <img style="border:1px solid gray;width:300px;"  id="preview" src="{{data.0.doclink}}" >
+       </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="form-group">
+
+      <label for="inputTitle" class="col-md-2 control-label align-right">Title</label>
+      <div class="col-lg-8">
+        <input type="title" class="form-control" disabled id="title" name="title" value="{{data.0.title}}" >
+      </div>
+    </div>
+  </div>
+
+   <div class="row">
+    <div class="form-group">
+      <label for="inputDesc" class="col-md-2 control-label align-right">Description</label>
+      <div class="col-lg-8">
+        <input type="description" class="form-control" disabled id="description" name="description" value="{{data.0.description}}">
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="row">
+    <div class="form-group">
+      <label for="inputnotedate" class="col-md-2 control-label align-right">Date</label>
+      <div class="col-lg-8">
+        <input type="notedate" class="form-control" disabled id="notedate"  name="notedate" placeholder="Enter Date" value={{data.0.notedate}}>
+      </div>
+    </div>
+  </div>
+
+<!--   <input type="hidden" class="form-control" id="notedate"  name="ProjectId" value="{{this.projectid}}">
+  <input type="hidden" class="form-control" id="notedate"  name="StudentId" value="{{this.studentid}}">
+  <div class="row col-md-2 control-label align-right">
+    <button type="submit" class="btn btn-default">Submit</button>
+  </div> -->
+</form>
+
